@@ -1,0 +1,66 @@
+@font-face {
+    font-family: "Inter Tight";
+    src: local("Inter Tight"), url("InterTight-Regular.woff2") format("woff2"),
+        url("InterTight-Regular.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Inter Tight";
+    src: local("Inter Tight"), url("InterTight-Medium.woff2") format("woff2"),
+        url("InterTight-Medium.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Inter Tight";
+    src: local("Inter Tight"), url("InterTight-SemiBold.woff2") format("woff2"),
+        url("InterTight-SemiBold.woff") format("woff");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: local("Inter"), url("Inter-Regular.woff2") format("woff2"), url("Inter-Regular.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: local("Inter"), url("Inter-Medium.woff2") format("woff2"), url("Inter-Medium.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: local("Inter"), url("Inter-SemiBold.woff2") format("woff2"), url("Inter-SemiBold.woff") format("woff");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Vela Sans";
+    src: local("Vela Sans"), url("VelaSans-Regular.woff2") format("woff2"), url("VelaSans-Regular.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Vela Sans";
+    src: local("Vela Sans"), url("VelaSans-Medium.woff2") format("woff2"), url("VelaSans-Medium.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Vela Sans";
+    src: local("Vela Sans"), url("VelaSans-SemiBold.woff2") format("woff2"),
+        url("VelaSans-SemiBold.woff") format("woff");
+    font-weight: 600;
+    font-style: normal;
+}
