@@ -206,7 +206,15 @@ document.addEventListener('DOMContentLoaded', function () {
 				slidesPerView: 3,
 			}
 		},
+
+		observer: true,
+
+		observeParents: true,
+
+		observeSlideChildren: true,
 	});
+
+
 	const employeesSwiper = new Swiper('.employees-block__swiper', {
 		direction: "horizontal",
 		slidesPerView: 1.3,
@@ -227,6 +235,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			},
 		},
 	});
+
 	const articleSwiper = new Swiper('.article-swiper', {
 		direction: "horizontal",
 		slidesPerView: 1.1,
@@ -236,17 +245,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			nextEl: '.swiper-btn.next',
 			prevEl: '.swiper-btn.prev',
 		},
-		// breakpoints: {
-		// 	768: {
-		// 		slidesPerView: 2,
-		// 	},
-		// 	992: {
-		// 		slidesPerView: 2.5,
-		// 	},
-		// 	1024: {
-		// 		slidesPerView: 3,
-		// 	},
-		// },
+
 	});
 
 })

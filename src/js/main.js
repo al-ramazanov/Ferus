@@ -969,41 +969,44 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 
-	// 	const reqType = document.querySelector('input[id="type"]')
-	// 	let svgIco = `<svg>
-	// 	<use xlink:href='./src/images/svgicons/icons.svg#check-ico'></use>
-	// </svg>`;
+	const reqType = document.querySelector('input[id="type"]')
 
-	// 	const dropdownItem = document.querySelectorAll('.dropdown-body li')
-	// 	dropdownItem.forEach(item => {
-	// 		item.addEventListener('click', () => {
-	// 			dropdownItem.forEach(el => {
-	// 				el.classList.remove('active')
-	// 				let svg = el.querySelector('svg')
-	// 				if (svg) {
-	// 					svg.remove()
-	// 				}
-	// 			})
-	// 			item.insertAdjacentHTML('beforeend', svgIco)
-	// 			item.classList.add('active')
-	// 			reqType.value = item.innerText;
-	// 		})
-	// 	})
+	if (reqType) {
 
-	// 	let dropdownBody;
+		let svgIco = `<svg>
+		<use xlink:href='./src/images/svgicons/icons.svg#check-ico'></use>
+	</svg>`;
 
-	// 	reqType.addEventListener('focus', () => {
-	// 		dropdownBody = document.querySelector('.dropdown-body')
-	// 		dropdownBody.classList.add('active')
+		const dropdownItem = document.querySelectorAll('.dropdown-body li')
+		dropdownItem.forEach(item => {
+			item.addEventListener('click', () => {
+				dropdownItem.forEach(el => {
+					el.classList.remove('active')
+					let svg = el.querySelector('svg')
+					if (svg) {
+						svg.remove()
+					}
+				})
+				item.insertAdjacentHTML('beforeend', svgIco)
+				item.classList.add('active')
+				reqType.value = item.innerText;
+			})
+		})
 
-	// 		reqType.parentElement.classList.add('active')
-	// 	})
-	// 	reqType.addEventListener('blur', () => {
-	// 		dropdownBody.classList.remove('active')
-	// 		reqType.parentElement.classList.remove('active')
-	// 	})
+		let dropdownBody;
 
+		reqType.addEventListener('focus', () => {
+			dropdownBody = document.querySelector('.dropdown-body')
+			dropdownBody.classList.add('active')
 
+			reqType.parentElement.classList.add('active')
+		})
+		reqType.addEventListener('blur', () => {
+			dropdownBody.classList.remove('active')
+			reqType.parentElement.classList.remove('active')
+		})
+
+	}
 
 
 	const contactsPopup = document.querySelector('.contacts-popup');
@@ -1136,13 +1139,14 @@ document.addEventListener('DOMContentLoaded', function () {
 	addToCard()
 
 	function cartSubmit() {
-		let submit = document.querySelector('.cart-form__submit');
 
-		if (submit) {
+		let submitPopup = document.querySelector('.cart-submit__popup');
+		if (submitPopup) {
 
-			let submitPopup = document.querySelector('.cart-submit__popup');
+			let submit = document.querySelector('.cart-form__submit');
 
 			let closePopup = submitPopup.querySelector('.popup__close');
+			console.log(closePopup);
 
 			submit.addEventListener('click', (e) => {
 				e.preventDefault()
@@ -1233,9 +1237,13 @@ document.addEventListener('DOMContentLoaded', function () {
 		const closePopup = requisitesPopup.querySelector('.popup__close')
 		const requisitesBtn = document.querySelector('.requisites-popup__open')
 		const download = requisitesPopup.querySelector('.requisites__card-btn')
+
 		requisitesBtn.addEventListener('click', () => openPopupElement(requisitesPopup))
+
 		closePopup.addEventListener('click', () => closePopupElement(requisitesPopup))
+
 		download.addEventListener('click', () => console.log(1))
+
 		document.addEventListener('click', (e) => {
 			if (e.target == requisitesPopup)
 				closePopupElement(requisitesPopup)
@@ -1246,7 +1254,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Открыть попап реквизитов
 
 
-	// Закрыть все Popup
+	// Закрыть  Popup`ы при нажатии ESCAPE
+
 	const allPopups = document.querySelectorAll('.popup');
 	if (allPopups) {
 		for (const popup of allPopups) {
@@ -1260,7 +1269,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 
-	// Закрыть все Popup
+	// Закрыть  Popup`ы при нажатии ESCAPE
 
 
 
@@ -1268,7 +1277,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	function tabs() {
 
 		let tabButtons = document.querySelectorAll('[data-path]')
-		console.log(tabButtons);
+
 		if (tabButtons) {
 
 			for (const button of tabButtons) {
@@ -1291,9 +1300,11 @@ document.addEventListener('DOMContentLoaded', function () {
 					targetBlock.classList.add('active')
 
 				});
+
 			};
-			tabButtons[0].click();
+			// tabButtons.click()
 		}
+
 
 
 	}
