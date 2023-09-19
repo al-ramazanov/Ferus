@@ -1030,26 +1030,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 	}
 
-
-	function showBottomMenu() {
-		const blockWithBottomMenu = document.querySelector('.listing-info');
-		if (blockWithBottomMenu) {
-			const bottomMenu = document.querySelector('.bottom-menu');
-			let fromTop = blockWithBottomMenu.offsetTop;
-			window.addEventListener('scroll', () => {
-				if (document.documentElement.scrollTop > fromTop) {
-					bottomMenu.classList.add('show')
-				}
-				if (document.documentElement.scrollTop < fromTop) {
-					bottomMenu.classList.remove('show')
-				}
-			})
-		}
-	}
-
-	showBottomMenu()
-
-
 	let productPopup = document.querySelector('.product-popup')
 	if (productPopup) {
 		const popupCloseBtn = productPopup.querySelector('.popup__close')
@@ -1111,41 +1091,214 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	function showPrice() {
-		let priceBlock = document.querySelector('.show-price')
-		let showPriceBtn = document.querySelector('.product-hero__action-price')
-		showPriceBtn.addEventListener('click', () => {
-			priceBlock.classList.add('active')
-			setTimeout(() => {
-				priceBlock.classList.remove('active')
+		let priceBlock = document.querySelector('.show-price');
+		let showPriceBtn = document.querySelector('.showPriceBtn');
+		if (showPriceBtn) {
 
-			}, 3000);
-		})
+			showPriceBtn.addEventListener('click', () => {
+				priceBlock.classList.add('active')
+				setTimeout(() => {
+					priceBlock.classList.remove('active')
+
+				}, 3000);
+			})
+		}
 	}
 	showPrice()
 
 	function addToCard() {
 		let cartBtn = document.querySelector('.product-hero__cart-btn')
-		let productInput = document.querySelector("body > section.product-hero.section-hero > div.container > div > div.product-hero__content > div.product-hero__action > div:nth-child(1) > div.product-hero__cart > div > div > input[type=number]")
 
-		let btnInner = `В корзине
+		if (cartBtn) {
+
+			let productInput = document.querySelector("body > section.product-hero.section-hero > div.container > div > div.product-hero__content > div.product-hero__action > div:nth-child(1) > div.product-hero__cart > div > div > input[type=number]")
+
+			let btnInner = `В корзине
 		<svg id="check-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
 		<path fill-rule="evenodd" clip-rule="evenodd"
 			d="M17.2559 4.41083C17.5814 4.73626 17.5814 5.2639 17.2559 5.58934L8.08926 14.756C7.76382 15.0814 7.23618 15.0814 6.91074 14.756L2.74408 10.5893C2.41864 10.2639 2.41864 9.73626 2.74408 9.41083C3.06951 9.08539 3.59715 9.08539 3.92259 9.41083L7.5 12.9882L16.0774 4.41083C16.4028 4.08539 16.9305 4.08539 17.2559 4.41083Z"
 			fill="#fff" />
-	</svg>`
-		cartBtn.addEventListener('click', () => {
-			// if (!productInput.value) {
-			// 	document.querySelector(".products__list-item__units.desktop").style.boxShadow = '0px 0px 3px 3px red'
-			// } else {
-			// 	cartBtn.innerHTML = btnInner;
-			// 	document.querySelector(".products__list-item__units.desktop").style.boxShadow = null;
+		</svg>`;
 
-			// }
-			cartBtn.innerHTML = btnInner;
-		})
+			cartBtn.addEventListener('click', () => {
+				// if (!productInput.value) {
+				// 	document.querySelector(".products__list-item__units.desktop").style.boxShadow = '0px 0px 3px 3px red'
+				// } else {
+				// 	cartBtn.innerHTML = btnInner;
+				// 	document.querySelector(".products__list-item__units.desktop").style.boxShadow = null;
+
+				// }
+				cartBtn.innerHTML = btnInner;
+			})
+		}
 	}
 
 	addToCard()
+
+	function cartSubmit() {
+		let submit = document.querySelector('.cart-form__submit');
+
+		if (submit) {
+
+			let submitPopup = document.querySelector('.cart-submit__popup');
+
+			let closePopup = submitPopup.querySelector('.popup__close');
+
+			submit.addEventListener('click', (e) => {
+				e.preventDefault()
+				openPopupElement(submitPopup)
+			})
+
+			closePopup.addEventListener('click', closePopupElement(submitPopup))
+
+			submitPopup.addEventListener('click', () => {
+				closePopupElement(submitPopup)
+			})
+
+		}
+	}
+
+	cartSubmit()
+
+
+	function fixButtomMenu() {
+		let bottomMenu = document.querySelector('.bottom-menu')
+		let headerBottom = document.querySelector('.header__bottom')
+		if (bottomMenu) {
+			if (document.documentElement.clientWidth <= 768) {
+				bottomMenu.style.top = `${headerBottom.scrollHeight + 20}px`
+				window.addEventListener('resize', () => {
+					bottomMenu.style.top = `${headerBottom.scrollHeight + 20}px`
+
+				})
+			}
+
+		}
+	}
+
+	fixButtomMenu()
+
+
+	function asideMenu() {
+
+		const asided = document.querySelector('.asided-js')
+
+		if (asided) {
+
+			const asideBlock = asided.querySelector('aside')
+
+			const spaceLeftBlocks = asided.querySelectorAll('.aside-space')
+
+			const firstElement = spaceLeftBlocks[0];
+
+			firstElement.style.marginTop = `-${asideBlock.offsetHeight}px`;
+
+			asideBlock.style.transform = `translateY(${window.getComputedStyle(firstElement).paddingTop})`;
+
+			window.addEventListener('scroll', () => {
+				if (document.documentElement.scrollTop - document.querySelector('.section-hero').offsetHeight >= asideBlock.offsetHeight) {
+					asideBlock.style.transform = null;
+				}
+				else {
+					asideBlock.style.transform = `translateY(${window.getComputedStyle(firstElement).paddingTop})`;
+				}
+
+			})
+
+
+			for (const item of spaceLeftBlocks) {
+
+				const container = item.querySelector('.container');
+
+				container.style.paddingLeft = `${asideBlock.offsetWidth}px`;
+
+				let containerMarginLeft = window.getComputedStyle(container).marginLeft;
+
+				asideBlock.style.left = `${containerMarginLeft}`
+			}
+
+		}
+
+	}
+
+	asideMenu()
+
+	window.addEventListener('resize', asideMenu)
+
+	// Открыть попап резвезитов
+	const requisitesPopup = document.querySelector('.requisites-popup');
+
+	if (requisitesPopup) {
+
+		const closePopup = requisitesPopup.querySelector('.popup__close')
+		const requisitesBtn = document.querySelector('.requisites-popup__open')
+		const download = requisitesPopup.querySelector('.requisites__card-btn')
+		requisitesBtn.addEventListener('click', () => openPopupElement(requisitesPopup))
+		closePopup.addEventListener('click', () => closePopupElement(requisitesPopup))
+		download.addEventListener('click', () => console.log(1))
+		document.addEventListener('click', (e) => {
+			if (e.target == requisitesPopup)
+				closePopupElement(requisitesPopup)
+		})
+
+	}
+
+	// Открыть попап реквизитов
+
+
+	// Закрыть все Popup
+	const allPopups = document.querySelectorAll('.popup');
+	if (allPopups) {
+		for (const popup of allPopups) {
+			document.addEventListener('keydown', (e) => {
+				if (e.key == "Escape" && popup.classList.contains('active')) {
+					closePopupElement(popup)
+				}
+				return
+			})
+		}
+	}
+
+
+	// Закрыть все Popup
+
+
+
+
+	function tabs() {
+
+		let tabButtons = document.querySelectorAll('[data-path]')
+		console.log(tabButtons);
+		if (tabButtons) {
+
+			for (const button of tabButtons) {
+				button.addEventListener('click', (e) => {
+
+					let targetId = e.target.dataset.path;
+
+					let targetBlock = document.querySelector(`[data-target="${targetId}"]`);
+
+					let tabsBody = document.querySelectorAll('[data-target]')
+
+					tabsBody.forEach(item => item.classList.remove('active'))
+
+					tabButtons.forEach(item => {
+						item.classList.remove('active')
+					})
+
+					e.target.classList.add('active')
+
+					targetBlock.classList.add('active')
+
+				});
+			};
+			tabButtons[0].click();
+		}
+
+
+	}
+	tabs()
+
 
 })
 

@@ -105,7 +105,10 @@ document.addEventListener('DOMContentLoaded', function () {
 		direction: 'horizontal',
 		slidesPerView: 1,
 		spaceBetween: rem(1.6),
-
+		navigation: {
+			nextEl: '.specoffer_swiper-btn.next',
+			prevEl: '.specoffer_swiper-btn.prev',
+		},
 		breakpoints: {
 			400: {
 				slidesPerView: 1.5,
@@ -122,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			1200: {
 				slidesPerView: 4,
 			},
+
 		}
 	})
 
@@ -142,6 +146,13 @@ document.addEventListener('DOMContentLoaded', function () {
 				slidesPerView: 3,
 			}
 		},
+
+		observer: true,
+
+		observeParents: true,
+
+		observeSlideChildren: true,
+
 	});
 
 
