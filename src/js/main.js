@@ -347,7 +347,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	const catalogSubMenuBackBtns = document.querySelectorAll('.header__catalog-mobile__submenu-back');
 	catalogSubMenuBackBtns.forEach(btn => {
 		btn.addEventListener('click', function () {
-			btn.parentElement.classList.remove('active');
+			// btn.parentElement.classList.remove('active');
 		})
 	})
 
@@ -375,20 +375,29 @@ document.addEventListener('DOMContentLoaded', function () {
 		subMenuBtns.forEach(btn => {
 			btn.addEventListener('mouseenter', function () {
 				subMenuBtns.forEach(el => el.parentElement.classList.remove('active'));
-				fastSearhBlock.classList.add('active');
-				catalogMenuCard.classList.remove('active');
-				catalogMenuDescription.classList.remove('active');
+				fastSearhBlock.classList.remove('active');
+				catalogMenuCard.classList.add('active');
+				catalogMenuDescription.classList.add('active');
 			})
 		})
 	})
 
 	const catalogSubSubmenus = document.querySelectorAll('.catalog-menu__sublist-submenu');
+
 	catalogSubSubmenus.forEach(submenu => {
 
-		submenu.addEventListener('mouseenter', function () {
+		submenu.addEventListener('mouseenter', function (e) {
+
 			submenu.parentElement.previousElementSibling.classList.add('active');
+			submenu.classList.add('show')
+
+			fastSearhBlock.classList.add('active');
+			catalogMenuCard.classList.remove('active');
+			catalogMenuDescription.classList.remove('active');
 		})
+
 	})
+
 
 	const catalogBtns = document.querySelectorAll('.catalog-menu__list-item');
 	catalogBtns.forEach(btn => {
@@ -1141,12 +1150,13 @@ document.addEventListener('DOMContentLoaded', function () {
 	function cartSubmit() {
 
 		let submitPopup = document.querySelector('.cart-submit__popup');
+
 		if (submitPopup) {
 
 			let submit = document.querySelector('.cart-form__submit');
 
 			let closePopup = submitPopup.querySelector('.popup__close');
-			console.log(closePopup);
+
 
 			submit.addEventListener('click', (e) => {
 				e.preventDefault()
@@ -1188,39 +1198,39 @@ document.addEventListener('DOMContentLoaded', function () {
 		const asided = document.querySelector('.asided-js')
 
 		if (asided) {
+			if (document.documentElement.clientWidth >= 768) {
+				const asideBlock = asided.querySelector('aside')
 
-			const asideBlock = asided.querySelector('aside')
+				const spaceLeftBlocks = asided.querySelectorAll('.aside-space')
 
-			const spaceLeftBlocks = asided.querySelectorAll('.aside-space')
+				const firstElement = spaceLeftBlocks[0];
 
-			const firstElement = spaceLeftBlocks[0];
+				firstElement.style.marginTop = `-${asideBlock.offsetHeight}px`;
 
-			firstElement.style.marginTop = `-${asideBlock.offsetHeight}px`;
+				asideBlock.style.transform = `translateY(${window.getComputedStyle(firstElement).paddingTop})`;
 
-			asideBlock.style.transform = `translateY(${window.getComputedStyle(firstElement).paddingTop})`;
+				window.addEventListener('scroll', () => {
+					if (document.documentElement.scrollTop - document.querySelector('.section-hero').offsetHeight >= asideBlock.offsetHeight) {
+						asideBlock.style.transform = null;
+					}
+					else {
+						asideBlock.style.transform = `translateY(${window.getComputedStyle(firstElement).paddingTop})`;
+					}
 
-			window.addEventListener('scroll', () => {
-				if (document.documentElement.scrollTop - document.querySelector('.section-hero').offsetHeight >= asideBlock.offsetHeight) {
-					asideBlock.style.transform = null;
+				})
+
+
+				for (const item of spaceLeftBlocks) {
+
+					const container = item.querySelector('.container');
+
+					container.style.paddingLeft = `${asideBlock.offsetWidth}px`;
+
+					let containerMarginLeft = window.getComputedStyle(container).marginLeft;
+
+					asideBlock.style.left = `calc(${containerMarginLeft} + ${containerMarginLeft}) `
 				}
-				else {
-					asideBlock.style.transform = `translateY(${window.getComputedStyle(firstElement).paddingTop})`;
-				}
-
-			})
-
-
-			for (const item of spaceLeftBlocks) {
-
-				const container = item.querySelector('.container');
-
-				container.style.paddingLeft = `${asideBlock.offsetWidth}px`;
-
-				let containerMarginLeft = window.getComputedStyle(container).marginLeft;
-
-				asideBlock.style.left = `${containerMarginLeft}`
 			}
-
 		}
 
 	}
@@ -1278,8 +1288,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		let tabButtons = document.querySelectorAll('[data-path]')
 
-		if (tabButtons) {
 
+		if (tabButtons) {
 			for (const button of tabButtons) {
 				button.addEventListener('click', (e) => {
 
@@ -1302,15 +1312,56 @@ document.addEventListener('DOMContentLoaded', function () {
 				});
 
 			};
-			// tabButtons.click()
+			let tabButton = document.querySelector('[data-path]').click()
+
 		}
-
-
-
 	}
+
+
+
+
+
+	const vacancyPopup = document.querySelector('.vacancy-popup')
+
+	if (vacancyPopup) {
+		const emptyPopup = document.querySelector('.empty-popup')
+
+		const vacancyBtn = document.querySelectorAll('.vacancies-hero__btn')
+		for (const btn of vacancyBtn) {
+			btn.addEventListener('click', () => openPopupElement(vacancyPopup))
+
+		}
+		const closePopup = document.querySelectorAll('.popup__close')
+
+		closePopup.forEach((el) => {
+			el.addEventListener('click', () => closePopupElement(vacancyPopup))
+
+			el.addEventListener('click', () => closePopupElement(emptyPopup))
+
+		})
+
+
+		document.addEventListener('click', (e) => {
+			if (e.target == vacancyPopup)
+				closePopupElement(vacancyPopup)
+		})
+
+		const vacancySubmit = vacancyPopup.querySelector('.cart-form__submit')
+
+		vacancySubmit.addEventListener('click', (e) => {
+
+			e.preventDefault()
+
+			closePopupElement(vacancyPopup)
+
+			openPopupElement(emptyPopup)
+
+		})
+	}
+
+
+
 	tabs()
-
-
 })
 
 
