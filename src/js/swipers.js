@@ -218,22 +218,33 @@ document.addEventListener('DOMContentLoaded', function () {
 	const employeesSwiper = new Swiper('.employees-block__swiper', {
 		direction: "horizontal",
 		slidesPerView: 1.3,
-		spaceBetween: rem(1.6),
+		spaceBetween: rem(1),
 		navigation: {
 			nextEl: '.about-swiper-btn.next',
 			prevEl: '.about-swiper-btn.prev',
 		},
 		breakpoints: {
+
 			768: {
 				slidesPerView: 2,
+				spaceBetween: rem(1.6),
 			},
+
 			992: {
 				slidesPerView: 2.5,
 			},
+
 			1024: {
 				slidesPerView: 3,
 			},
 		},
+
+		observer: true,
+
+		observeParents: true,
+
+		observeSlideChildren: true,
+
 	});
 
 	const articleSwiper = new Swiper('.article-swiper', {

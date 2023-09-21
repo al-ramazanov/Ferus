@@ -1311,13 +1311,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 				});
 
+				let tabButton = document.querySelector('[data-path]').click()
 			};
-			let tabButton = document.querySelector('[data-path]').click()
 
 		}
 	}
 
-
+	tabs()
 
 
 
@@ -1360,8 +1360,70 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 
+	function newsDateFilter() {
 
-	tabs()
+		const newsFilterYear = document.querySelector('.news-materials__action-btn.year')
+
+		const newsFilterMonth = document.querySelector('.news-materials__action-btn.month')
+
+		if (newsFilterYear) {
+
+			let yearSublistItems = newsFilterYear.querySelectorAll('.news-materials__action-sublist li a')
+
+			newsFilterYear.addEventListener('click', (e) => {
+				e.preventDefault()
+				e.currentTarget.classList.toggle('active')
+			})
+
+			for (const item of yearSublistItems) {
+				item.addEventListener('click', () => {
+
+					yearSublistItems.forEach(el => el.classList.remove('check'))
+
+					let btnText = newsFilterYear.querySelector('.text')
+
+
+					item.classList.add('check')
+
+
+
+					btnText.textContent = (/* item.textContent  */ item.textContent == "Все года" ? item.textContent : item.textContent + ' ' + 'год')
+				})
+			}
+		}
+
+		if (newsFilterMonth) {
+
+			let monthSublistItems = newsFilterMonth.querySelectorAll('.news-materials__action-sublist li a');
+
+			newsFilterMonth.addEventListener('click', (e) => {
+				e.preventDefault()
+				e.currentTarget.classList.toggle('active')
+			})
+
+			for (const item of monthSublistItems) {
+
+				item.addEventListener('click', () => {
+
+					monthSublistItems.forEach(el => el.classList.remove('check'))
+
+
+					let btnText = newsFilterMonth.querySelector('.text')
+
+
+
+					item.classList.add('check')
+
+
+					btnText.textContent = (/* item.textContent  */ item.textContent == "Все месяца" ? item.textContent : 'за' + ' ' + item.textContent)
+				})
+			}
+		}
+
+	}
+
+	newsDateFilter()
+
 })
 
 
