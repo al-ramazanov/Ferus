@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	const contactsBtns = header.querySelectorAll('.contacts');
 	contactsBtns.forEach(btn => {
 		btn.addEventListener('click', function () {
-			btn.querySelector('.header-contacts').classList.toggle('active');
+			document.querySelector('.header-contacts').classList.toggle('active');
 		})
 	})
 
@@ -1438,6 +1438,39 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	newsDateFilter()
+
+	function addToCartListing() {
+		const toCartBtn = document.querySelectorAll('.products__list-item__price > button')
+		if (toCartBtn) {
+
+
+			toCartBtn.forEach(btn => {
+				btn.addEventListener('click', (e) => {
+					e.preventDefault()
+					const popupAddToCart = document.querySelector('.cart-popup')
+					if (popupAddToCart) {
+						openPopupElement(popupAddToCart)
+					}
+
+					const closePopup = popupAddToCart.querySelector('.popup__close')
+					closePopup.addEventListener('click', () => {
+						closePopupElement(popupAddToCart)
+					})
+
+					document.addEventListener('click', e => {
+						if (e.target == popupAddToCart) {
+							closePopupElement(popupAddToCart)
+						}
+						if (e.target == document.querySelector('.cart-popup__item-btn')) {
+							closePopupElement(popupAddToCart)
+						}
+					})
+				})
+			})
+		}
+
+	}
+	addToCartListing()
 
 })
 
