@@ -725,6 +725,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			if (content.style.maxHeight) {
 				content.style.maxHeight = null
 			} else {
+				console.log(content.scrollHeight);
 				content.style.maxHeight = content.scrollHeight / 10 + "rem";
 			}
 		})
@@ -978,42 +979,56 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 
-	const reqType = document.querySelector('input[id="type"]')
+	const reqTypes = document.querySelectorAll('[data-dropdown]')
 
-	if (reqType) {
+	if (reqTypes) {
+
+
 
 		let svgIco = `<svg>
 		<use xlink:href='./src/images/svgicons/icons.svg#check-ico'></use>
-	</svg>`;
+		</svg>`;
 
-		const dropdownItem = document.querySelectorAll('.dropdown-body li')
-		dropdownItem.forEach(item => {
-			item.addEventListener('click', () => {
-				dropdownItem.forEach(el => {
-					el.classList.remove('active')
-					let svg = el.querySelector('svg')
-					if (svg) {
-						svg.remove()
-					}
+
+		reqTypes.forEach((el) => {
+
+			const dropdownItem = document.querySelectorAll('.dropdown-body li')
+			dropdownItem.forEach(item => {
+				if (item.classList.contains('selected')) {
+					el.value = item.textContent;
+					console.log(item);
+					console.log(item.textContent);
+				}
+				item.addEventListener('click', () => {
+					dropdownItem.forEach(el => {
+						el.classList.remove('active')
+						let svg = el.querySelector('svg')
+						if (svg) {
+							svg.remove()
+						}
+					})
+					item.insertAdjacentHTML('beforeend', svgIco)
+					item.classList.add('active')
+					el.value = item.innerText;
 				})
-				item.insertAdjacentHTML('beforeend', svgIco)
-				item.classList.add('active')
-				reqType.value = item.innerText;
 			})
+
+			let dropdownBody;
+
+			el.addEventListener('focus', () => {
+				dropdownBody = document.querySelector('.dropdown-body')
+				dropdownBody.classList.add('active')
+
+				el.parentElement.classList.add('active')
+			})
+			el.addEventListener('blur', () => {
+				dropdownBody.classList.remove('active')
+				el.parentElement.classList.remove('active')
+			})
+
 		})
 
-		let dropdownBody;
 
-		reqType.addEventListener('focus', () => {
-			dropdownBody = document.querySelector('.dropdown-body')
-			dropdownBody.classList.add('active')
-
-			reqType.parentElement.classList.add('active')
-		})
-		reqType.addEventListener('blur', () => {
-			dropdownBody.classList.remove('active')
-			reqType.parentElement.classList.remove('active')
-		})
 
 	}
 
