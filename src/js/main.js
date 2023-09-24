@@ -1267,6 +1267,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				asideBlock.style.transform = `translateY(${window.getComputedStyle(firstElement).paddingTop})`;
 
 				window.addEventListener('scroll', () => {
+
 					if (document.documentElement.scrollTop - document.querySelector('.section-hero').offsetHeight >= asideBlock.offsetHeight) {
 						asideBlock.style.transform = null;
 					}
@@ -1287,7 +1288,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 					let containerMarginLeft = window.getComputedStyle(container).marginLeft;
 
-					asideBlock.style.left = `calc(${containerMarginLeft} + ${containerMarginLeft}) `
+					asideBlock.style.left = `calc(${containerMarginLeft}`
 				}
 			}
 		}
@@ -1296,7 +1297,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	asideMenu()
 
-	window.addEventListener('resize', asideMenu)
+	// window.addEventListener('resize', asideMenu)
 
 	// Открыть попап резвезитов
 	const requisitesPopup = document.querySelector('.requisites-popup');
