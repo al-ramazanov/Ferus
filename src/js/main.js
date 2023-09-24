@@ -1281,10 +1281,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 					const container = item.querySelector('.container');
 
-					if (document.clientWidth <= 768) {
 
-						container.style.paddingLeft = `${asideBlock.offsetWidth}px`;
-					}
+					container.style.paddingLeft = `${asideBlock.offsetWidth}px`;
+
 
 					let containerMarginLeft = window.getComputedStyle(container).marginLeft;
 
