@@ -1083,33 +1083,71 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		let popupItems = productPopup.querySelectorAll('.product-popup__item')
 		if (popupItems) {
+
 			let count = 0;
+
 			let svgPlus = `<svg><use xlink:href="./src/images/svgicons/icons.svg#plus-big-ico"></use></svg>`;
+
 			let svgCheck = `<svg><use xlink:href="./src/images/svgicons/icons.svg#check-ico"></use></svg>`
+
 			for (const item of popupItems) {
+
 				let itemChooseBtn = item.querySelector('.product-popup__btn')
 
 				let itemChooseBtnIco = item.querySelector('.product-popup__btn-ico')
 
 				let itemChooseBtnText = itemChooseBtn.querySelector('p')
 
+				const counters = document.querySelectorAll('.counter-js')
+
 				itemChooseBtn.addEventListener('click', () => {
+
 					itemChooseBtn.classList.toggle('selected')
+
 					if (itemChooseBtn.classList.contains('selected')) {
+
 						itemChooseBtnText.textContent = 'Добавлено';
+
 						itemChooseBtnIco.innerHTML = '';
+
 						itemChooseBtnIco.insertAdjacentHTML("beforeend", svgCheck)
+
 						count++
 					}
 					else {
 						itemChooseBtnText.textContent = 'Добавить';
+
 						itemChooseBtnIco.innerHTML = '';
+
 						itemChooseBtnIco.insertAdjacentHTML("beforeend", svgPlus)
+
 						count--
 					}
-					const counters = document.querySelectorAll('.counter-js')
+
 					for (const counter of counters) {
 						counter.innerText = count
+					}
+				})
+
+
+				let resetBtn = document.querySelector('.product-popup__submit.reset')
+				resetBtn.addEventListener('click', () => {
+
+					count = 0
+
+					for (const counter of counters) {
+						counter.innerText = count;
+					}
+
+					if (count == 0) {
+
+						itemChooseBtn.classList.remove('selected')
+
+						itemChooseBtnText.textContent = 'Добавить';
+
+						itemChooseBtnIco.innerHTML = '';
+
+						itemChooseBtnIco.insertAdjacentHTML("beforeend", svgPlus)
 					}
 				})
 			}
@@ -1190,14 +1228,16 @@ document.addEventListener('DOMContentLoaded', function () {
 	cartSubmit()
 
 
-	function fixButtomMenu() {
+	function fixedBottomMenu() {
 		let bottomMenu = document.querySelector('.bottom-menu')
 		let headerBottom = document.querySelector('.header__bottom')
 		if (bottomMenu) {
 			if (document.documentElement.clientWidth <= 768) {
 				bottomMenu.style.top = `${headerBottom.scrollHeight + 20}px`
+				bottomMenu.style.bottom = "initial"
 				window.addEventListener('resize', () => {
 					bottomMenu.style.top = `${headerBottom.scrollHeight + 20}px`
+					bottomMenu.style.bottom = "initial"
 
 				})
 			}
@@ -1205,7 +1245,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 
-	fixButtomMenu()
+	fixedBottomMenu()
 
 
 	function asideMenu() {
@@ -1213,7 +1253,9 @@ document.addEventListener('DOMContentLoaded', function () {
 		const asided = document.querySelector('.asided-js')
 
 		if (asided) {
+
 			if (document.documentElement.clientWidth >= 768) {
+
 				const asideBlock = asided.querySelector('aside')
 
 				const spaceLeftBlocks = asided.querySelectorAll('.aside-space')
@@ -1239,7 +1281,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 					const container = item.querySelector('.container');
 
-					container.style.paddingLeft = `${asideBlock.offsetWidth}px`;
+					if (document.clientWidth <= 768) {
+
+						container.style.paddingLeft = `${asideBlock.offsetWidth}px`;
+					}
 
 					let containerMarginLeft = window.getComputedStyle(container).marginLeft;
 
@@ -1440,6 +1485,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	newsDateFilter()
 
 	function addToCartListing() {
+
 		const toCartBtn = document.querySelectorAll('.products__list-item__price > button')
 		if (toCartBtn) {
 
@@ -1471,6 +1517,103 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	}
 	addToCartListing()
+
+
+	function showTips() {
+
+		const tipsElements = document.querySelectorAll('.tool-tip')
+
+		if (tipsElements) {
+
+			for (const el of tipsElements) {
+
+				let title = el.querySelector('.title')
+
+				let titles = document.querySelectorAll('.title')
+
+				el.addEventListener('click', (e) => {
+
+					titles.forEach(el => el.classList.remove('active'))
+
+					title.classList.add('active')
+
+					title.style.top = `-${title.scrollHeight + 10}px`
+
+					setTimeout(() => {
+
+						title.classList.remove('active')
+
+					}, 5000);
+
+					function findParent(element, needParent) {
+
+						let parent = element.parentElement;
+
+						while (!parent.classList.contains(needParent)) {
+
+							parent = parent.parentElement;
+
+						}
+						return parent
+					}
+					let mainOffset = document.querySelector('.main-offset').getBoundingClientRect().left;
+
+					let titleParent = findParent(title, 'product-popup__body')
+
+					if (title.getBoundingClientRect().left < mainOffset) {
+
+						let titleArrow = title.querySelector('svg')
+
+						title.style.left = 0;
+
+
+						title.style.transform = `translateX(0)`
+
+						titleArrow.style.left = 0;
+
+
+						titleArrow.style.transform = `translate(67%,96%)`
+
+
+					}
+				})
+			}
+		}
+	}
+
+	showTips()
+
+	function addCartNavbar() {
+		const cartNavbar = document.querySelector('.cart-navbar')
+		if (cartNavbar) {
+			let mobileMenu = document.querySelector('.header__menu-mobile.mobile')
+
+			mobileMenu.prepend(cartNavbar)
+
+			mobileMenu.style.rowGap = `40px`;
+
+			mobileMenu.style.flexWrap = `wrap`;
+
+			cartNavbar.style.width = `100%`
+
+
+		}
+	}
+
+	addCartNavbar()
+
+	function vacanciesBar() {
+
+		const bar = document.querySelector('.vacancies-bar')
+
+		const mobMenu = document.querySelector('.header__menu-mobile.mobile')
+		console.log(mobMenu);
+		console.log(bar);
+		if (document.documentElement.clientWidth <= 768) {
+			bar.style.bottom = `${mobMenu.scrollHeight + 24}px`
+		}
+	}
+	vacanciesBar()
 
 })
 

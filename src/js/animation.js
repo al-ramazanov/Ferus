@@ -6,12 +6,6 @@ let tl = gsap.timeline({
 	}
 })
 
-if (gsap) {
-	console.log("yes");
-} else {
-	console.log("no");
-}
-
 tl.to(".first", {
 	scale: 0.96,
 	opacity: .6,
