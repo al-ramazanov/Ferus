@@ -428,6 +428,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					div.classList.remove('active');
 				})
 				e.target.parentElement.parentElement.nextElementSibling.querySelector(`[data-target=${path}]`).classList.add('active');
+				console.log(e.target.parentElement.parentElement.nextElementSibling.querySelector(`[data-target=${path}]`));
 			})
 		})
 	}
@@ -1131,6 +1132,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 				let resetBtn = document.querySelector('.product-popup__submit.reset')
+
 				resetBtn.addEventListener('click', () => {
 
 					count = 0
@@ -1605,16 +1607,53 @@ document.addEventListener('DOMContentLoaded', function () {
 	function vacanciesBar() {
 
 		const bar = document.querySelector('.vacancies-bar')
+		if (bar) {
 
-		const mobMenu = document.querySelector('.header__menu-mobile.mobile')
-		console.log(mobMenu);
-		console.log(bar);
-		if (document.documentElement.clientWidth <= 768) {
-			bar.style.bottom = `${mobMenu.scrollHeight + 24}px`
+			const mobMenu = document.querySelector('.header__menu-mobile.mobile')
+			console.log(mobMenu);
+			console.log(bar);
+			if (document.documentElement.clientWidth <= 768) {
+				bar.style.bottom = `${mobMenu.scrollHeight + 24}px`
+			}
 		}
 	}
 	vacanciesBar()
 
+	const form = document.querySelector('.cart-form__form')
+
+	console.log(form);
+
+	function checkInput() {
+
+		const inputs = document.querySelectorAll('.request__right-form__input')
+
+		if (inputs) {
+
+			let error = 0
+
+			inputs.forEach(input => {
+
+				input.addEventListener('blur', () => {
+					if (input.validity.valid == false) {
+						error++
+						input.parentElement.classList.add('invalid')
+					}
+
+					if (error > 0) {
+						input.parentElement.classList.add('invalid')
+					}
+
+					if (input.validity.valid == true) {
+						error = 0
+						input.parentElement.classList.remove('invalid')
+					}
+				})
+
+			})
+
+		}
+	}
+	checkInput()
 })
 
 

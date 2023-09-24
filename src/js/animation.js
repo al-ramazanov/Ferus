@@ -1,4 +1,4 @@
-let tl = gsap.timeline({
+/* let tl = gsap.timeline({
 	scrollTrigger: {
 		pin: ".site-container",
 		scrub: true,
@@ -19,11 +19,11 @@ tl.to(".first", {
 	}),
 
 	tl.to(".wiper", {
-		yPercent: -110,
+		yPercent: -120,
 		ease: "none",
 	})
 
 let tl2 = gsap.timeline()
 
 
-tl2.fromTo(".text", { y: 100, opacity: .5, }, { y: 0, opacity: 1, duration: 1, })
+tl2.fromTo(".text", { y: 100, opacity: .5, }, { y: 0, opacity: 1, duration: 1, }) */
