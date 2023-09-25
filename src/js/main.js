@@ -72,12 +72,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	checkTime();
 
+
 	const contactsBtns = header.querySelectorAll('.contacts');
+
 	contactsBtns.forEach(btn => {
-		btn.addEventListener('click', function () {
+		btn.addEventListener('click', function (e) {
+			e.stopPropagation()
 			document.querySelector('.header-contacts').classList.toggle('active');
 		})
+
+		document.addEventListener('click', (e) => {
+
+			if (e.target !== btn) {
+				document.querySelector('.header-contacts').classList.remove('active');
+			}
+
+		})
 	})
+
+
 
 	if (window.innerWidth <= 768) {
 		const headerContactsMobile = header.querySelector('.header__top + .header-contacts');
@@ -428,7 +441,6 @@ document.addEventListener('DOMContentLoaded', function () {
 					div.classList.remove('active');
 				})
 				e.target.parentElement.parentElement.nextElementSibling.querySelector(`[data-target=${path}]`).classList.add('active');
-				console.log(e.target.parentElement.parentElement.nextElementSibling.querySelector(`[data-target=${path}]`));
 			})
 		})
 		const categoriesBtn = document.querySelector('.categories__btn').click();
@@ -952,7 +964,42 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 	}
 
+	// раскрытие карточек в desktop
 
+
+	function openCatalogCards() {
+		const catalogCards = document.querySelectorAll('.catalog-main__list-item')
+
+		if (catalogCards) {
+			for (const card of catalogCards) {
+
+				let cardBody = card.querySelector('.catalog-main__list-item__sublist')
+				let cardBodyItems = cardBody.querySelectorAll('.catalog-main__list-item__sublist-item')
+				cardBody.addEventListener('mouseover', () => {
+
+					if (cardBodyItems.length > 4) {
+						cardBody.style.maxHeight = `${cardBody.scrollHeight}px`;
+						card.style.overflowY = 'scroll';
+					}
+
+				})
+
+				cardBody.addEventListener('mouseleave', () => {
+					cardBody.style.maxHeight = null
+					card.querySelector('.catalog-main__list-item__img-container').style.display = 'block'
+					card.style.overflowY = null;
+
+				})
+
+
+
+			}
+		}
+	}
+	openCatalogCards()
+
+
+	// раскрытие карточек в desktop
 
 
 	const place = document.querySelector('.listing-info__left-heading');
@@ -1348,18 +1395,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	function tabs() {
 
-		let tabButtons = document.querySelectorAll('[data-path]')
+		let tabButtons = document.querySelectorAll('[data-parent]')
 
 
 		if (tabButtons) {
 			for (const button of tabButtons) {
+
 				button.addEventListener('click', (e) => {
 
-					let targetId = e.target.dataset.path;
+					let targetId = e.target.dataset.parent;
 
-					let targetBlock = document.querySelector(`[data-target="${targetId}"]`);
+					let targetBlock = document.querySelector(`[data-child="${targetId}"]`);
 
-					let tabsBody = document.querySelectorAll('[data-target]')
+					let tabsBody = document.querySelectorAll('[data-child]')
 
 					tabsBody.forEach(item => item.classList.remove('active'))
 
@@ -1373,13 +1421,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 				});
 
-				let tabButton = document.querySelector('[data-path]').click()
+				let tabButton = document.querySelector('[data-parent]').click()
 			};
 
 		}
 	}
 
-	// tabs()
+	tabs()
 
 
 
@@ -1610,8 +1658,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (bar) {
 
 			const mobMenu = document.querySelector('.header__menu-mobile.mobile')
-			console.log(mobMenu);
-			console.log(bar);
+
 			if (document.documentElement.clientWidth <= 768) {
 				bar.style.bottom = `${mobMenu.scrollHeight + 24}px`
 			}
@@ -1620,8 +1667,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	vacanciesBar()
 
 	const form = document.querySelector('.cart-form__form')
-
-	console.log(form);
 
 	function checkInput() {
 
