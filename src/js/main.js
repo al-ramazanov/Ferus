@@ -431,6 +431,8 @@ document.addEventListener('DOMContentLoaded', function () {
 				console.log(e.target.parentElement.parentElement.nextElementSibling.querySelector(`[data-target=${path}]`));
 			})
 		})
+		const categoriesBtn = document.querySelector('.categories__btn').click();
+		const categoriesBtn2 = document.querySelector('[data-path="services"]').click();
 	}
 
 	// ГЛАВНАЯ 
@@ -1029,8 +1031,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		})
 
-
-
 	}
 
 
@@ -1059,7 +1059,9 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	let productPopup = document.querySelector('.product-popup')
+
 	if (productPopup) {
+
 		const popupCloseBtn = productPopup.querySelector('.popup__close')
 		const productPopupBtn = document.querySelectorAll('.product-hero__action-text')
 		for (const item of productPopupBtn) {
@@ -1344,8 +1346,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Закрыть  Popup`ы при нажатии ESCAPE
 
 
-
-
 	function tabs() {
 
 		let tabButtons = document.querySelectorAll('[data-path]')
@@ -1379,7 +1379,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 
-	tabs()
+	// tabs()
 
 
 
