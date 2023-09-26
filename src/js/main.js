@@ -975,6 +975,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 				let cardBody = card.querySelector('.catalog-main__list-item__sublist')
 				let cardBodyItems = cardBody.querySelectorAll('.catalog-main__list-item__sublist-item')
+
+				// cardBodyItems.forEach((el, i) => {
+				// 	console.log(el.offsetHeight * 4);
+				// 	cardBody.style.maxHeight = `${el.offsetHeight * 4}px`
+				// })
+
 				cardBody.addEventListener('mouseover', () => {
 
 					if (cardBodyItems.length > 4) {
