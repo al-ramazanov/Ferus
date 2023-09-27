@@ -426,21 +426,95 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 	})
 
+
+
 	// переключалка кнопок
 
 	if (document.querySelector('.categories')) {
+
 		const categoriesBtns = document.querySelectorAll('.categories__btn');
 
 		categoriesBtns.forEach(btn => {
+
 			btn.addEventListener('click', function (e) {
 				const currentBtns = btn.parentElement.querySelectorAll('.categories__btn');
 				currentBtns.forEach(el => el.classList.remove('active', 'blue-btn'));
 				btn.classList.add('active', 'blue-btn');
+
+				if (btn.classList.contains('categories__btn--js')) {
+
+					const moreBtn = document.querySelector('.categories__btn--js')
+
+					if (moreBtn) {
+						const moreBtnText = moreBtn.querySelector('p')
+
+						const moreSublist = moreBtn.querySelector('.categories__btn-sublist')
+
+						const moreSublistItems = moreSublist.querySelectorAll('.categories__btn-sublist li a')
+
+
+						if (moreBtn.classList.contains('active')) {
+							moreSublist.classList.add('active')
+						} else {
+							moreSublist.classList.remove('active')
+						}
+
+						moreSublistItems.forEach(el => {
+
+							el.addEventListener('click', (e) => {
+
+								e.preventDefault()
+
+								e.stopPropagation()
+
+								moreSublistItems.forEach(el => el.classList.remove('active'))
+
+								e.currentTarget.classList.add('active')
+
+								moreBtnText.innerText = el.innerText;
+
+								moreBtn.dataset.path = el.innerText.replaceAll(' ', '').toLowerCase()
+
+								moreBtn.click()
+
+								moreSublist.classList.remove('active')
+
+							})
+							document.addEventListener('click', (e) => {
+
+								if (e.target == el) {
+									moreSublist.classList.remove('active')
+								}
+							})
+
+						})
+
+						moreBtn.addEventListener("click", e => {
+							e.stopPropagation()
+							moreSublist.classList.add('active')
+						})
+
+						document.addEventListener('click', (e) => {
+							if (e.target !== moreBtn) {
+								moreSublist.classList.remove('active')
+							}
+						})
+					}
+					moreBtn.click()
+
+				}
+
 				const path = e.target.dataset.path;
-				e.target.parentElement.parentElement.nextElementSibling.querySelectorAll('[class*="__content"]').forEach(div => {
-					div.classList.remove('active');
-				})
-				e.target.parentElement.parentElement.nextElementSibling.querySelector(`[data-target=${path}]`).classList.add('active');
+				if (path) {
+					e.target.parentElement.parentElement.nextElementSibling.querySelectorAll('[class*="__content"]').forEach(div => {
+						div.classList.remove('active');
+					})
+					if (e.target.parentElement.parentElement.nextElementSibling.querySelector(`[data-target=${path}]`)) {
+
+						e.target.parentElement.parentElement.nextElementSibling.querySelector(`[data-target=${path}]`).classList.add('active');
+					}
+				}
+
 			})
 		})
 		const categoriesBtn = document.querySelector('.categories__btn').click();
@@ -765,8 +839,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// открытие/закрытие модалки обратного звонка
 
+
 	if (document.querySelector('.choose-city__left-call') && document.querySelector('.callback-popup2')) {
+
+		const callbackBtn = document.querySelector('.header-contacts__btn')
 		const callback2Popup = document.querySelector('.callback-popup2');
+		const submitCallback = callback2Popup.querySelector('.popup__form-btn')
 		const callback2PopupOpen = document.querySelector('.choose-city__left-call');
 		const callback2PopupClose = callback2Popup.querySelector('.popup__close');
 
@@ -776,8 +854,51 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		callback2PopupClose.addEventListener('click', function () {
 			callback2Popup.classList.remove('active');
+			closePopupElement(callback2Popup)
+		})
+
+		callbackBtn.addEventListener('click', (e) => {
+			openPopupElement(callback2Popup);
+		})
+
+		submitCallback.addEventListener('click', (e) => {
+			e.preventDefault()
+			closePopupElement(callback2Popup)
+			openPopupElement(document.querySelector('.empty-popup'))
+		})
+
+		document.querySelector('.empty-popup__btn').addEventListener('click', (e) => {
+			e.preventDefault()
+			closePopupElement(document.querySelector('.empty-popup'))
+		})
+
+		document.addEventListener('click', (e) => {
+			if (e.target == document.querySelector('.empty-popup')) {
+				closePopupElement(document.querySelector('.empty-popup'))
+			}
+		})
+
+		document.querySelector('.empty-popup  .popup__close').addEventListener('click', (e) => {
+			e.preventDefault()
+			closePopupElement(document.querySelector('.empty-popup'))
+		})
+
+		const orderBtn = document.querySelector('.request__right-form__btn')
+		orderBtn.addEventListener('click', succesSubmit)
+		function succesSubmit(e) {
+			e.preventDefault()
+			openPopupElement(document.querySelector('.empty-popup'))
+		}
+
+
+		document.addEventListener('click', (e) => {
+			if (e.target == callback2Popup) {
+				closePopupElement(callback2Popup)
+			}
 		})
 	}
+
+
 
 	if (document.querySelector('.products-listing__top-sorting')) {
 		const sortingBtn = document.querySelector('.products-listing__top-sorting');
@@ -797,9 +918,14 @@ document.addEventListener('DOMContentLoaded', function () {
 			})
 		}
 
-
-
 	}
+
+	// Окрытие обратного звонка из Хедера
+
+
+
+	// Окрытие обратного звонка из Хедера
+
 
 	if (document.querySelector('.products-listing__top-filters')) {
 		const filterOpenBtn = document.querySelector('.products-listing__top-filters');
@@ -976,11 +1102,6 @@ document.addEventListener('DOMContentLoaded', function () {
 				let cardBody = card.querySelector('.catalog-main__list-item__sublist')
 				let cardBodyItems = cardBody.querySelectorAll('.catalog-main__list-item__sublist-item')
 
-				// cardBodyItems.forEach((el, i) => {
-				// 	console.log(el.offsetHeight * 4);
-				// 	cardBody.style.maxHeight = `${el.offsetHeight * 4}px`
-				// })
-
 				cardBody.addEventListener('mouseover', () => {
 
 					if (cardBodyItems.length > 4) {
@@ -1003,6 +1124,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 	openCatalogCards()
+
+
 
 
 	// раскрытие карточек в desktop
@@ -1267,11 +1390,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			let closePopup = submitPopup.querySelector('.popup__close');
 
+			if (submit) {
+				submit.addEventListener('click', (e) => {
+					e.preventDefault()
+					openPopupElement(submitPopup)
 
-			submit.addEventListener('click', (e) => {
-				e.preventDefault()
-				openPopupElement(submitPopup)
-			})
+				})
+			}
+
 
 			closePopup.addEventListener('click', closePopupElement(submitPopup))
 
@@ -1705,10 +1831,41 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 	checkInput()
+
+	function openQaPopup() {
+		const qaPopup = document.querySelector('.qa-popup')
+		console.log(qaPopup);
+		if (qaPopup) {
+
+			const btn = document.querySelector('.qa__left-btn')
+
+			btn.addEventListener('click', (e) => {
+				e.preventDefault()
+				openPopupElement(qaPopup)
+			})
+
+			const close = qaPopup.querySelector('.popup__close')
+
+			close.addEventListener('click', () => {
+				closePopupElement(qaPopup)
+			})
+
+			document.addEventListener('click', (e) => {
+				if (e.target == qaPopup) {
+					closePopupElement(qaPopup)
+				}
+			})
+			const submit = document.querySelector('.popup__form-btn')
+
+			submit.addEventListener('click', (e) => {
+				e.preventDefault()
+				closePopupElement(qaPopup)
+				openPopupElement(document.querySelector('.empty-popup'))
+			})
+		}
+	}
+	openQaPopup()
 })
-
-
-
 
 
 

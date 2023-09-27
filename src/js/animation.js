@@ -22,14 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-let tl = gsap.timeline({
+/* let tl = gsap.timeline({
 
 	scrollTrigger: {
 		pin: ".site-container",
 		scrub: true,
 		pinSpacing: false,
+		markers: true,
 	},
-
+	markers: true,
 })
 
 tl.to(".first", {
@@ -50,3 +51,4 @@ tl.to(".wiper-container", {
 	})
 
 
+ */
