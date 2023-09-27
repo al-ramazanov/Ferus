@@ -426,8 +426,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 	})
 
-
-
 	// переключалка кнопок
 
 	if (document.querySelector('.categories')) {
@@ -866,29 +864,35 @@ document.addEventListener('DOMContentLoaded', function () {
 			closePopupElement(callback2Popup)
 			openPopupElement(document.querySelector('.empty-popup'))
 		})
-
-		document.querySelector('.empty-popup__btn').addEventListener('click', (e) => {
-			e.preventDefault()
-			closePopupElement(document.querySelector('.empty-popup'))
-		})
-
-		document.addEventListener('click', (e) => {
-			if (e.target == document.querySelector('.empty-popup')) {
+		if (document.querySelector('.empty-popup__btn')) {
+			document.querySelector('.empty-popup__btn').addEventListener('click', (e) => {
+				e.preventDefault()
 				closePopupElement(document.querySelector('.empty-popup'))
-			}
-		})
+			})
 
-		document.querySelector('.empty-popup  .popup__close').addEventListener('click', (e) => {
-			e.preventDefault()
-			closePopupElement(document.querySelector('.empty-popup'))
-		})
+			document.addEventListener('click', (e) => {
+				if (e.target == document.querySelector('.empty-popup')) {
+					closePopupElement(document.querySelector('.empty-popup'))
+				}
+			})
+
+			document.querySelector('.empty-popup  .popup__close').addEventListener('click', (e) => {
+				e.preventDefault()
+				closePopupElement(document.querySelector('.empty-popup'))
+			})
+		}
+
+
 
 		const orderBtn = document.querySelector('.request__right-form__btn')
-		orderBtn.addEventListener('click', succesSubmit)
-		function succesSubmit(e) {
-			e.preventDefault()
-			openPopupElement(document.querySelector('.empty-popup'))
+		if (orderBtn) {
+			orderBtn.addEventListener('click', succesSubmit)
+			function succesSubmit(e) {
+				e.preventDefault()
+				openPopupElement(document.querySelector('.empty-popup'))
+			}
 		}
+
 
 
 		document.addEventListener('click', (e) => {
@@ -1834,7 +1838,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	function openQaPopup() {
 		const qaPopup = document.querySelector('.qa-popup')
-		console.log(qaPopup);
 		if (qaPopup) {
 
 			const btn = document.querySelector('.qa__left-btn')
