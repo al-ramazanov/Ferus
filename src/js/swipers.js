@@ -259,6 +259,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	});
 
+	const contactSwiper = new Swiper('.contact-swiper', {
+		direction: "horizontal",
+		slidesPerView: 1,
+		spaceBetween: 12,
+
+		navigation: {
+			nextEl: '.contacts-swiper__next',
+			prevEl: '.contacts-swiper__prev',
+		},
+
+	});
+
 })
 
 

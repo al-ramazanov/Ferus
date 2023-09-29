@@ -120,8 +120,11 @@ document.addEventListener('DOMContentLoaded', function () {
 	})
 
 	const chooseLocationBlock = document.querySelector('.choose-city');
+
 	const locationBlockChange = locationBlock.querySelector('.header__top-location__change');
-	locationBlockChange.addEventListener('click', function () {
+
+	locationBlockChange.addEventListener('click', function (e) {
+		e.stopPropagation()
 		locationBlock.classList.remove('active');
 		chooseLocationBlock.classList.add('active');
 		let scrollWidth = (window.innerWidth - document.body.clientWidth);
@@ -129,6 +132,18 @@ document.addEventListener('DOMContentLoaded', function () {
 		document.body.style.paddingRight = `${scrollWidth}px`;
 		document.body.classList.add('lock');
 		document.documentElement.classList.add('lock');
+
+	})
+	document.addEventListener('click', (e) => {
+		if (e.target == document.body) {
+			header.style.paddingRight = null
+			document.body.style.paddingRight = null
+			document.body.classList.remove('lock');
+			document.body.classList.remove('dark');
+			document.documentElement.classList.remove('lock');
+			chooseLocationBlock.classList.remove('active');
+
+		}
 	})
 
 
@@ -309,6 +324,10 @@ document.addEventListener('DOMContentLoaded', function () {
 		cookiePopup.classList.remove('active');
 	})
 
+	document.addEventListener('click', (e) => {
+		cookiePopup.classList.remove('active')
+	})
+
 	// меню в хедере (каталог)
 
 	const catalog = document.querySelector('.catalog-menu');
@@ -430,7 +449,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	if (document.querySelector('.categories')) {
 
-		const categoriesBtns = document.querySelectorAll('.categories__btn');
+		const categoriesBtns = document.querySelectorAll('.categories__btn:not(:last-child)');
 
 		categoriesBtns.forEach(btn => {
 
@@ -438,69 +457,6 @@ document.addEventListener('DOMContentLoaded', function () {
 				const currentBtns = btn.parentElement.querySelectorAll('.categories__btn');
 				currentBtns.forEach(el => el.classList.remove('active', 'blue-btn'));
 				btn.classList.add('active', 'blue-btn');
-
-				if (btn.classList.contains('categories__btn--js')) {
-
-					const moreBtn = document.querySelector('.categories__btn--js')
-
-					if (moreBtn) {
-						const moreBtnText = moreBtn.querySelector('p')
-
-						const moreSublist = moreBtn.querySelector('.categories__btn-sublist')
-
-						const moreSublistItems = moreSublist.querySelectorAll('.categories__btn-sublist li a')
-
-
-						if (moreBtn.classList.contains('active')) {
-							moreSublist.classList.add('active')
-						} else {
-							moreSublist.classList.remove('active')
-						}
-
-						moreSublistItems.forEach(el => {
-
-							el.addEventListener('click', (e) => {
-
-								e.preventDefault()
-
-								e.stopPropagation()
-
-								moreSublistItems.forEach(el => el.classList.remove('active'))
-
-								e.currentTarget.classList.add('active')
-
-								moreBtnText.innerText = el.innerText;
-
-								moreBtn.dataset.path = el.innerText.replaceAll(' ', '').toLowerCase()
-
-								moreBtn.click()
-
-								moreSublist.classList.remove('active')
-
-							})
-							document.addEventListener('click', (e) => {
-
-								if (e.target == el) {
-									moreSublist.classList.remove('active')
-								}
-							})
-
-						})
-
-						moreBtn.addEventListener("click", e => {
-							e.stopPropagation()
-							moreSublist.classList.add('active')
-						})
-
-						document.addEventListener('click', (e) => {
-							if (e.target !== moreBtn) {
-								moreSublist.classList.remove('active')
-							}
-						})
-					}
-					moreBtn.click()
-
-				}
 
 				const path = e.target.dataset.path;
 				if (path) {
@@ -515,6 +471,61 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			})
 		})
+
+		const categoriesBtnMore = document.querySelector('.categories__btn:last-child')
+
+		if (categoriesBtnMore) {
+
+			let categoriesBtnMoreText = document.querySelector('.categories__btn--js > p')
+
+			let categoriesList = categoriesBtnMore.querySelector('.categories__btn-sublist')
+
+			let categoriesListItems = categoriesBtnMore.querySelectorAll('.categories__btn-sublist-items > li > a')
+
+			categoriesBtnMore.addEventListener('click', (e) => {
+				e.preventDefault()
+				e.stopPropagation()
+				categoriesBtnMore.classList.toggle('open')
+
+				if (categoriesBtnMore.classList.contains('open')) {
+					categoriesList.classList.add('active')
+					categoriesBtnMore.querySelector('.arrow-ico').style.transform = `rotate(180deg)`
+				}
+				else {
+					categoriesList.classList.remove('active')
+					categoriesBtnMore.querySelector('.arrow-ico').style.transform = null
+				}
+
+			})
+
+			for (const item of categoriesListItems) {
+
+				item.addEventListener('click', (e) => {
+
+					e.preventDefault();
+					categoriesListItems.forEach(el => el.classList.remove('active'))
+
+					item.classList.add('active')
+
+					categoriesBtnMoreText.innerText = item.innerText;
+
+					categoriesBtnMore.classList.add('active')
+
+					categoriesBtnMore.setAttribute('data-path', `${item.innerText.toLowerCase()}`)
+
+					categoriesBtns.forEach(el => el.classList.remove('active'))
+
+				})
+			}
+
+			document.addEventListener('click', (e) => {
+				categoriesBtnMore.classList.remove('open')
+				categoriesList.classList.remove('active')
+				categoriesBtnMore.querySelector('.arrow-ico').style.transform = null
+
+			})
+		}
+
 		const categoriesBtn = document.querySelector('.categories__btn').click();
 		const categoriesBtn2 = document.querySelector('[data-path="services"]').click();
 	}
@@ -633,17 +644,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	if (document.querySelector('.section-tags__list-item > button.show-more')) {
 		const sectionTagsMoreBtn = document.querySelector('.section-tags__list-item > button.show-more');
-		sectionTagsMoreBtn.addEventListener('click', function () {
+		sectionTagsMoreBtn.addEventListener('click', function (e) {
+			e.stopPropagation()
 			sectionTagsMoreBtn.classList.toggle('open');
-			sectionTagsMoreBtn.nextElementSibling.classList.toggle('active');
+
+			if (sectionTagsMoreBtn.classList.contains('open')) {
+				sectionTagsMoreBtn.nextElementSibling.classList.add('active');
+			} else {
+				sectionTagsMoreBtn.nextElementSibling.classList.remove('active');
+			}
 
 		})
+		document.addEventListener('click', (e) => {
+			sectionTagsMoreBtn.classList.remove('open')
+			sectionTagsMoreBtn.nextElementSibling.classList.remove('active');
+		})
+
 	}
 
 	// переключение категорий
 
 	if (document.querySelector('.section-tags')) {
+
 		const sectionTagsBtns = document.querySelectorAll('.section-tags__list-item:not(:last-child) > button');
+
 		const sectionTagsSublistBtns = document.querySelectorAll('.section-tags__sublist-item > button');
 
 		sectionTagsBtns.forEach(item => {
@@ -669,6 +693,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					el.classList.remove('active');
 				})
 				item.classList.add('active');
+				document.querySelector('.section-tags__list-item:last-child > button').innerText = item.innerText;
 				document.querySelector('.section-tags__list-item:last-child > button').classList.add('active');
 				document.querySelector('.section-tags__list-item:last-child > button').classList.remove('open');
 				document.querySelector('.section-tags__sublist').classList.remove('active');
@@ -683,6 +708,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		const catalogFilterBtns = document.querySelectorAll('.products-listing__filters-open > button');
 		catalogFilterBtns.forEach(btn => {
 			btn.addEventListener('click', function () {
+
 				catalogFilterBtns.forEach(item => {
 					if (item !== btn) {
 						item.parentElement.classList.remove('active');
@@ -693,9 +719,30 @@ document.addEventListener('DOMContentLoaded', function () {
 				btn.nextElementSibling.classList.toggle('active');
 				clickOutside(btn.parentElement, btn.parentElement);
 				clickOutside(btn.parentElement, btn.nextElementSibling);
+
+				let applyBtn = btn.nextElementSibling.querySelector('.products-listing__filters-btns__apply')
+
+				applyBtn.addEventListener('click', () => {
+					btn.parentElement.classList.remove('active');
+					btn.nextElementSibling.classList.remove('active');
+				})
+				let reset = btn.nextElementSibling.querySelector('.products-listing__filters-btns__reset')
+
+				reset.addEventListener('click', () => {
+					const checkboxes = btn.nextElementSibling.querySelectorAll('.filter-label__input')
+					checkboxes.forEach(checkbox => {
+						if (checkbox.checked) {
+							checkbox.checked = falseж
+							btn.parentElement.classList.remove('active');
+							btn.nextElementSibling.classList.remove('active');
+						}
+						return
+					})
+				})
 			})
 		})
 	}
+
 
 	// аккордеон фильтра размеров
 
@@ -818,6 +865,9 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 	}
 
+
+
+
 	// открытие/закрытие модалки заявки
 
 	if (document.querySelector('.banner1__left-btn') && document.querySelector('.callback-popup')) {
@@ -825,7 +875,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		const callbackPopupOpen = document.querySelector('.banner1__left-btn');
 		const callbackPopupClose = callbackPopup.querySelector('.popup__close');
 
-		callbackPopupOpen.addEventListener('click', function () {
+		callbackPopupOpen.addEventListener('click', function (e) {
+			e.preventDefault()
 			openPopupElement(callbackPopup);
 		})
 
@@ -868,6 +919,9 @@ document.addEventListener('DOMContentLoaded', function () {
 			document.querySelector('.empty-popup__btn').addEventListener('click', (e) => {
 				e.preventDefault()
 				closePopupElement(document.querySelector('.empty-popup'))
+				if (document.querySelector('.resume-popup')) {
+					closePopupElement(document.querySelector('.resume-popup'))
+				}
 			})
 
 			document.addEventListener('click', (e) => {
@@ -1015,15 +1069,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// вопрос по товару
 	if (document.querySelector('.product-ask') && document.querySelector('.ask-btn')) {
+
 		let askBtn = document.querySelector('.ask-btn');
+
 		let productAsk = document.querySelector('.product-ask');
+
 		askBtn.addEventListener('click', function () {
 			openPopupElement(productAsk);
 		})
 
 		let productAskClose = productAsk.querySelector('.popup__close');
+
 		productAskClose.addEventListener('click', function () {
 			closePopupElement(productAsk);
+		})
+
+		const askSubmit = productAsk.querySelector('.popup__form-btn')
+
+		askSubmit.addEventListener('click', (e) => {
+			e.preventDefault()
+			closePopupElement(productAsk)
+			openPopupElement(document.querySelector('.empty-popup'))
+		})
+		document.addEventListener('click', (e) => {
+			if (e.target == productAsk) {
+				closePopupElement(productAsk)
+			}
 		})
 	}
 
@@ -1179,8 +1250,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			dropdownItem.forEach(item => {
 				if (item.classList.contains('selected')) {
 					el.value = item.textContent;
-					console.log(item);
-					console.log(item.textContent);
 				}
 				item.addEventListener('click', () => {
 					dropdownItem.forEach(el => {
@@ -1340,16 +1409,13 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	function showPrice() {
-		let priceBlock = document.querySelector('.show-price');
+
 		let showPriceBtn = document.querySelector('.showPriceBtn');
+
 		if (showPriceBtn) {
 
-			showPriceBtn.addEventListener('click', () => {
-				priceBlock.classList.add('active')
-				setTimeout(() => {
-					priceBlock.classList.remove('active')
-
-				}, 3000);
+			showPriceBtn.addEventListener('click', (e) => {
+				openPopupElement(document.querySelector('.callback-popup'))
 			})
 		}
 	}
@@ -1511,56 +1577,51 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Открыть попап реквизитов
 
 
-	// Закрыть  Popup`ы при нажатии ESCAPE
-
-	const allPopups = document.querySelectorAll('.popup');
-	if (allPopups) {
-		for (const popup of allPopups) {
-			document.addEventListener('keydown', (e) => {
-				if (e.key == "Escape" && popup.classList.contains('active')) {
-					closePopupElement(popup)
-				}
-				return
-			})
-		}
-	}
-
-
-	// Закрыть  Popup`ы при нажатии ESCAPE
-
-
 	function tabs() {
 
-		let tabButtons = document.querySelectorAll('[data-parent]')
+		const tabsBlocks = document.querySelectorAll('[data-tabs]')
 
+		if (tabsBlocks) {
 
-		if (tabButtons) {
-			for (const button of tabButtons) {
+			for (const block of tabsBlocks) {
 
-				button.addEventListener('click', (e) => {
+				let tabButtons = block.querySelectorAll('[data-parent]')
 
-					let targetId = e.target.dataset.parent;
+				if (tabButtons) {
+					for (const button of tabButtons) {
 
-					let targetBlock = document.querySelector(`[data-child="${targetId}"]`);
+						button.addEventListener('click', (e) => {
 
-					let tabsBody = document.querySelectorAll('[data-child]')
+							let targetId = e.target.dataset.parent;
 
-					tabsBody.forEach(item => item.classList.remove('active'))
+							let targetBlock = block.querySelector(`[data-child="${targetId}"]`);
 
-					tabButtons.forEach(item => {
-						item.classList.remove('active')
-					})
+							let tabsBody = block.querySelectorAll('[data-child]')
 
-					e.target.classList.add('active')
+							tabsBody.forEach(item => item.classList.remove('active'))
 
-					targetBlock.classList.add('active')
+							tabButtons.forEach(item => {
+								item.classList.remove('active')
+							})
 
-				});
+							e.target.classList.add('active')
 
-				let tabButton = document.querySelector('[data-parent]').click()
-			};
+							targetBlock.classList.add('active')
+
+						});
+
+						let tabButton = block.querySelector('[data-parent]').click()
+					};
+
+				}
+			}
+
 
 		}
+
+
+
+
 	}
 
 	tabs()
@@ -1570,9 +1631,11 @@ document.addEventListener('DOMContentLoaded', function () {
 	const vacancyPopup = document.querySelector('.vacancy-popup')
 
 	if (vacancyPopup) {
-		const emptyPopup = document.querySelector('.empty-popup')
 
-		const vacancyBtn = document.querySelectorAll('.vacancies-hero__btn')
+		const resumePopup = document.querySelector('.resume-popup')
+
+		const vacancyBtn = document.querySelectorAll('.vacancy-card__apply')
+
 		for (const btn of vacancyBtn) {
 			btn.addEventListener('click', () => openPopupElement(vacancyPopup))
 
@@ -1582,7 +1645,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		closePopup.forEach((el) => {
 			el.addEventListener('click', () => closePopupElement(vacancyPopup))
 
-			el.addEventListener('click', () => closePopupElement(emptyPopup))
+			el.addEventListener('click', () => closePopupElement(resumePopup))
 
 		})
 
@@ -1592,7 +1655,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				closePopupElement(vacancyPopup)
 		})
 
-		const vacancySubmit = vacancyPopup.querySelector('.cart-form__submit')
+		const vacancySubmit = vacancyPopup.querySelector('.vacancy-form__submit')
 
 		vacancySubmit.addEventListener('click', (e) => {
 
@@ -1600,7 +1663,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			closePopupElement(vacancyPopup)
 
-			openPopupElement(emptyPopup)
+			openPopupElement(resumePopup)
 
 		})
 	}
@@ -1617,11 +1680,22 @@ document.addEventListener('DOMContentLoaded', function () {
 			let yearSublistItems = newsFilterYear.querySelectorAll('.news-materials__action-sublist li a')
 
 			newsFilterYear.addEventListener('click', (e) => {
+
 				e.preventDefault()
-				e.currentTarget.classList.toggle('active')
+
+				e.stopPropagation()
+
+				document.querySelectorAll('.news-materials__action-btn').forEach(el => {
+					el.classList.remove('active')
+				})
+
+				e.currentTarget.classList.add('active')
+
+
 			})
 
 			for (const item of yearSublistItems) {
+
 				item.addEventListener('click', () => {
 
 					yearSublistItems.forEach(el => el.classList.remove('check'))
@@ -1632,9 +1706,11 @@ document.addEventListener('DOMContentLoaded', function () {
 					item.classList.add('check')
 
 
+					btnText.textContent = (item.textContent == "Все года" ? item.textContent : item.textContent + ' ' + 'год')
 
-					btnText.textContent = (/* item.textContent  */ item.textContent == "Все года" ? item.textContent : item.textContent + ' ' + 'год')
+
 				})
+
 			}
 		}
 
@@ -1644,7 +1720,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			newsFilterMonth.addEventListener('click', (e) => {
 				e.preventDefault()
-				e.currentTarget.classList.toggle('active')
+
+				e.stopPropagation()
+
+				document.querySelectorAll('.news-materials__action-btn').forEach(el => {
+					el.classList.remove('active')
+				})
+
+				e.currentTarget.classList.add('active')
+
+
 			})
 
 			for (const item of monthSublistItems) {
@@ -1657,14 +1742,23 @@ document.addEventListener('DOMContentLoaded', function () {
 					let btnText = newsFilterMonth.querySelector('.text')
 
 
-
 					item.classList.add('check')
 
 
-					btnText.textContent = (/* item.textContent  */ item.textContent == "Все месяца" ? item.textContent : 'за' + ' ' + item.textContent)
+					btnText.textContent = (item.textContent == "Все месяца" ? item.textContent : 'за' + ' ' + item.textContent)
+
 				})
 			}
 		}
+
+
+		document.addEventListener('click', (e) => {
+
+			document.querySelectorAll('.news-materials__action-btn').forEach(el => {
+				el.classList.remove('active')
+			})
+
+		})
 
 	}
 
@@ -1673,9 +1767,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	function addToCartListing() {
 
 		const toCartBtn = document.querySelectorAll('.products__list-item__price > button')
+
 		if (toCartBtn) {
-
-
 			toCartBtn.forEach(btn => {
 				btn.addEventListener('click', (e) => {
 					e.preventDefault()
@@ -1868,9 +1961,425 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 	openQaPopup()
+
+
+
+
+
+	function openSearch() {
+		const searchBtn = document.querySelector('.header__bottom-search ')
+		if (searchBtn) {
+			const svgClose = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M4.4107 4.41058C4.73614 4.08514 5.26378 4.08514 5.58921 4.41058L9.99996 8.82133L14.4107 4.41058C14.7361 4.08514 15.2638 4.08514 15.5892 4.41058C15.9147 4.73602 15.9147 5.26366 15.5892 5.58909L11.1785 9.99984L15.5892 14.4106C15.9147 14.736 15.9147 15.2637 15.5892 15.5891C15.2638 15.9145 14.7361 15.9145 14.4107 15.5891L9.99996 11.1783L5.58921 15.5891C5.26378 15.9145 4.73614 15.9145 4.4107 15.5891C4.08527 15.2637 4.08527 14.736 4.4107 14.4106L8.82145 9.99984L4.4107 5.58909C4.08527 5.26366 4.08527 4.73602 4.4107 4.41058Z" fill="white"/>
+				</svg>`;
+			const svgSearch = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M7.66659 2.66683C4.90516 2.66683 2.66659 4.90541 2.66659 7.66683C2.66659 10.4283 4.90516 12.6668 7.66659 12.6668C9.00865 12.6668 10.2272 12.1381 11.1253 11.2775C11.1461 11.2488 11.1694 11.2213 11.1953 11.1954C11.2211 11.1695 11.2486 11.1463 11.2773 11.1255C12.1379 10.2274 12.6666 9.00887 12.6666 7.66683C12.6666 4.90541 10.428 2.66683 7.66659 2.66683ZM12.5916 11.649C13.4724 10.5611 13.9999 9.17558 13.9999 7.66683C13.9999 4.16903 11.1644 1.3335 7.66659 1.3335C4.16878 1.3335 1.33325 4.16903 1.33325 7.66683C1.33325 11.1646 4.16878 14.0002 7.66659 14.0002C9.17536 14.0002 10.5609 13.4726 11.6488 12.5918L13.5285 14.4716C13.7889 14.7319 14.211 14.7319 14.4713 14.4716C14.7317 14.2112 14.7317 13.7891 14.4713 13.5288L12.5916 11.649Z" fill="white"/>
+				</svg>`
+			const headerTop = document.querySelector('.header')
+			const searchBlock = document.querySelector('.search-block')
+			if (searchBlock) {
+				let content = searchBlock.querySelector('.search-block__content')
+				searchBtn.addEventListener('click', (e) => {
+					e.stopPropagation()
+
+					searchBlock.classList.toggle('active')
+
+
+
+					if (searchBlock.classList.contains('active')) {
+						searchBtn.innerHTML = svgClose;
+						content.style.paddingTop = `${headerTop.offsetHeight + headerTop.offsetTop + 25}px`
+						document.documentElement.classList.add('lock')
+					} else {
+						searchBtn.innerHTML = svgSearch;
+						content.style.paddingTop = null;
+						document.documentElement.classList.remove('lock')
+					}
+					if (document.documentElement.clientWidth <= 768) {
+
+						let mobHead = document.querySelector('.header__bottom')
+						content.style.paddingTop = `${mobHead.offsetHeight + mobHead.offsetTop + 25}px`
+					}
+
+				})
+				document.addEventListener('click', (e) => {
+					if (e.target == searchBlock) {
+						searchBlock.classList.remove('active');
+						document.documentElement.classList.remove('lock')
+						searchBtn.innerHTML = svgSearch;
+					}
+				})
+				document.addEventListener('keydown', (e) => {
+
+					if (e.key == "Escape" && searchBlock.classList.contains('active')) {
+						searchBlock.classList.remove('active');
+						document.documentElement.classList.remove('lock')
+						searchBtn.innerHTML = svgSearch;
+					}
+				})
+			}
+		}
+	}
+
+	openSearch()
+
+	function searchMatches() {
+
+		const headerSearch = document.querySelector('.search-block__input')
+
+		if (headerSearch) {
+
+			const inputValueClear = headerSearch.parentElement.querySelector('.clear-btn')
+
+
+			const matchBlock = document.querySelector('.search-block__matches')
+
+			const oftenSearch = document.querySelector('.search-result__column.often')
+
+			const loader = document.querySelector('.load__block')
+
+			inputValueClear.addEventListener('click', () => {
+				headerSearch.value = ''
+			})
+
+			headerSearch.addEventListener('input', () => {
+
+				loader.style.display = 'flex';
+
+				oftenSearch.classList.add('inactive')
+
+				setTimeout(function as() {
+
+					loader.style.display = 'none';
+
+				}, 3000);
+
+				matchBlock.classList.add('active')
+
+
+				if (headerSearch.value == "") {
+
+					matchBlock.classList.remove('active')
+
+					oftenSearch.classList.remove('inactive')
+
+					loader.style.display = 'none';
+				}
+				else {
+
+				}
+
+			})
+
+			headerSearch.addEventListener('blur', () => {
+
+				if (headerSearch.value == "") {
+					matchBlock.classList.remove('active')
+
+					oftenSearch.classList.remove('inactive')
+				}
+
+			})
+
+		}
+	}
+	searchMatches()
+
+
+	// Добавление в корзину Листинг
+
+	function listingdAddCard() {
+
+		let count = 0
+
+		const addToCart = document.querySelectorAll('.products__list-item__price > button')
+
+		if (addToCart) {
+
+			let btnInner = `<span>В корзине</span> <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="check"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.8047 3.52851C14.0651 3.78886 14.0651 4.21097 13.8047 4.47132L6.4714 11.8047C6.21106 12.065 5.78894 12.065 5.5286 11.8047L2.19526 8.47132C1.93491 8.21097 1.93491 7.78886 2.19526 7.52851C2.45561 7.26816 2.87772 7.26816 3.13807 7.52851L6 10.3904L12.8619 3.52851C13.1223 3.26816 13.5444 3.26816 13.8047 3.52851Z" fill="#285BF3"></path></svg>`;
+			let cartIco = document.querySelector('.header-cart-counter')
+			for (const btn of addToCart) {
+				btn.addEventListener('click', () => {
+					btn.classList.toggle('incart')
+					if (btn.classList.contains('incart')) {
+						btn.innerHTML = btnInner;
+						count++
+					} else {
+						count--
+					}
+					cartIco.innerText = count;
+				})
+			}
+
+		}
+	}
+
+	listingdAddCard()
+
+	// Добавление в корзину Листинг
+
+
+	// Закрыть  Popup`ы при нажатии ESCAPE
+
+	const allPopups = document.querySelectorAll('.popup');
+	if (allPopups) {
+		for (const popup of allPopups) {
+
+			document.addEventListener('keydown', (e) => {
+				if (e.key == "Escape" && popup.classList.contains('active')) {
+					closePopupElement(popup)
+				}
+				return
+			})
+
+			document.addEventListener('click', (e) => {
+				if (e.key == "Escape" && popup.classList.contains('active')) {
+					if (e.target == popup) {
+						closePopupElement(popup)
+					}
+				}
+			})
+			if (popup.classList.contains('active')) {
+				const btnClose = popup.querySelector('.popup__close')
+				if (btnClose) {
+					btn.addEventListener('click', () => {
+						closePopupElement(popup)
+					})
+				}
+
+			}
+		}
+	}
+
+
+	// Закрыть  Popup`ы при нажатии ESCAPE
+
+
+
+	// popup при успешной отправке
+
+	function succesFormAction() {
+
+		const submitBtn = document.querySelector('[data-standart]');
+
+		if (submitBtn) {
+			const standartPopup = document.querySelector('.cart-submit__popup')
+			if (standartPopup) {
+				submitBtn.addEventListener('click', (e) => {
+					e.preventDefault()
+					let allPopups = document.querySelectorAll('.popup.active')
+					allPopups.forEach(el => {
+						closePopupElement(el)
+					})
+					standartPopup.classList.add('active')
+
+				})
+			}
+		}
+
+	}
+
+	succesFormAction()
+
+	// popup при успешной отправке
+
+
+	// Попап быстрый заказ 15 минут
+
+	const quickPopup = document.querySelector('.callback-popup')
+
+	if (quickPopup) {
+
+		const openQuickBtns = document.querySelectorAll('.cart-popup__item-tocart')
+
+		const closeBtn = quickPopup.querySelector('.popup__close')
+
+		if (openQuickBtns) {
+
+			for (const openQuickBtn of openQuickBtns) {
+				openQuickBtn.addEventListener('click', () => {
+					openPopupElement(quickPopup)
+					closePopupElement(document.querySelector('.cart-popup'))
+
+				})
+
+				closeBtn.addEventListener('click', () => {
+					closePopupElement(quickPopup)
+				})
+			}
+		}
+
+		document.addEventListener('click', (e) => {
+			if (e.target == quickPopup) {
+				closePopupElement(quickPopup)
+			}
+		})
+
+	}
+
+	// Попап быстрый заказ 15 минут
+
+	// Обратный звонок 15 мин
+
+	const fastCallback = document.querySelector('.callback-popup2')
+
+	if (fastCallback) {
+		const fastCallbackBtns = document.querySelectorAll('.request-card__btn')
+		for (const btn of fastCallbackBtns) {
+			btn.addEventListener('click', () => {
+				openPopupElement(fastCallback)
+			})
+
+		}
+	}
+
+	// Обратный звонок 15 мин
+
+
+	// Закрывает все модалки по крестику и клику вне
+
+	const closeAllPopups = document.querySelectorAll('.popup')
+	if (closeAllPopups) {
+		for (const popup of closeAllPopups) {
+			let close = popup.querySelector('.popup__close')
+			close.addEventListener('click', () => {
+				closePopupElement(popup)
+			})
+			document.addEventListener('click', (e) => {
+				if (e.target == popup) {
+					closePopupElement(popup)
+				}
+			})
+		}
+	}
+
+
+	// Закрывает все модалки по крестику и клику вне
+
+
+
+	// Открыть модалку вакансии
+
+	const vacancyPopupEmpty = document.querySelector('.vacancy-popup-empty')
+
+	if (vacancyPopupEmpty) {
+		const openBtn = document.querySelector('.jobs-block__btn')
+		if (openBtn) {
+			openBtn.addEventListener('click', (e) => {
+				e.preventDefault()
+				openPopupElement(vacancyPopupEmpty)
+			})
+			const submit = vacancyPopupEmpty.querySelector('.vacancy-form__submit')
+
+			submit.addEventListener('click', (e) => {
+				e.preventDefault()
+				closePopupElement(vacancyPopupEmpty)
+				openPopupElement(document.querySelector('.empty-popup'))
+			})
+		}
+	}
+
+	// Открыть модалку вакансии
+
+
+	// Скрол к блоку
+	const blockIds = document.querySelectorAll('[data-id]')
+
+	for (const block of blockIds) {
+		block.addEventListener('click', () => {
+			const blockId = block.dataset.id;
+			const anchor = document.querySelector(`[data-anchor=${blockId}]`)
+			console.log(anchor);
+			const anchorTop = anchor.offsetTop;
+
+			window.scrollTo({
+
+				top: anchorTop,
+
+				behavior: "smooth"
+
+			});
+
+		})
+
+	}
+
+	// Скрол к блоку
+
+
+	const newsCategories = document.querySelector('.news-materials__btns')
+
+	if (newsCategories) {
+
+		let btns = newsCategories.querySelectorAll('.news-materials__btn')
+
+		for (const btn of btns) {
+			btn.addEventListener('click', () => {
+				btns.forEach(el => el.classList.remove('active'))
+				btn.classList.add('active')
+			})
+		}
+
+		newsCategories.querySelector('.news-materials__btn').click()
+
+	}
+
+
+	const servicesOrderBtn = document.querySelectorAll('.categories-card__btn-order')
+
+	if (servicesOrderBtn) {
+
+		servicesOrderBtn.forEach(el => {
+			const popup = document.querySelector('.callback-popup')
+			el.addEventListener('click', () => {
+
+				openPopupElement(popup)
+			})
+		})
+	}
+
+	const servicesCartBtn = document.querySelectorAll('.categories-card__btn-cart')
+
+	if (servicesCartBtn) {
+		const cartPopup = document.querySelector('.cart-popup')
+
+
+		if (cartPopup) {
+
+			const cartPopupBtn = cartPopup.querySelector('.cart-popup__item-btn');
+
+			if (cartPopupBtn) {
+
+				servicesCartBtn.forEach(el => {
+					el.addEventListener('click', () => {
+						openPopupElement(cartPopup)
+					})
+				})
+
+				cartPopupBtn.addEventListener('click', () => {
+					closePopupElement(cartPopup)
+				})
+
+			}
+		}
+
+	}
+
+	const bannerPopupBtn = document.querySelector('.service-banner__btn')
+	if (bannerPopupBtn) {
+		const popup = document.querySelector('.callback-popup')
+		bannerPopupBtn.addEventListener('click', () => {
+			openPopupElement(popup)
+
+		})
+	}
+
+	const orderService = document.querySelector('.service-order')
+	if (orderService) {
+		const popup = document.querySelector('.callback-popup')
+		orderService.addEventListener('click', () => {
+			openPopupElement(popup)
+		})
+	}
+
 })
-
-
-
-
-

@@ -411,7 +411,7 @@
 			</button>
 			<a href="#" class="header__bottom-cart desktop">
 				<span>Корзина</span>
-				<span>0</span>
+				<span class="header-cart-counter">0</span>
 			</a>
 			<button class="header__bottom-location mobile">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1480,15 +1480,24 @@
 					</ul>
 				</div>
 				<div class="catalog-menu__content-right__card active">
-					<div class="bg"></div>
+					<!-- <div class="bg"></div>
 					<a href="#" class="catalog-menu__content-right__card-logo">
 						<img src="./src/images/svg/logo.svg" alt="">
 					</a>
 					<p class="catalog-menu__content-right__card-title">Покупайте у нас товар в рассрочку</p>
 					<img src="./src/images/svg/catalog-menu__content-right-bg.svg" alt=""
-						class="catalog-menu__content-right__card-bg">
+						class="catalog-menu__content-right__card-bg"> -->
+					<img src="../src/images/banner.main.jpg" alt="#">
 				</div>
-				<p class="catalog-menu__content-right__description active">Любой объем быстро и выгодно с Ферус</p>
+				<div class="catalog-menu__content-right__description active">
+					<p>Покупайте у нас товар в рассрочку</p>
+					<a href="#">
+						Смотреть всё
+						<svg>
+							<use xlink:href='../src/images/svgicons/icons.svg#chevron-ico'></use>
+						</svg>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -1790,53 +1799,52 @@
 										</div>
 									</div>
 								</div>
-							</li> --></ul></aside></div><div class="news__materials news-materials"><h3 class="news-materials__title">Материалы</h3><div class="news-materials__header"><div class="news-materials__btns"><button class="news-materials__btn active">Все</button> <button class="news-materials__btn">Корпоративные новости</button> <button class="news-materials__btn">Новости отрасли</button> <button class="news-materials__btn">Блог</button></div><div class="news-materials__action"><button type="button" class="news-materials__action-btn year text-hover__blue"><p class="text">Все года</p><svg><use xlink:href="./src/images/svgicons/icons.svg#chevron-ico"></use></svg><ul class="news-materials__action-sublist"><li><a href="#">Все года</a></li><li><a href="#">2023</a></li><li><a href="#">2022</a></li><li><a href="#">2021</a></li></ul></button> <button type="button" class="news-materials__action-btn month text-hover__blue"><p class="text">Все месяца</p><svg><use xlink:href="./src/images/svgicons/icons.svg#chevron-ico"></use></svg><ul class="news-materials__action-sublist right"><li><a href="#">Все месяца</a></li><li><a href="#">Январь</a></li><li><a href="#">Февраль</a></li><li><a href="#">Март</a></li><li><a href="#">Апрель</a></li><li><a href="#">Май</a></li><li><a href="#">Июнь</a></li><li><a href="#">Июль</a></li><li><a href="#">Август</a></li><li><a href="#">Сентябрь</a></li><li><a href="#">Ноябрь</a></li><li><a href="#">Декабрь</a></li></ul></button></div></div><div class="news-materials__content"><a href="#" class="news-card"><p class="news-card__subtitle">Блог</p><h3 class="news-card__title">Росфинмониторинг начал разбираться с ценами на металл для гособоронзаказа</h3><div class="news-card__info"><p class="news-card__day">30</p><div class="news-card__date"><p class="news-card__date-month">апреля</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/main-about-img.png" alt="#" class="news-card__bg"> </a><a href="#" class="news-card"><p class="news-card__subtitle">Блог</p><h3 class="news-card__title">Блог Металлические конструкции: современные тенденции и идеи 21 апреля 2023</h3><div class="news-card__info"><p class="news-card__day">21</p><div class="news-card__date"><p class="news-card__date-month">апреля</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/news-card-1.png" alt="#" class="news-card__bg"> </a><a href="#" class="news-card news-card__large"><p class="news-card__subtitle">Новости отрасли</p><h3 class="news-card__title">Металлические материалы и экология: взаимосвязь и последствия</h3><div class="news-card__info"><p class="news-card__day">05</p><div class="news-card__date"><p class="news-card__date-month">марта</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/card-large-bg.jpg" alt="#" class="news-card__bg"> </a><a href="#" class="news-card"><p class="news-card__subtitle">Блог</p><h3 class="news-card__title">Как увеличить срок службы металлических изделий</h3><div class="news-card__info"><p class="news-card__day">08</p><div class="news-card__date"><p class="news-card__date-month">апреля</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/news-card-2.jpg" alt="#" class="news-card__bg"> </a><a href="#" class="news-card"><p class="news-card__subtitle">Новости рынка</p><h3 class="news-card__title">Новости рынка Новые технологии обработки металла: преимущества и недостатки 14 марта 2023</h3><div class="news-card__info"><p class="news-card__day">14</p><div class="news-card__date"><p class="news-card__date-month">марта</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/news-card-3.jpg" alt="#" class="news-card__bg"></a><div class="news-card news-card__banner"><div class="blur"></div><h3 class="news-card__title news-card__banner-title">Товары со скидкой <img src="./src/images/banner-ico.svg" alt="banner"></h3><button class="news-card__banner-btn">Смотреть акции</button><picture><source media="(max-width: 768px)" srcset="./src/images/news-banner-bg-mob.svg"><img src="./src/images/news-banner-bg.svg" alt="bg" class="news-card__banner-bg"></picture><!-- <img src="./src/images/news-banner-bg.svg" alt="bg" class="news-card__banner-bg"> --></div><a href="#" class="news-card"><p class="news-card__subtitle">Новости рынка</p><h3 class="news-card__title">Металл на службе науки: применение в различных областях исследований</h3><div class="news-card__info"><p class="news-card__day">04</p><div class="news-card__date"><p class="news-card__date-month">февраля</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/news-card-1.png" alt="#" class="news-card__bg"> </a><a href="#" class="news-card"><p class="news-card__subtitle">Новости рынка</p><h3 class="news-card__title">Как сохранить качество металла при транспортировке</h3><div class="news-card__info"><p class="news-card__day">18</p><div class="news-card__date"><p class="news-card__date-month">февраля</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/news-card-3.jpg" alt="#" class="news-card__bg"> </a><a href="#" class="news-card news-card__large"><p class="news-card__subtitle">Блог</p><h3 class="news-card__title">Металлические изделия в интерьере: модные тренды и идеи</h3><div class="news-card__info"><p class="news-card__day">25</p><div class="news-card__date"><p class="news-card__date-month">марта</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/card-large-bg-2.jpg" alt="#" class="news-card__bg"> </a><a href="#" class="news-card"><p class="news-card__subtitle">Новости рынка</p><h3 class="news-card__title">Металл на службе науки: применение в различных областях исследований</h3><div class="news-card__info"><p class="news-card__day">04</p><div class="news-card__date"><p class="news-card__date-month">февраля</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/news-card-1.png" alt="#" class="news-card__bg"> </a><a href="#" class="news-card"><p class="news-card__subtitle">Новости рынка</p><h3 class="news-card__title">Как сохранить качество металла при транспортировке</h3><div class="news-card__info"><p class="news-card__day">18</p><div class="news-card__date"><p class="news-card__date-month">февраля</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/news-card-3.jpg" alt="#" class="news-card__bg"></a></div><div class="products-listing__controllers"><div><div class="products-listing__pagination"><button class="active">1</button> <button>2</button> <button>3</button> <button>4</button> <button>5</button> <button class="desktop">6</button> <button>…</button></div><button class="products-listing__pagination-btn"><span class="desktop">Дальше</span> <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.41075 3.57739C9.73618 3.25195 10.2638 3.25195 10.5893 3.57739L16.4226 9.41072C16.748 9.73616 16.748 10.2638 16.4226 10.5892L10.5893 16.4226C10.2638 16.748 9.73618 16.748 9.41075 16.4226C9.08531 16.0971 9.08531 15.5695 9.41075 15.2441L13.8215 10.8333H4.16667C3.70643 10.8333 3.33334 10.4602 3.33334 9.99998C3.33334 9.53974 3.70643 9.16665 4.16667 9.16665H13.8215L9.41075 4.7559C9.08531 4.43047 9.08531 3.90283 9.41075 3.57739Z" fill="#285BF3"></path></svg></button></div><button class="products-listing__showmore blue-btn">Показать еще</button></div></div></div></section></main><div class="popup callback-popup">
-    <div class="popup__body">
-        <button class="popup__close">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M4.41083 4.41083C4.73626 4.08539 5.2639 4.08539 5.58934 4.41083L10.0001 8.82157L14.4108 4.41083C14.7363 4.08539 15.2639 4.08539 15.5893 4.41083C15.9148 4.73626 15.9148 5.2639 15.5893 5.58934L11.1786 10.0001L15.5893 14.4108C15.9148 14.7363 15.9148 15.2639 15.5893 15.5893C15.2639 15.9148 14.7363 15.9148 14.4108 15.5893L10.0001 11.1786L5.58934 15.5893C5.2639 15.9148 4.73626 15.9148 4.41083 15.5893C4.08539 15.2639 4.08539 14.7363 4.41083 14.4108L8.82157 10.0001L4.41083 5.58934C4.08539 5.2639 4.08539 4.73626 4.41083 4.41083Z"
-                    fill="#01050F" />
-            </svg>
-        </button>
-        <p class="popup__heading">Быстрый заказ</p>
-        <p class="popup__subheading">Перезвоним через 15 минут и решение специально для вас</p>
-        <form action="#" class="popup__form">
-            <div class="input-container">
-                <input type="text" placeholder="Имя и фамилия" class="popup__form-input" id="callback-popup-name">
-                <label for="callback-popup-name">Имя и фамилия</label>
-            </div>
-            <div class="input-container">
-                <input type="tel" placeholder="Номер телефона" class="popup__form-input" id="callback-popup-phone">
-                <label for="callback-popup-phone">Номер телефона</label>
-            </div>
-            <div class="input-container">
-                <input type="tel" placeholder="Сфера деятельности" class="popup__form-input"
-                    id="callback-popup-activity">
-                <label for="callback-popup-activity">Сфера деятельности</label>
-            </div>
-            <div class="input-container">
-                <textarea name="" id="callback-popup-msg" cols="30" rows="10" class="popup__form-textarea"
-                    placeholder="Описание заказа"></textarea>
-                <label for="callback-popup-msg">Описание заказа</label>
-            </div>
-            <label class="request__right-form__label" aria-colcount="popup__form-label">
-                <input type="file" name="file" class="popup__form-label__input">
-                <span class="popup__form-label__btn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M14.9755 3.48487C14.1619 2.67128 12.8429 2.67128 12.0293 3.48487L4.51625 10.9979C3.13315 12.381 3.13315 14.6234 4.51625 16.0066C5.89936 17.3897 8.14182 17.3897 9.52493 16.0066L17.0379 8.49354C17.3634 8.16811 17.891 8.16811 18.2164 8.49354C18.5419 8.81898 18.5419 9.34662 18.2164 9.67205L10.7034 17.1851C8.66946 19.219 5.37172 19.219 3.33774 17.1851C1.30376 15.1511 1.30376 11.8533 3.33774 9.81937L10.8508 2.30636C12.3152 0.841891 14.6896 0.841891 16.1541 2.30636C17.6185 3.77082 17.6185 6.14519 16.1541 7.60966L8.93567 14.828C8.04072 15.723 6.58972 15.723 5.69476 14.828C4.79981 13.9331 4.79981 12.4821 5.69476 11.5871L12.0293 5.25264C12.3547 4.9272 12.8823 4.9272 13.2078 5.25264C13.5332 5.57807 13.5332 6.10571 13.2078 6.43115L6.87327 12.7656C6.6292 13.0097 6.6292 13.4055 6.87327 13.6495C7.11735 13.8936 7.51308 13.8936 7.75716 13.6495L14.9755 6.43115C15.7891 5.61755 15.7891 4.29846 14.9755 3.48487Z"
-                            fill="#285BF3"></path>
-                    </svg>
-                    <span>Прикрепить файл</span>
-                </span>
-            </label>
-            <p class="popup__form-formats">pdf, doc, xlsx, jpg, png до 10 мб </p>
-            <p class="popup__form-policy">Отправляя заявку, вы подтверждаете свое согласие с <a
-                    href="#">пользовательским соглашением</a> и на <a href="#">обработку персональных данных</a> </p>
-            <button class="blue-btn popup__form-btn">Отправить заявку</button>
-        </form>
-    </div>
+							</li> --></ul></aside></div><div class="news__materials news-materials"><h3 class="news-materials__title">Материалы</h3><div class="news-materials__header"><div class="news-materials__btns"><button class="news-materials__btn">Все</button> <button class="news-materials__btn">Корпоративные новости</button> <button class="news-materials__btn">Новости отрасли</button> <button class="news-materials__btn">Блог</button></div><div class="news-materials__action"><button type="button" class="news-materials__action-btn year text-hover__blue"><p class="text">Все года</p><svg><use xlink:href="./src/images/svgicons/icons.svg#chevron-ico"></use></svg><ul class="news-materials__action-sublist"><li><a href="#">Все года</a></li><li><a href="#">2023</a></li><li><a href="#">2022</a></li><li><a href="#">2021</a></li></ul></button> <button type="button" class="news-materials__action-btn month text-hover__blue"><p class="text">Все месяца</p><svg><use xlink:href="./src/images/svgicons/icons.svg#chevron-ico"></use></svg><ul class="news-materials__action-sublist right"><li><a href="#">Все месяца</a></li><li><a href="#">Январь</a></li><li><a href="#">Февраль</a></li><li><a href="#">Март</a></li><li><a href="#">Апрель</a></li><li><a href="#">Май</a></li><li><a href="#">Июнь</a></li><li><a href="#">Июль</a></li><li><a href="#">Август</a></li><li><a href="#">Сентябрь</a></li><li><a href="#">Ноябрь</a></li><li><a href="#">Декабрь</a></li></ul></button></div></div><div class="news-materials__content"><a href="#" class="news-card"><p class="news-card__subtitle">Блог</p><h3 class="news-card__title">Росфинмониторинг начал разбираться с ценами на металл для гособоронзаказа</h3><div class="news-card__info"><p class="news-card__day">30</p><div class="news-card__date"><p class="news-card__date-month">апреля</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/main-about-img.png" alt="#" class="news-card__bg"> </a><a href="#" class="news-card"><p class="news-card__subtitle">Блог</p><h3 class="news-card__title">Блог Металлические конструкции: современные тенденции и идеи 21 апреля 2023</h3><div class="news-card__info"><p class="news-card__day">21</p><div class="news-card__date"><p class="news-card__date-month">апреля</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/news-card-1.png" alt="#" class="news-card__bg"> </a><a href="#" class="news-card news-card__large"><p class="news-card__subtitle">Новости отрасли</p><h3 class="news-card__title">Металлические материалы и экология: взаимосвязь и последствия</h3><div class="news-card__info"><p class="news-card__day">05</p><div class="news-card__date"><p class="news-card__date-month">марта</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/card-large-bg.jpg" alt="#" class="news-card__bg"> </a><a href="#" class="news-card"><p class="news-card__subtitle">Блог</p><h3 class="news-card__title">Как увеличить срок службы металлических изделий</h3><div class="news-card__info"><p class="news-card__day">08</p><div class="news-card__date"><p class="news-card__date-month">апреля</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/news-card-2.jpg" alt="#" class="news-card__bg"> </a><a href="#" class="news-card"><p class="news-card__subtitle">Новости рынка</p><h3 class="news-card__title">Новости рынка Новые технологии обработки металла: преимущества и недостатки 14 марта 2023</h3><div class="news-card__info"><p class="news-card__day">14</p><div class="news-card__date"><p class="news-card__date-month">марта</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/news-card-3.jpg" alt="#" class="news-card__bg"></a><div class="news-card news-card__banner"><div class="blur"></div><h3 class="news-card__title news-card__banner-title">Товары со скидкой <img src="./src/images/banner-ico.svg" alt="banner"></h3><button class="news-card__banner-btn">Смотреть акции</button><picture><source media="(max-width: 768px)" srcset="./src/images/news-banner-bg-mob.svg"><img src="./src/images/news-banner-bg.svg" alt="bg" class="news-card__banner-bg"></picture><!-- <img src="./src/images/news-banner-bg.svg" alt="bg" class="news-card__banner-bg"> --></div><a href="#" class="news-card"><p class="news-card__subtitle">Новости рынка</p><h3 class="news-card__title">Металл на службе науки: применение в различных областях исследований</h3><div class="news-card__info"><p class="news-card__day">04</p><div class="news-card__date"><p class="news-card__date-month">февраля</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/news-card-1.png" alt="#" class="news-card__bg"> </a><a href="#" class="news-card"><p class="news-card__subtitle">Новости рынка</p><h3 class="news-card__title">Как сохранить качество металла при транспортировке</h3><div class="news-card__info"><p class="news-card__day">18</p><div class="news-card__date"><p class="news-card__date-month">февраля</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/news-card-3.jpg" alt="#" class="news-card__bg"> </a><a href="#" class="news-card news-card__large"><p class="news-card__subtitle">Блог</p><h3 class="news-card__title">Металлические изделия в интерьере: модные тренды и идеи</h3><div class="news-card__info"><p class="news-card__day">25</p><div class="news-card__date"><p class="news-card__date-month">марта</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/card-large-bg-2.jpg" alt="#" class="news-card__bg"> </a><a href="#" class="news-card"><p class="news-card__subtitle">Новости рынка</p><h3 class="news-card__title">Металл на службе науки: применение в различных областях исследований</h3><div class="news-card__info"><p class="news-card__day">04</p><div class="news-card__date"><p class="news-card__date-month">февраля</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/news-card-1.png" alt="#" class="news-card__bg"> </a><a href="#" class="news-card"><p class="news-card__subtitle">Новости рынка</p><h3 class="news-card__title">Как сохранить качество металла при транспортировке</h3><div class="news-card__info"><p class="news-card__day">18</p><div class="news-card__date"><p class="news-card__date-month">февраля</p><p class="news-card__date-year">2023</p></div></div><img src="./src/images/news-card-3.jpg" alt="#" class="news-card__bg"></a></div><div class="products-listing__controllers"><div><div class="products-listing__pagination"><button class="active">1</button> <button>2</button> <button>3</button> <button>4</button> <button>5</button> <button class="desktop">6</button> <button>…</button></div><button class="products-listing__pagination-btn"><span class="desktop">Дальше</span> <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.41075 3.57739C9.73618 3.25195 10.2638 3.25195 10.5893 3.57739L16.4226 9.41072C16.748 9.73616 16.748 10.2638 16.4226 10.5892L10.5893 16.4226C10.2638 16.748 9.73618 16.748 9.41075 16.4226C9.08531 16.0971 9.08531 15.5695 9.41075 15.2441L13.8215 10.8333H4.16667C3.70643 10.8333 3.33334 10.4602 3.33334 9.99998C3.33334 9.53974 3.70643 9.16665 4.16667 9.16665H13.8215L9.41075 4.7559C9.08531 4.43047 9.08531 3.90283 9.41075 3.57739Z" fill="#285BF3"></path></svg></button></div><button class="products-listing__showmore blue-btn">Показать еще</button></div></div></div></section></main><div class="popup empty-popup cart-submit__popup"><ul class="popup__body product-popup__body"><button class="popup__close"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.41083 4.41083C4.73626 4.08539 5.2639 4.08539 5.58934 4.41083L10.0001 8.82157L14.4108 4.41083C14.7363 4.08539 15.2639 4.08539 15.5893 4.41083C15.9148 4.73626 15.9148 5.2639 15.5893 5.58934L11.1786 10.0001L15.5893 14.4108C15.9148 14.7363 15.9148 15.2639 15.5893 15.5893C15.2639 15.9148 14.7363 15.9148 14.4108 15.5893L10.0001 11.1786L5.58934 15.5893C5.2639 15.9148 4.73626 15.9148 4.41083 15.5893C4.08539 15.2639 4.08539 14.7363 4.41083 14.4108L8.82157 10.0001L4.41083 5.58934C4.08539 5.2639 4.08539 4.73626 4.41083 4.41083Z" fill="#01050F"></path></svg></button><div class="empty-popup__check"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="check"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.8047 3.52851C14.0651 3.78886 14.0651 4.21097 13.8047 4.47132L6.4714 11.8047C6.21106 12.065 5.78894 12.065 5.5286 11.8047L2.19526 8.47132C1.93491 8.21097 1.93491 7.78886 2.19526 7.52851C2.45561 7.26816 2.87772 7.26816 3.13807 7.52851L6 10.3904L12.8619 3.52851C13.1223 3.26816 13.5444 3.26816 13.8047 3.52851Z" fill="#fff"></path></svg></div><h2 class="empty-popup__title">Форма отправлена!</h2><p class="empty-popup__subtitle">Наш менеджер свяжется с вами в ближайшее время и подскажет дальнейшие шаги</p><a href="#" class="empty-popup__btn">Вернуться на главную</a></ul></div><div class="popup callback-popup">
+	<div class="popup__body">
+		<button class="popup__close">
+			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" clip-rule="evenodd"
+					d="M4.41083 4.41083C4.73626 4.08539 5.2639 4.08539 5.58934 4.41083L10.0001 8.82157L14.4108 4.41083C14.7363 4.08539 15.2639 4.08539 15.5893 4.41083C15.9148 4.73626 15.9148 5.2639 15.5893 5.58934L11.1786 10.0001L15.5893 14.4108C15.9148 14.7363 15.9148 15.2639 15.5893 15.5893C15.2639 15.9148 14.7363 15.9148 14.4108 15.5893L10.0001 11.1786L5.58934 15.5893C5.2639 15.9148 4.73626 15.9148 4.41083 15.5893C4.08539 15.2639 4.08539 14.7363 4.41083 14.4108L8.82157 10.0001L4.41083 5.58934C4.08539 5.2639 4.08539 4.73626 4.41083 4.41083Z"
+					fill="#01050F" />
+			</svg>
+		</button>
+		<p class="popup__heading">Быстрый заказ</p>
+		<p class="popup__subheading">Перезвоним через 15 минут и решение специально для вас</p>
+		<form action="#" class="popup__form">
+			<div class="input-container">
+				<input type="text" placeholder="Имя и фамилия" class="popup__form-input" id="callback-popup-name">
+				<label for="callback-popup-name">Имя и фамилия</label>
+			</div>
+			<div class="input-container">
+				<input type="tel" placeholder="Номер телефона" class="popup__form-input" id="callback-popup-phone">
+				<label for="callback-popup-phone">Номер телефона</label>
+			</div>
+			<div class="input-container">
+				<input type="tel" placeholder="Сфера деятельности" class="popup__form-input" id="callback-popup-activity">
+				<label for="callback-popup-activity">Сфера деятельности</label>
+			</div>
+			<div class="input-container">
+				<textarea name="" id="callback-popup-msg" cols="30" rows="10" class="popup__form-textarea"
+					placeholder="Описание заказа"></textarea>
+				<label for="callback-popup-msg">Описание заказа</label>
+			</div>
+			<label class="request__right-form__label" aria-colcount="popup__form-label">
+				<input type="file" name="file" class="popup__form-label__input">
+				<span class="popup__form-label__btn">
+					<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd"
+							d="M14.9755 3.48487C14.1619 2.67128 12.8429 2.67128 12.0293 3.48487L4.51625 10.9979C3.13315 12.381 3.13315 14.6234 4.51625 16.0066C5.89936 17.3897 8.14182 17.3897 9.52493 16.0066L17.0379 8.49354C17.3634 8.16811 17.891 8.16811 18.2164 8.49354C18.5419 8.81898 18.5419 9.34662 18.2164 9.67205L10.7034 17.1851C8.66946 19.219 5.37172 19.219 3.33774 17.1851C1.30376 15.1511 1.30376 11.8533 3.33774 9.81937L10.8508 2.30636C12.3152 0.841891 14.6896 0.841891 16.1541 2.30636C17.6185 3.77082 17.6185 6.14519 16.1541 7.60966L8.93567 14.828C8.04072 15.723 6.58972 15.723 5.69476 14.828C4.79981 13.9331 4.79981 12.4821 5.69476 11.5871L12.0293 5.25264C12.3547 4.9272 12.8823 4.9272 13.2078 5.25264C13.5332 5.57807 13.5332 6.10571 13.2078 6.43115L6.87327 12.7656C6.6292 13.0097 6.6292 13.4055 6.87327 13.6495C7.11735 13.8936 7.51308 13.8936 7.75716 13.6495L14.9755 6.43115C15.7891 5.61755 15.7891 4.29846 14.9755 3.48487Z"
+							fill="#285BF3"></path>
+					</svg>
+					<span>Прикрепить файл</span>
+				</span>
+			</label>
+			<p class="popup__form-formats">pdf, doc, xlsx, jpg, png до 10 мб </p>
+			<p class="popup__form-policy">Отправляя заявку, вы подтверждаете свое согласие с <a href="#">пользовательским
+					соглашением</a> и на <a href="#">обработку персональных данных</a> </p>
+			<button class="blue-btn popup__form-btn" data-standart>Отправить заявку</button>
+		</form>
+	</div>
 </div> <div class="popup callback-popup2">
 	<div class="popup__body">
 		<button class="popup__close">

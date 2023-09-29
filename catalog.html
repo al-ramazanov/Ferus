@@ -411,7 +411,7 @@
 			</button>
 			<a href="#" class="header__bottom-cart desktop">
 				<span>Корзина</span>
-				<span>0</span>
+				<span class="header-cart-counter">0</span>
 			</a>
 			<button class="header__bottom-location mobile">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1480,15 +1480,24 @@
 					</ul>
 				</div>
 				<div class="catalog-menu__content-right__card active">
-					<div class="bg"></div>
+					<!-- <div class="bg"></div>
 					<a href="#" class="catalog-menu__content-right__card-logo">
 						<img src="./src/images/svg/logo.svg" alt="">
 					</a>
 					<p class="catalog-menu__content-right__card-title">Покупайте у нас товар в рассрочку</p>
 					<img src="./src/images/svg/catalog-menu__content-right-bg.svg" alt=""
-						class="catalog-menu__content-right__card-bg">
+						class="catalog-menu__content-right__card-bg"> -->
+					<img src="../src/images/banner.main.jpg" alt="#">
 				</div>
-				<p class="catalog-menu__content-right__description active">Любой объем быстро и выгодно с Ферус</p>
+				<div class="catalog-menu__content-right__description active">
+					<p>Покупайте у нас товар в рассрочку</p>
+					<a href="#">
+						Смотреть всё
+						<svg>
+							<use xlink:href='../src/images/svgicons/icons.svg#chevron-ico'></use>
+						</svg>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -1772,69 +1781,69 @@
         <button class="cookie__btn blue-btn">Закрыть</button>
     </div>
 </div><main><section class="catalog-hero section-hero" style="position: sticky; top: 0; left: 0; z-index: -1;"><img src="./src/images/catalog-hero-bg.png" alt="" class="desktop section-hero__img catalog-hero__img"> <img src="./src/images/catalog-hero-bg-mobile.png" alt="" class="mobile section-hero__img catalog-hero__img"> <img src="./src/images/svg/catalog-hero-icon.svg" alt="" class="catalog-hero__icon"><div class="section-hero__bg"><div class="blur"></div><div class="blur2"></div></div><div class="container"><h1 class="section-hero__heading catalog-hero__heading heading1">Каталог продукции</h1><ul class="breadcrumbs-list"><li class="breadcrumbs-list__item"><a href="./main.html" class="breadcrumbs-list__item-link">Главная</a></li><li class="breadcrumbs-list__item"><a href="./catalog.html" class="breadcrumbs-list__item-link">Каталог</a></li></ul></div></section><section class="catalog-main section gray" style="position: relative;"><div class="container"><ul class="catalog-main__list"><li class="catalog-main__list-item"><p class="catalog-main__list-item__heading">Сортовой прокат</p><a href="#" class="catalog-main__list-item__link blue-link">Смотреть всё</a><ul class="catalog-main__list-item__sublist"><li class="catalog-main__list-item__sublist-item"><a href="#">Арматура</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li></ul><div class="catalog-main__list-item__img-container"><img src="./src/images/catalog-list-img1.png" alt="" class="catalog-main__list-item__img"></div><button class="catalog-main__list-item__btn mobile"><img src="./src/images/svg/chevron-down.svg" alt=""></button></li><li class="catalog-main__list-item"><p class="catalog-main__list-item__heading">Листовой прокат</p><a href="#" class="catalog-main__list-item__link blue-link">Смотреть всё</a><ul class="catalog-main__list-item__sublist"><li class="catalog-main__list-item__sublist-item"><a href="#">Арматура</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li></ul><div class="catalog-main__list-item__img-container"><img src="./src/images/catalog-list-img2.png" alt="" class="catalog-main__list-item__img"></div><button class="catalog-main__list-item__btn mobile"><img src="./src/images/svg/chevron-down.svg" alt=""></button></li><li class="catalog-main__list-item"><p class="catalog-main__list-item__heading">Трубный прокат</p><a href="#" class="catalog-main__list-item__link blue-link">Смотреть всё</a><ul class="catalog-main__list-item__sublist"><li class="catalog-main__list-item__sublist-item"><a href="#">Арматура</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li></ul><div class="catalog-main__list-item__img-container"><img src="./src/images/catalog-list-img3.png" alt="" class="catalog-main__list-item__img"></div><button class="catalog-main__list-item__btn mobile"><img src="./src/images/svg/chevron-down.svg" alt=""></button></li><li class="catalog-main__list-item"><p class="catalog-main__list-item__heading">Сортовой прокат</p><a href="#" class="catalog-main__list-item__link blue-link">Смотреть всё</a><ul class="catalog-main__list-item__sublist"><li class="catalog-main__list-item__sublist-item"><a href="#">Арматура</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li></ul><div class="catalog-main__list-item__img-container"><img src="./src/images/catalog-list-img1.png" alt="" class="catalog-main__list-item__img"></div><button class="catalog-main__list-item__btn mobile"><img src="./src/images/svg/chevron-down.svg" alt=""></button></li><li class="catalog-main__list-item"><p class="catalog-main__list-item__heading">Сортовой прокат</p><a href="#" class="catalog-main__list-item__link blue-link">Смотреть всё</a><ul class="catalog-main__list-item__sublist"><li class="catalog-main__list-item__sublist-item"><a href="#">Арматура</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li></ul><div class="catalog-main__list-item__img-container"><img src="./src/images/catalog-list-img1.png" alt="" class="catalog-main__list-item__img"></div><button class="catalog-main__list-item__btn mobile"><img src="./src/images/svg/chevron-down.svg" alt=""></button></li><li class="catalog-main__list-item"><p class="catalog-main__list-item__heading">Листовой прокат</p><a href="#" class="catalog-main__list-item__link blue-link">Смотреть всё</a><ul class="catalog-main__list-item__sublist"><li class="catalog-main__list-item__sublist-item"><a href="#">Арматура</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li></ul><div class="catalog-main__list-item__img-container"><img src="./src/images/catalog-list-img2.png" alt="" class="catalog-main__list-item__img"></div><button class="catalog-main__list-item__btn mobile"><img src="./src/images/svg/chevron-down.svg" alt=""></button></li><li class="catalog-main__list-item"><p class="catalog-main__list-item__heading">Трубный прокат</p><a href="#" class="catalog-main__list-item__link blue-link">Смотреть всё</a><ul class="catalog-main__list-item__sublist"><li class="catalog-main__list-item__sublist-item"><a href="#">Арматура</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li></ul><div class="catalog-main__list-item__img-container"><img src="./src/images/catalog-list-img3.png" alt="" class="catalog-main__list-item__img"></div><button class="catalog-main__list-item__btn mobile"><img src="./src/images/svg/chevron-down.svg" alt=""></button></li><li class="catalog-main__list-item"><p class="catalog-main__list-item__heading">Сортовой прокат</p><a href="#" class="catalog-main__list-item__link blue-link">Смотреть всё</a><ul class="catalog-main__list-item__sublist"><li class="catalog-main__list-item__sublist-item"><a href="#">Арматура</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li></ul><div class="catalog-main__list-item__img-container"><img src="./src/images/catalog-list-img1.png" alt="" class="catalog-main__list-item__img"></div><button class="catalog-main__list-item__btn mobile"><img src="./src/images/svg/chevron-down.svg" alt=""></button></li><li class="catalog-main__list-item"><p class="catalog-main__list-item__heading">Сортовой прокат</p><a href="#" class="catalog-main__list-item__link blue-link">Смотреть всё</a><ul class="catalog-main__list-item__sublist"><li class="catalog-main__list-item__sublist-item"><a href="#">Арматура</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li></ul><div class="catalog-main__list-item__img-container"><img src="./src/images/catalog-list-img1.png" alt="" class="catalog-main__list-item__img"></div><button class="catalog-main__list-item__btn mobile"><img src="./src/images/svg/chevron-down.svg" alt=""></button></li><li class="catalog-main__list-item"><p class="catalog-main__list-item__heading">Листовой прокат</p><a href="#" class="catalog-main__list-item__link blue-link">Смотреть всё</a><ul class="catalog-main__list-item__sublist"><li class="catalog-main__list-item__sublist-item"><a href="#">Арматура</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li></ul><div class="catalog-main__list-item__img-container"><img src="./src/images/catalog-list-img2.png" alt="" class="catalog-main__list-item__img"></div><button class="catalog-main__list-item__btn mobile"><img src="./src/images/svg/chevron-down.svg" alt=""></button></li><li class="catalog-main__list-item"><p class="catalog-main__list-item__heading">Трубный прокат</p><a href="#" class="catalog-main__list-item__link blue-link">Смотреть всё</a><ul class="catalog-main__list-item__sublist"><li class="catalog-main__list-item__sublist-item"><a href="#">Арматура</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li></ul><div class="catalog-main__list-item__img-container"><img src="./src/images/catalog-list-img3.png" alt="" class="catalog-main__list-item__img"></div><button class="catalog-main__list-item__btn mobile"><img src="./src/images/svg/chevron-down.svg" alt=""></button></li><li class="catalog-main__list-item"><p class="catalog-main__list-item__heading">Сортовой прокат</p><a href="#" class="catalog-main__list-item__link blue-link">Смотреть всё</a><ul class="catalog-main__list-item__sublist"><li class="catalog-main__list-item__sublist-item"><a href="#">Арматура</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Балка двутаровая</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Квадрат</a></li><li class="catalog-main__list-item__sublist-item"><a href="#">Круги</a></li></ul><div class="catalog-main__list-item__img-container"><img src="./src/images/catalog-list-img1.png" alt="" class="catalog-main__list-item__img"></div><button class="catalog-main__list-item__btn mobile"><img src="./src/images/svg/chevron-down.svg" alt=""></button></li></ul></div></section><section class="listing-info section gray">
-    <div class="container">
-        <div class="listing-info__left">
-            <p class="listing-info__left-heading">Трубный прокат</p>
-            <p class="listing-info__left-description">Трубный прокат — это разновидность металлопроката, который
-                производят на специальных станах в
-                результате передела круглой и плоской заготовок, а финальный продукт имеет полость в поперечном
-                сечении. </p>
-            <p class="listing-info__left-list__heading">По форме сечения трубы делятся на: </p>
-            <ul class="listing-info__left-list ul">
-                <li class="listing-info__left-list__item">круглые;</li>
-                <li class="listing-info__left-list__item">прямоугольные;</li>
-                <li class="listing-info__left-list__item">квадратные;</li>
-                <li class="listing-info__left-list__item">плоскоовальные;</li>
-                <li class="listing-info__left-list__item">овальные;</li>
-                <li class="listing-info__left-list__item">профильные.</li>
-            </ul>
-            <img src="./src/images/catalog-info-img.png" alt="" class="listing-info__left-img">
-            <p class="listing-info__left-heading">Классификация</p>
-            <p class="listing-info__left-list__heading">По способу изготовления трубы делятся на:</p>
-            <ol class="listing-info__left-list">
-                <li class="listing-info__left-list__item">Бесшовные. Сплошная заготовка данной трубы
-                    обрабатывается ковкой, прессованием, прокаткой,
-                    волочением.</li>
-                <li class="listing-info__left-list__item">Литые. Такие трубы производятся на специальных
-                    труболитейных предприятиях.</li>
-                <li class="listing-info__left-list__item">Сварные. Используют в основном при производстве
-                    стальных труб методом сварки загнутого листа
-                    металла в продольном или поперечном направлениях. </li>
-            </ol>
-            <div class="listing-info__left-text">
-                <p class="listing-info__left-list__heading">По способу термообработки профильные трубы бывают:
-                </p>
-                <ul class="listing-info__left-list ul">
-                    <li class="listing-info__left-list__item">без термической обработки, обозначают маркой
-                        сплава;</li>
-                    <li class="listing-info__left-list__item">нагартованные «Н»;</li>
-                    <li class="listing-info__left-list__item">полунагартованные «Н2»;</li>
-                    <li class="listing-info__left-list__item">искусственно состаренные и закаленные не полностью
-                        «Т5»;</li>
-                    <li class="listing-info__left-list__item">искусственно состаренные и закаленные «Т1»;</li>
-                    <li class="listing-info__left-list__item">естественно состаренные и закаленные «Т»;</li>
-                    <li class="listing-info__left-list__item">отожженные «М».</li>
-                </ul>
-                <p class="listing-info__left-list__postdescription">В маркировке указывают марку сплава, вид
-                    термообработки, толщину стенки, наружный диаметр и
-                    длину. Если в маркировке есть «БТ», поставка в бухтах.</p>
-                <p class="listing-info__left-heading">Применение</p>
-                <p class="listing-info__left-description">Необходимы в производстве вентиляционного,
-                    холодильного оборудования, систем теплых полов, криогенной аппаратуры. Находят применение в
-                    химической, пищевой, перерабатывающей, медицинской промышленности, транспортостроении. </p>
-            </div>
-            <button class="listing-info__left-showmore">
-                <span>Показать полностью</span>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M4.41076 6.9107C4.7362 6.58527 5.26384 6.58527 5.58928 6.9107L10 11.3214L14.4108 6.9107C14.7362 6.58527 15.2638 6.58527 15.5893 6.9107C15.9147 7.23614 15.9147 7.76378 15.5893 8.08921L10.5893 13.0892C10.2638 13.4147 9.7362 13.4147 9.41076 13.0892L4.41076 8.08921C4.08533 7.76378 4.08533 7.23614 4.41076 6.9107Z"
-                        fill="#285BF3" />
-                </svg>
-            </button>
-        </div>
+	<div class="container">
+		<div class="listing-info__left">
+			<p class="listing-info__left-heading">Трубный прокат</p>
+			<p class="listing-info__left-description">Трубный прокат — это разновидность металлопроката, который
+				производят на специальных станах в
+				результате передела круглой и плоской заготовок, а финальный продукт имеет полость в поперечном
+				сечении. </p>
+			<p class="listing-info__left-list__heading">По форме сечения трубы делятся на: </p>
+			<ul class="listing-info__left-list ul">
+				<li class="listing-info__left-list__item">круглые;</li>
+				<li class="listing-info__left-list__item">прямоугольные;</li>
+				<li class="listing-info__left-list__item">квадратные;</li>
+				<li class="listing-info__left-list__item">плоскоовальные;</li>
+				<li class="listing-info__left-list__item">овальные;</li>
+				<li class="listing-info__left-list__item">профильные.</li>
+			</ul>
+			<img src="./src/images/catalog-info-img.png" alt="" class="listing-info__left-img">
+			<p class="listing-info__left-heading">Классификация</p>
+			<p class="listing-info__left-list__heading">По способу изготовления трубы делятся на:</p>
+			<ol class="listing-info__left-list">
+				<li class="listing-info__left-list__item">Бесшовные. Сплошная заготовка данной трубы
+					обрабатывается ковкой, прессованием, прокаткой,
+					волочением.</li>
+				<li class="listing-info__left-list__item">Литые. Такие трубы производятся на специальных
+					труболитейных предприятиях.</li>
+				<li class="listing-info__left-list__item">Сварные. Используют в основном при производстве
+					стальных труб методом сварки загнутого листа
+					металла в продольном или поперечном направлениях. </li>
+			</ol>
+			<div class="listing-info__left-text">
+				<p class="listing-info__left-list__heading">По способу термообработки профильные трубы бывают:
+				</p>
+				<ul class="listing-info__left-list ul">
+					<li class="listing-info__left-list__item">без термической обработки, обозначают маркой
+						сплава;</li>
+					<li class="listing-info__left-list__item">нагартованные «Н»;</li>
+					<li class="listing-info__left-list__item">полунагартованные «Н2»;</li>
+					<li class="listing-info__left-list__item">искусственно состаренные и закаленные не полностью
+						«Т5»;</li>
+					<li class="listing-info__left-list__item">искусственно состаренные и закаленные «Т1»;</li>
+					<li class="listing-info__left-list__item">естественно состаренные и закаленные «Т»;</li>
+					<li class="listing-info__left-list__item">отожженные «М».</li>
+				</ul>
+				<p class="listing-info__left-list__postdescription">В маркировке указывают марку сплава, вид
+					термообработки, толщину стенки, наружный диаметр и
+					длину. Если в маркировке есть «БТ», поставка в бухтах.</p>
+				<p class="listing-info__left-heading">Применение</p>
+				<p class="listing-info__left-description">Необходимы в производстве вентиляционного,
+					холодильного оборудования, систем теплых полов, криогенной аппаратуры. Находят применение в
+					химической, пищевой, перерабатывающей, медицинской промышленности, транспортостроении. </p>
+			</div>
+			<button class="listing-info__left-showmore">
+				<span>Показать полностью</span>
+				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" clip-rule="evenodd"
+						d="M4.41076 6.9107C4.7362 6.58527 5.26384 6.58527 5.58928 6.9107L10 11.3214L14.4108 6.9107C14.7362 6.58527 15.2638 6.58527 15.5893 6.9107C15.9147 7.23614 15.9147 7.76378 15.5893 8.08921L10.5893 13.0892C10.2638 13.4147 9.7362 13.4147 9.41076 13.0892L4.41076 8.08921C4.08533 7.76378 4.08533 7.23614 4.41076 6.9107Z"
+						fill="#285BF3" />
+				</svg>
+			</button>
+		</div>
 
-        <div class="listing-info__right">
-            <div class="request-card">
+		<div class="listing-info__right">
+			<div class="request-card">
     <div class="blur"></div>
     <p class="request-card__subheading">Нужна помощь?</p>
     <p class="request-card__heading">Составим решение <br class="mobile"> для вас</p>
@@ -1847,55 +1856,71 @@
     </div>
     <button class="request-card__btn blue-btn">Отправить заявку</button>
 </div>
-        </div>
-    </div>
-</section></main><div class="popup callback-popup">
-    <div class="popup__body">
-        <button class="popup__close">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M4.41083 4.41083C4.73626 4.08539 5.2639 4.08539 5.58934 4.41083L10.0001 8.82157L14.4108 4.41083C14.7363 4.08539 15.2639 4.08539 15.5893 4.41083C15.9148 4.73626 15.9148 5.2639 15.5893 5.58934L11.1786 10.0001L15.5893 14.4108C15.9148 14.7363 15.9148 15.2639 15.5893 15.5893C15.2639 15.9148 14.7363 15.9148 14.4108 15.5893L10.0001 11.1786L5.58934 15.5893C5.2639 15.9148 4.73626 15.9148 4.41083 15.5893C4.08539 15.2639 4.08539 14.7363 4.41083 14.4108L8.82157 10.0001L4.41083 5.58934C4.08539 5.2639 4.08539 4.73626 4.41083 4.41083Z"
-                    fill="#01050F" />
-            </svg>
-        </button>
-        <p class="popup__heading">Быстрый заказ</p>
-        <p class="popup__subheading">Перезвоним через 15 минут и решение специально для вас</p>
-        <form action="#" class="popup__form">
-            <div class="input-container">
-                <input type="text" placeholder="Имя и фамилия" class="popup__form-input" id="callback-popup-name">
-                <label for="callback-popup-name">Имя и фамилия</label>
-            </div>
-            <div class="input-container">
-                <input type="tel" placeholder="Номер телефона" class="popup__form-input" id="callback-popup-phone">
-                <label for="callback-popup-phone">Номер телефона</label>
-            </div>
-            <div class="input-container">
-                <input type="tel" placeholder="Сфера деятельности" class="popup__form-input"
-                    id="callback-popup-activity">
-                <label for="callback-popup-activity">Сфера деятельности</label>
-            </div>
-            <div class="input-container">
-                <textarea name="" id="callback-popup-msg" cols="30" rows="10" class="popup__form-textarea"
-                    placeholder="Описание заказа"></textarea>
-                <label for="callback-popup-msg">Описание заказа</label>
-            </div>
-            <label class="request__right-form__label" aria-colcount="popup__form-label">
-                <input type="file" name="file" class="popup__form-label__input">
-                <span class="popup__form-label__btn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M14.9755 3.48487C14.1619 2.67128 12.8429 2.67128 12.0293 3.48487L4.51625 10.9979C3.13315 12.381 3.13315 14.6234 4.51625 16.0066C5.89936 17.3897 8.14182 17.3897 9.52493 16.0066L17.0379 8.49354C17.3634 8.16811 17.891 8.16811 18.2164 8.49354C18.5419 8.81898 18.5419 9.34662 18.2164 9.67205L10.7034 17.1851C8.66946 19.219 5.37172 19.219 3.33774 17.1851C1.30376 15.1511 1.30376 11.8533 3.33774 9.81937L10.8508 2.30636C12.3152 0.841891 14.6896 0.841891 16.1541 2.30636C17.6185 3.77082 17.6185 6.14519 16.1541 7.60966L8.93567 14.828C8.04072 15.723 6.58972 15.723 5.69476 14.828C4.79981 13.9331 4.79981 12.4821 5.69476 11.5871L12.0293 5.25264C12.3547 4.9272 12.8823 4.9272 13.2078 5.25264C13.5332 5.57807 13.5332 6.10571 13.2078 6.43115L6.87327 12.7656C6.6292 13.0097 6.6292 13.4055 6.87327 13.6495C7.11735 13.8936 7.51308 13.8936 7.75716 13.6495L14.9755 6.43115C15.7891 5.61755 15.7891 4.29846 14.9755 3.48487Z"
-                            fill="#285BF3"></path>
-                    </svg>
-                    <span>Прикрепить файл</span>
-                </span>
-            </label>
-            <p class="popup__form-formats">pdf, doc, xlsx, jpg, png до 10 мб </p>
-            <p class="popup__form-policy">Отправляя заявку, вы подтверждаете свое согласие с <a
-                    href="#">пользовательским соглашением</a> и на <a href="#">обработку персональных данных</a> </p>
-            <button class="blue-btn popup__form-btn">Отправить заявку</button>
-        </form>
-    </div>
+		</div>
+	</div>
+</section></main><div class="popup empty-popup cart-submit__popup">
+	<ul class="popup__body product-popup__body"><button class="popup__close"><svg width="20" height="20"
+				viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" clip-rule="evenodd"
+					d="M4.41083 4.41083C4.73626 4.08539 5.2639 4.08539 5.58934 4.41083L10.0001 8.82157L14.4108 4.41083C14.7363 4.08539 15.2639 4.08539 15.5893 4.41083C15.9148 4.73626 15.9148 5.2639 15.5893 5.58934L11.1786 10.0001L15.5893 14.4108C15.9148 14.7363 15.9148 15.2639 15.5893 15.5893C15.2639 15.9148 14.7363 15.9148 14.4108 15.5893L10.0001 11.1786L5.58934 15.5893C5.2639 15.9148 4.73626 15.9148 4.41083 15.5893C4.08539 15.2639 4.08539 14.7363 4.41083 14.4108L8.82157 10.0001L4.41083 5.58934C4.08539 5.2639 4.08539 4.73626 4.41083 4.41083Z"
+					fill="#01050F"></path>
+			</svg></button>
+		<div class="empty-popup__check"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+				class="check">
+				<path fill-rule="evenodd" clip-rule="evenodd"
+					d="M13.8047 3.52851C14.0651 3.78886 14.0651 4.21097 13.8047 4.47132L6.4714 11.8047C6.21106 12.065 5.78894 12.065 5.5286 11.8047L2.19526 8.47132C1.93491 8.21097 1.93491 7.78886 2.19526 7.52851C2.45561 7.26816 2.87772 7.26816 3.13807 7.52851L6 10.3904L12.8619 3.52851C13.1223 3.26816 13.5444 3.26816 13.8047 3.52851Z"
+					fill="#fff"></path>
+			</svg></div>
+		<h2 class="empty-popup__title">Форма отправлена!</h2>
+		<p class="empty-popup__subtitle">Наш менеджер свяжется с вами в ближайшее время и подскажет дальнейшие шаги</p><a
+			href="#" class="empty-popup__btn">Вернуться на главную</a>
+	</ul>
+</div> <div class="popup callback-popup">
+	<div class="popup__body">
+		<button class="popup__close">
+			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" clip-rule="evenodd"
+					d="M4.41083 4.41083C4.73626 4.08539 5.2639 4.08539 5.58934 4.41083L10.0001 8.82157L14.4108 4.41083C14.7363 4.08539 15.2639 4.08539 15.5893 4.41083C15.9148 4.73626 15.9148 5.2639 15.5893 5.58934L11.1786 10.0001L15.5893 14.4108C15.9148 14.7363 15.9148 15.2639 15.5893 15.5893C15.2639 15.9148 14.7363 15.9148 14.4108 15.5893L10.0001 11.1786L5.58934 15.5893C5.2639 15.9148 4.73626 15.9148 4.41083 15.5893C4.08539 15.2639 4.08539 14.7363 4.41083 14.4108L8.82157 10.0001L4.41083 5.58934C4.08539 5.2639 4.08539 4.73626 4.41083 4.41083Z"
+					fill="#01050F" />
+			</svg>
+		</button>
+		<p class="popup__heading">Быстрый заказ</p>
+		<p class="popup__subheading">Перезвоним через 15 минут и решение специально для вас</p>
+		<form action="#" class="popup__form">
+			<div class="input-container">
+				<input type="text" placeholder="Имя и фамилия" class="popup__form-input" id="callback-popup-name">
+				<label for="callback-popup-name">Имя и фамилия</label>
+			</div>
+			<div class="input-container">
+				<input type="tel" placeholder="Номер телефона" class="popup__form-input" id="callback-popup-phone">
+				<label for="callback-popup-phone">Номер телефона</label>
+			</div>
+			<div class="input-container">
+				<input type="tel" placeholder="Сфера деятельности" class="popup__form-input" id="callback-popup-activity">
+				<label for="callback-popup-activity">Сфера деятельности</label>
+			</div>
+			<div class="input-container">
+				<textarea name="" id="callback-popup-msg" cols="30" rows="10" class="popup__form-textarea"
+					placeholder="Описание заказа"></textarea>
+				<label for="callback-popup-msg">Описание заказа</label>
+			</div>
+			<label class="request__right-form__label" aria-colcount="popup__form-label">
+				<input type="file" name="file" class="popup__form-label__input">
+				<span class="popup__form-label__btn">
+					<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd"
+							d="M14.9755 3.48487C14.1619 2.67128 12.8429 2.67128 12.0293 3.48487L4.51625 10.9979C3.13315 12.381 3.13315 14.6234 4.51625 16.0066C5.89936 17.3897 8.14182 17.3897 9.52493 16.0066L17.0379 8.49354C17.3634 8.16811 17.891 8.16811 18.2164 8.49354C18.5419 8.81898 18.5419 9.34662 18.2164 9.67205L10.7034 17.1851C8.66946 19.219 5.37172 19.219 3.33774 17.1851C1.30376 15.1511 1.30376 11.8533 3.33774 9.81937L10.8508 2.30636C12.3152 0.841891 14.6896 0.841891 16.1541 2.30636C17.6185 3.77082 17.6185 6.14519 16.1541 7.60966L8.93567 14.828C8.04072 15.723 6.58972 15.723 5.69476 14.828C4.79981 13.9331 4.79981 12.4821 5.69476 11.5871L12.0293 5.25264C12.3547 4.9272 12.8823 4.9272 13.2078 5.25264C13.5332 5.57807 13.5332 6.10571 13.2078 6.43115L6.87327 12.7656C6.6292 13.0097 6.6292 13.4055 6.87327 13.6495C7.11735 13.8936 7.51308 13.8936 7.75716 13.6495L14.9755 6.43115C15.7891 5.61755 15.7891 4.29846 14.9755 3.48487Z"
+							fill="#285BF3"></path>
+					</svg>
+					<span>Прикрепить файл</span>
+				</span>
+			</label>
+			<p class="popup__form-formats">pdf, doc, xlsx, jpg, png до 10 мб </p>
+			<p class="popup__form-policy">Отправляя заявку, вы подтверждаете свое согласие с <a href="#">пользовательским
+					соглашением</a> и на <a href="#">обработку персональных данных</a> </p>
+			<button class="blue-btn popup__form-btn" data-standart>Отправить заявку</button>
+		</form>
+	</div>
 </div> <div class="popup callback-popup2">
 	<div class="popup__body">
 		<button class="popup__close">
