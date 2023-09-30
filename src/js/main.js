@@ -1931,14 +1931,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	function openQaPopup() {
 		const qaPopup = document.querySelector('.qa-popup')
+
 		if (qaPopup) {
 
-			const btn = document.querySelector('.qa__left-btn')
-
-			btn.addEventListener('click', (e) => {
-				e.preventDefault()
-				openPopupElement(qaPopup)
+			const btn = document.querySelectorAll('.qa__left-btn')
+			btn.forEach(el => {
+				el.addEventListener('click', (e) => {
+					e.preventDefault()
+					openPopupElement(qaPopup)
+				})
 			})
+
 
 			const close = qaPopup.querySelector('.popup__close')
 
@@ -2380,5 +2383,28 @@ document.addEventListener('DOMContentLoaded', function () {
 			openPopupElement(popup)
 		})
 	}
+
+
+
+	function productNavAction() {
+		let btns = document.querySelectorAll('.bottom-menu__link')
+		if (btns) {
+			btns.forEach(btn => {
+				let btnId = btn.getAttribute('href').replace('#', '')
+				let block = document.querySelector(`[id="${btnId}"]`)
+				window.addEventListener('scroll', () => {
+					if (block.getBoundingClientRect().top - document.documentElement.clientHeight / 2 <= 0) {
+						btns.forEach(el => el.classList.remove('active'))
+						btn.classList.add('active')
+					}
+					else {
+						btn.classList.remove('active')
+					}
+				})
+			})
+		}
+	}
+
+	productNavAction()
 
 })
