@@ -1960,9 +1960,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			})
 		}
 	}
+
 	openQaPopup()
-
-
 
 
 

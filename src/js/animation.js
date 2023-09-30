@@ -1,23 +1,23 @@
 
-// document.addEventListener('DOMContentLoaded', () => {
-// 	let tl = gsap.timeline()
+document.addEventListener('DOMContentLoaded', () => {
+	let tl = gsap.timeline()
 
 
-// 	tl.fromTo(".text", { y: 100, opacity: 0, }, { delay: 1, y: 0, opacity: 1, duration: 1, })
+	tl.fromTo(".text", { y: 100, opacity: 0, }, { delay: 1, y: 0, opacity: 1, duration: 1, })
 
-// 	tl.to(".catalog-hero", {
+	tl.to(".catalog-hero", {
 
-// 		scrollTrigger: {
-// 			pin: ".catalog-hero",
-// 			scrub: true,
-// 			pinSpacing: false,
-// 		},
-// 		scale: 0.982,
-// 		opacity: 0,
-// 		start: top, top,
-// 	})
+		scrollTrigger: {
+			pin: ".catalog-hero",
+			scrub: true,
+			pinSpacing: false,
+		},
+		scale: 0.982,
+		opacity: 0,
+		start: top, top,
+	})
 
-// })
+})
 
 
 

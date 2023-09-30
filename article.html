@@ -1,6 +1,218 @@
 <!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="./src/css/swiper-bundle.min.css">
 <link rel="stylesheet" href="./src/fonts/fonts.css">
-<link rel="stylesheet" href="./src/css/main.css"><title>Статья</title></head><body><div class="popup cart-popup"><div class="popup__body"><button class="popup__close"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.41083 4.41083C4.73626 4.08539 5.2639 4.08539 5.58934 4.41083L10.0001 8.82157L14.4108 4.41083C14.7363 4.08539 15.2639 4.08539 15.5893 4.41083C15.9148 4.73626 15.9148 5.2639 15.5893 5.58934L11.1786 10.0001L15.5893 14.4108C15.9148 14.7363 15.9148 15.2639 15.5893 15.5893C15.2639 15.9148 14.7363 15.9148 14.4108 15.5893L10.0001 11.1786L5.58934 15.5893C5.2639 15.9148 4.73626 15.9148 4.41083 15.5893C4.08539 15.2639 4.08539 14.7363 4.41083 14.4108L8.82157 10.0001L4.41083 5.58934C4.08539 5.2639 4.08539 4.73626 4.41083 4.41083Z" fill="#01050F"></path></svg></button><div class="cart-popup__header"><h3 class="cart-popup__title">Товар добавлен в корзину</h3><a href="./cart.html" class="cart-popup__link">Перейти в корзину <svg><use xlink:href="./src/images/svgicons/icons.svg#chevron-ico"></use></svg></a></div><div class="cart-popup__item"><div class="cart-popup__item-img"><img src="./src/images/cart-item.jpg" alt="#"></div><div class="cart-popup__item-body-wrapper"><div class="cart-popup__item-body"><h4 class="cart-popup__item-name">Котельная труба горячедеформированная 28 мм 2.5 мм ст10 гост 33229-2015</h4><div class="cart-popup__item-options"><div class="cart-popup__item-units"><div><input type="number" placeholder="0.00"> <button><span>кг</span></button></div></div><div class="cart-popup__item-price-wraper"><div class="cart__list-header-item price"><p>Цена</p><svg><use xlink:href="./src/images/svgicons/icons.svg#info-ico"></use></svg></div><p class="cart__item-units-text">По запросу</p></div></div></div><button class="cart-popup__item-tocart btn-hover__transp">Купить в 1 клик</button></div></div><button class="cart-popup__item-btn btn-hover__blue">Продолжить покупки</button></div></div><header class="header">
+<link rel="stylesheet" href="./src/css/main.css"><title>Статья</title></head><body><div class="popup cart-popup"><div class="popup__body"><button class="popup__close"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.41083 4.41083C4.73626 4.08539 5.2639 4.08539 5.58934 4.41083L10.0001 8.82157L14.4108 4.41083C14.7363 4.08539 15.2639 4.08539 15.5893 4.41083C15.9148 4.73626 15.9148 5.2639 15.5893 5.58934L11.1786 10.0001L15.5893 14.4108C15.9148 14.7363 15.9148 15.2639 15.5893 15.5893C15.2639 15.9148 14.7363 15.9148 14.4108 15.5893L10.0001 11.1786L5.58934 15.5893C5.2639 15.9148 4.73626 15.9148 4.41083 15.5893C4.08539 15.2639 4.08539 14.7363 4.41083 14.4108L8.82157 10.0001L4.41083 5.58934C4.08539 5.2639 4.08539 4.73626 4.41083 4.41083Z" fill="#01050F"></path></svg></button><div class="cart-popup__header"><h3 class="cart-popup__title">Товар добавлен в корзину</h3><a href="./cart.html" class="cart-popup__link">Перейти в корзину <svg><use xlink:href="./src/images/svgicons/icons.svg#chevron-ico"></use></svg></a></div><div class="cart-popup__item"><div class="cart-popup__item-img"><img src="./src/images/cart-item.jpg" alt="#"></div><div class="cart-popup__item-body-wrapper"><div class="cart-popup__item-body"><h4 class="cart-popup__item-name">Котельная труба горячедеформированная 28 мм 2.5 мм ст10 гост 33229-2015</h4><div class="cart-popup__item-options"><div class="cart-popup__item-units"><div><input type="number" placeholder="0.00"> <button><span>кг</span></button></div></div><div class="cart-popup__item-price-wraper"><div class="cart__list-header-item price"><p>Цена</p><svg><use xlink:href="./src/images/svgicons/icons.svg#info-ico"></use></svg></div><p class="cart__item-units-text">По запросу</p></div></div></div><button class="cart-popup__item-tocart btn-hover__transp">Купить в 1 клик</button></div></div><button class="cart-popup__item-btn btn-hover__blue">Продолжить покупки</button></div></div><div class="search-block">
+	<div class="search-block__content">
+		<div class="container">
+			<div class="search-block__wrapper">
+				<form id="search" class="search-block__form">
+					<div class="search-block__input-wrapper">
+						<button>
+							<svg class="search-block__input-search-ico search">
+								<use xlink:href='./src/images/svgicons/icons.svg#search-ico'></use>
+							</svg>
+						</button>
+						<input type="search" class="search-block__input" placeholder="Искать на Ферус">
+						<button type="button" class="clear-btn">
+							<svg class="search-block__input-search-ico clear">
+								<use xlink:href='./src/images/svgicons/icons.svg#clear-ico'></use>
+							</svg>
+						</button>
+					</div>
+					<button class="search-block__form-submit blue-btn">Найти</button>
+				</form>
+				<div class="search-block__results search-result">
+					<div class="search-result__column often">
+						<h3 class="search-result__title">Часто ищут</h3>
+						<ul class="search-result__list">
+							<li class="search-result__list-item">
+								<a href="#" class="search-result__link">
+									Лист алюминиевый
+								</a>
+							</li>
+							<li class="search-result__list-item">
+								<a href="#" class="search-result__link">
+									Лист нержавеющий
+								</a>
+							</li>
+							<li class="search-result__list-item">
+								<a href="#" class="search-result__link">
+									Проволока стальная
+								</a>
+							</li>
+							<li class="search-result__list-item">
+								<a href="#" class="search-result__link">
+									Труба дюраль
+								</a>
+							</li>
+							<li class="search-result__list-item">
+								<a href="#" class="search-result__link">
+									Трубопроводная арматура
+								</a>
+							</li>
+							<li class="search-result__list-item">
+								<a href="#" class="search-result__link">
+									Полимеры
+								</a>
+							</li>
+							<li class="search-result__list-item">
+								<a href="#" class="search-result__link">
+									Сортовой прокат
+								</a>
+							</li>
+							<li class="search-result__list-item">
+								<a href="#" class="search-result__link">
+									Скидки
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="search-block__matches">
+						<div class="search-result__column">
+							<h3 class="search-result__title">Товары</h3>
+							<ul class="search-result__list">
+								<li class="search-result__list-item">
+									<a href="#" class="search-result__link">
+										Двутавр стальной
+										<ul class="search-result__link-info">
+											<li>120х64х4,8х7,3</li>
+											<li>С345Б</li>
+											<li>ГОСТ 8239-89</li>
+										</ul>
+									</a>
+								</li>
+								<li class="search-result__list-item">
+									<a href="#" class="search-result__link">
+										Двутавр стальной
+										<ul class="search-result__link-info">
+											<li>120х64х4,8х7,3</li>
+											<li>С345Б</li>
+											<li>ГОСТ 8239-89</li>
+										</ul>
+									</a>
+								</li>
+								<li class="search-result__list-item">
+									<a href="#" class="search-result__link">
+										Двутавр стальной
+										<ul class="search-result__link-info">
+											<li>120х64х4,8х7,3</li>
+											<li>С345Б</li>
+											<li>ГОСТ 8239-89</li>
+										</ul>
+									</a>
+								</li>
+								<li class="search-result__list-item">
+									<a href="#" class="search-result__link">
+										Двутавр стальной
+										<ul class="search-result__link-info">
+											<li>120х64х4,8х7,3</li>
+											<li>С345Б</li>
+											<li>ГОСТ 8239-89</li>
+										</ul>
+									</a>
+								</li>
+							</ul>
+							<a href="#" class="search-result__more">
+								Смотреть все
+								<svg>
+									<use xlink:href='./src/images/svgicons/icons.svg#chevron-ico'></use>
+								</svg>
+							</a>
+						</div>
+
+						<div class="search-result__column">
+							<h3 class="search-result__title">Категории</h3>
+							<ul class="search-result__list">
+								<li class="search-result__list-item">
+									<a href="#" class="search-result__link">
+										Арматура
+									</a>
+								</li>
+								<li class="search-result__list-item">
+									<a href="#" class="search-result__link">
+										Арматура А500
+									</a>
+								</li>
+								<li class="search-result__list-item">
+									<a href="#" class="search-result__link">
+										Арматура А600
+									</a>
+								</li>
+							</ul>
+							<a href="#" class="search-result__more">
+								Смотреть все
+								<svg>
+									<use xlink:href='./src/images/svgicons/icons.svg#chevron-ico'></use>
+								</svg>
+							</a>
+						</div>
+
+						<div class="search-result__column">
+							<h3 class="search-result__title">Производство</h3>
+							<ul class="search-result__list">
+								<li class="search-result__list-item">
+									<a href="#" class="search-result__link">
+										Арматура
+									</a>
+								</li>
+								<li class="search-result__list-item">
+									<a href="#" class="search-result__link">
+										Арматура А500
+									</a>
+								</li>
+								<li class="search-result__list-item">
+									<a href="#" class="search-result__link">
+										Арматура А600
+									</a>
+								</li>
+							</ul>
+							<a href="#" class="search-result__more">
+								Смотреть все
+								<svg>
+									<use xlink:href='./src/images/svgicons/icons.svg#chevron-ico'></use>
+								</svg>
+							</a>
+						</div>
+
+						<div class="search-result__column">
+							<h3 class="search-result__title">Услуги</h3>
+							<ul class="search-result__list">
+								<li class="search-result__list-item">
+									<a href="#" class="search-result__link">
+										Арматура
+									</a>
+								</li>
+								<li class="search-result__list-item">
+									<a href="#" class="search-result__link">
+										Арматура А500
+									</a>
+								</li>
+								<li class="search-result__list-item">
+									<a href="#" class="search-result__link">
+										Арматура А600
+									</a>
+								</li>
+							</ul>
+							<a href="#" class="search-result__more">
+								Смотреть все
+								<svg>
+									<use xlink:href='./src/images/svgicons/icons.svg#chevron-ico'></use>
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div class="load__block">
+						<div class="loader">
+							<svg>
+								<use xlink:href='./src/images/svgicons/icons.svg#loading-ico'></use>
+							</svg>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<header class="header">
 	<div class="header__top">
 		<div class="container">
 			<button class="header__top-city desktop">
