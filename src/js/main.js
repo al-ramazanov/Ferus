@@ -487,13 +487,15 @@ document.addEventListener('DOMContentLoaded', function () {
 				e.stopPropagation()
 				categoriesBtnMore.classList.toggle('open')
 
+
 				if (categoriesBtnMore.classList.contains('open')) {
 					categoriesList.classList.add('active')
 					categoriesBtnMore.querySelector('.arrow-ico').style.transform = `rotate(180deg)`
+
 				}
 				else {
 					categoriesList.classList.remove('active')
-					categoriesBtnMore.querySelector('.arrow-ico').style.transform = null
+					categoriesBtnMore.querySelector('.arrow-ico').style.transform = null;
 				}
 
 			})
@@ -2406,5 +2408,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	productNavAction()
+
 
 })

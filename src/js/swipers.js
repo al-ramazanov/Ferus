@@ -270,6 +270,17 @@ document.addEventListener('DOMContentLoaded', function () {
 		},
 
 	});
+	const categor = new Swiper('.cat-swiper', {
+		direction: "horizontal",
+		slidesPerView: 7,
+		spaceBetween: 8,
+
+		navigation: {
+			nextEl: '.contacts-swiper__next',
+			prevEl: '.contacts-swiper__prev',
+		},
+
+	});
 
 })
 
