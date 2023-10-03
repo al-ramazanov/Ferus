@@ -43,6 +43,10 @@ document.addEventListener('DOMContentLoaded', function () {
 			body.style.paddingRight = '0';
 			header.style.paddingRight = '0';
 		}
+		if (document.querySelector('.choose-city').classList.contains('active')) {
+			document.body.classList.add('dark', 'lock')
+			document.documentElement.classList.add('lock')
+		}
 	}
 
 	const headerContacts = header.querySelectorAll('.header-contacts');
@@ -449,7 +453,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	if (document.querySelector('.categories')) {
 
-		const categoriesBtns = document.querySelectorAll('.categories__btn:not(:last-child)');
+		const categoriesBtns = document.querySelectorAll('.categories__btn:not(.categories__btn--js)');
 
 		categoriesBtns.forEach(btn => {
 
@@ -734,9 +738,9 @@ document.addEventListener('DOMContentLoaded', function () {
 					const checkboxes = btn.nextElementSibling.querySelectorAll('.filter-label__input')
 					checkboxes.forEach(checkbox => {
 						if (checkbox.checked) {
-							checkbox.checked = falseж
-							btn.parentElement.classList.remove('active');
-							btn.nextElementSibling.classList.remove('active');
+							checkbox.checked = false
+							btn.parentElement.classList.remove('checked');
+							// btn.nextElementSibling.classList.remove('active');
 						}
 						return
 					})
@@ -796,11 +800,12 @@ document.addEventListener('DOMContentLoaded', function () {
 					parentBtn.querySelector('span').innerText = 'кг';
 				} else if (btn.innerText === 'тонна') {
 					parentBtn.querySelector('span').innerText = 'т';
-				} else {
+				} else if (btn.innerText === 'штука') {
 					parentBtn.querySelector('span').innerText = 'шт';
 				}
 			})
 		})
+		const unitsSublistBtn = document.querySelector('.products__list-item__units-sublist > li > button').click();
 	}
 
 	// при чекбоксах в фильтрах
@@ -936,6 +941,8 @@ document.addEventListener('DOMContentLoaded', function () {
 				e.preventDefault()
 				closePopupElement(document.querySelector('.empty-popup'))
 			})
+
+
 		}
 
 
@@ -2409,5 +2416,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	productNavAction()
 
+
+	const calculateBannerBtn = document.querySelector('.calculate-banner__btn')
+	if (calculateBannerBtn) {
+		calculateBannerBtn.addEventListener('click', () => {
+			openPopupElement(document.querySelector('.callback-popup'))
+		})
+	}
+
+	let links = document.querySelectorAll('[data-anchor]')
+
+	if (links) {
+
+		links.forEach(link => {
+			const linkId = link.getAttribute('href').replace('#', '');
+			console.log(linkId);
+			console.log(block);
+			link.addEventListener('click', (e) => {
+				e.preventDefault()
+				let block = document.querySelector(`[id="${linkId}"]`);
+
+
+				block.scrollIntoView({ block: 'center' })
+
+			})
+		})
+	}
+
+	// window.addEventListener('scroll', () => {
+	// 	console.log(window.pageYOffset);
+	// 	console.log(document.documentElement.scrollTop);
+	// })
 
 })
