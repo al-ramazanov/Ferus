@@ -2430,14 +2430,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		links.forEach(link => {
 			const linkId = link.getAttribute('href').replace('#', '');
-			console.log(linkId);
-			console.log(block);
 			link.addEventListener('click', (e) => {
 				e.preventDefault()
-				let block = document.querySelector(`[id="${linkId}"]`);
+				let scrollTarget = document.querySelector(`[id="${linkId}"]`);
+				let topOffset = document.querySelector('.header').offsetHeight;
+				console.log(topOffset);
+				let elementPos = scrollTarget.getBoundingClientRect().top;
+				let offsetPos = elementPos - (topOffset + 20);
 
-
-				block.scrollIntoView({ block: 'center' })
+				window.scrollBy({
+					top: offsetPos,
+					behavior: "smooth"
+				})
 
 			})
 		})
