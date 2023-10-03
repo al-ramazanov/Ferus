@@ -366,6 +366,10 @@ document.addEventListener('DOMContentLoaded', function () {
 				btn.classList.remove('active');
 			}
 			mobileCatalogBtn.nextElementSibling.classList.toggle('active');
+			document.documentElement.classList.add('lock')
+			if (!mobileCatalogBtn.nextElementSibling.classList.contains('active')) {
+				document.documentElement.classList.remove('lock')
+			}
 		})
 	})
 
@@ -553,8 +557,9 @@ document.addEventListener('DOMContentLoaded', function () {
 	if (document.querySelector('.main-reviews__list-item__right-text')) {
 		const reviewsTexts = document.querySelectorAll('.main-reviews__list-item__right-text');
 		const reviewsButtons = document.querySelectorAll('.main-reviews__list-item__right-btn');
-
 		reviewsButtons.forEach(btn => {
+			const reviewsButtonsText = btn.querySelector('.main-reviews__list-item__right-btn > span')
+
 			const text = btn.parentElement.querySelector('p');
 
 			btn.addEventListener('click', function (e) {
@@ -562,9 +567,9 @@ document.addEventListener('DOMContentLoaded', function () {
 				text.classList.toggle('active');
 
 				if (text.classList.contains('active')) {
-					button.innerText = 'Свернуть';
+					reviewsButtonsText.textContent = 'Свернуть';
 				} else {
-					button.innerText = 'Показать полностью';
+					reviewsButtonsText.textContent = 'Показать полностью';
 				}
 			})
 		})
@@ -699,7 +704,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					el.classList.remove('active');
 				})
 				item.classList.add('active');
-				document.querySelector('.section-tags__list-item:last-child > button').innerText = item.innerText;
+				document.querySelector('.section-tags__list-item:last-child > button span').innerText = item.innerText;
 				document.querySelector('.section-tags__list-item:last-child > button').classList.add('active');
 				document.querySelector('.section-tags__list-item:last-child > button').classList.remove('open');
 				document.querySelector('.section-tags__sublist').classList.remove('active');
@@ -865,9 +870,13 @@ document.addEventListener('DOMContentLoaded', function () {
 			let content = listingInfoBtn.previousElementSibling;
 			if (content.style.maxHeight) {
 				content.style.maxHeight = null
+				content.style.marginBottom = null;
+
 			} else {
 				console.log(content.scrollHeight);
 				content.style.maxHeight = content.scrollHeight / 10 + "rem";
+				content.style.marginBottom = `15px`;
+
 			}
 		})
 	}
@@ -898,7 +907,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	if (document.querySelector('.choose-city__left-call') && document.querySelector('.callback-popup2')) {
 
-		const callbackBtn = document.querySelector('.header-contacts__btn')
+		const callbackBtn = document.querySelectorAll('.header-contacts__btn')
 		const callback2Popup = document.querySelector('.callback-popup2');
 		const submitCallback = callback2Popup.querySelector('.popup__form-btn')
 		const callback2PopupOpen = document.querySelector('.choose-city__left-call');
@@ -913,9 +922,13 @@ document.addEventListener('DOMContentLoaded', function () {
 			closePopupElement(callback2Popup)
 		})
 
-		callbackBtn.addEventListener('click', (e) => {
-			openPopupElement(callback2Popup);
+
+		callbackBtn.forEach(btn => {
+			btn.addEventListener('click', (e) => {
+				openPopupElement(callback2Popup);
+			})
 		})
+
 
 		submitCallback.addEventListener('click', (e) => {
 			e.preventDefault()
@@ -1168,7 +1181,8 @@ document.addEventListener('DOMContentLoaded', function () {
 				if (sublist.style.maxHeight) {
 					sublist.style.maxHeight = null
 				} else {
-					sublist.style.maxHeight = sublist.scrollHeight / 5 + "rem";
+					// sublist.style.maxHeight = sublist.scrollHeight / 5 + "rem";
+					sublist.style.maxHeight = `${sublist.scrollHeight}px`;
 				}
 			})
 		})
@@ -1495,12 +1509,21 @@ document.addEventListener('DOMContentLoaded', function () {
 		let headerBottom = document.querySelector('.header__bottom')
 		if (bottomMenu) {
 			if (document.documentElement.clientWidth <= 768) {
+
 				bottomMenu.style.top = `${headerBottom.scrollHeight + 20}px`
 				bottomMenu.style.bottom = "initial"
 				window.addEventListener('resize', () => {
 					bottomMenu.style.top = `${headerBottom.scrollHeight + 20}px`
 					bottomMenu.style.bottom = "initial"
 
+				})
+
+				window.addEventListener('scroll', () => {
+					if (document.documentElement.scrollTop > document.querySelector('.product-hero__subtitle').offsetTop) {
+						bottomMenu.classList.add('show')
+					} else {
+						bottomMenu.classList.remove('show')
+					}
 				})
 			}
 
