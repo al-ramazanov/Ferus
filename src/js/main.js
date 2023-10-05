@@ -861,23 +861,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 	if (document.querySelector('.listing-info__left-showmore')) {
-		const listingInfoBtn = document.querySelector('.listing-info__left-showmore');
-		listingInfoBtn.addEventListener('click', function () {
-			listingInfoBtn.classList.toggle('active');
-			if (listingInfoBtn.classList.contains('active')) {
-				listingInfoBtn.querySelector('span').innerText = 'Скрыть';
-			} else listingInfoBtn.querySelector('span').innerText = 'Показать полностью';
-			let content = listingInfoBtn.previousElementSibling;
-			if (content.style.maxHeight) {
-				content.style.maxHeight = null
-				content.style.marginBottom = null;
 
-			} else {
-				console.log(content.scrollHeight);
-				content.style.maxHeight = content.scrollHeight / 10 + "rem";
-				content.style.marginBottom = `15px`;
+		const listingInfoBtn = document.querySelector('.listing-info__left-showmore');
+
+		listingInfoBtn.addEventListener('click', function () {
+
+			listingInfoBtn.classList.toggle('active');
+
+			let content = listingInfoBtn.previousElementSibling;
+
+			if (listingInfoBtn.classList.contains('active')) {
+				listingInfoBtn.querySelector('span').innerText = 'Скрыть'
+				content.style.maxHeight = `${content.scrollHeight}px`
 
 			}
+			else {
+				listingInfoBtn.querySelector('span').innerText = 'Показать полностью'
+
+				content.style.maxHeight = null
+
+			}
+
+
 		})
 	}
 
@@ -1918,10 +1923,19 @@ document.addEventListener('DOMContentLoaded', function () {
 		const bar = document.querySelector('.vacancies-bar')
 		if (bar) {
 
-			const mobMenu = document.querySelector('.header__menu-mobile.mobile')
+			const mobMenu = document.querySelector('.header__bottom')
 
 			if (document.documentElement.clientWidth <= 768) {
-				bar.style.bottom = `${mobMenu.scrollHeight + 24}px`
+				bar.style.top = `${mobMenu.scrollHeight + 20}px`
+				console.log(mobMenu.scrollHeight);
+
+				window.addEventListener('scroll', () => {
+					if (document.documentElement.scrollTop >= (document.querySelector('.vacancy-info__item').offsetTop + document.documentElement.clientHeight)) {
+						bar.classList.add('show')
+					} else {
+						bar.classList.remove('show')
+					}
+				})
 			}
 		}
 	}
@@ -2001,7 +2015,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 	function openSearch() {
-		const searchBtn = document.querySelector('.header__bottom-search ')
+		const searchBtn = document.querySelector('.header__bottom-search')
 		if (searchBtn) {
 			const svgClose = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 					<path fill-rule="evenodd" clip-rule="evenodd" d="M4.4107 4.41058C4.73614 4.08514 5.26378 4.08514 5.58921 4.41058L9.99996 8.82133L14.4107 4.41058C14.7361 4.08514 15.2638 4.08514 15.5892 4.41058C15.9147 4.73602 15.9147 5.26366 15.5892 5.58909L11.1785 9.99984L15.5892 14.4106C15.9147 14.736 15.9147 15.2637 15.5892 15.5891C15.2638 15.9145 14.7361 15.9145 14.4107 15.5891L9.99996 11.1783L5.58921 15.5891C5.26378 15.9145 4.73614 15.9145 4.4107 15.5891C4.08527 15.2637 4.08527 14.736 4.4107 14.4106L8.82145 9.99984L4.4107 5.58909C4.08527 5.26366 4.08527 4.73602 4.4107 4.41058Z" fill="white"/>
@@ -2015,6 +2029,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				let content = searchBlock.querySelector('.search-block__content')
 				searchBtn.addEventListener('click', (e) => {
 					e.stopPropagation()
+					e.preventDefault()
 
 					searchBlock.classList.toggle('active')
 
@@ -2417,29 +2432,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 
-
-	function productNavAction() {
-		let btns = document.querySelectorAll('.bottom-menu__link')
-		if (btns) {
-			btns.forEach(btn => {
-				let btnId = btn.getAttribute('href').replace('#', '')
-				let block = document.querySelector(`[id="${btnId}"]`)
-				window.addEventListener('scroll', () => {
-					if (block.getBoundingClientRect().top - document.documentElement.clientHeight / 2 <= 0) {
-						btns.forEach(el => el.classList.remove('active'))
-						btn.classList.add('active')
-					}
-					else {
-						btn.classList.remove('active')
-					}
-				})
-			})
-		}
-	}
-
-	productNavAction()
-
-
 	const calculateBannerBtn = document.querySelector('.calculate-banner__btn')
 	if (calculateBannerBtn) {
 		calculateBannerBtn.addEventListener('click', () => {
@@ -2459,7 +2451,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				let topOffset = document.querySelector('.header').offsetHeight;
 				console.log(topOffset);
 				let elementPos = scrollTarget.getBoundingClientRect().top;
-				let offsetPos = elementPos - (topOffset + 20);
+				let offsetPos = elementPos - (topOffset + 100);
 
 				window.scrollBy({
 					top: offsetPos,
@@ -2470,9 +2462,28 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 	}
 
-	// window.addEventListener('scroll', () => {
-	// 	console.log(window.pageYOffset);
-	// 	console.log(document.documentElement.scrollTop);
-	// })
+	function showPriceInfo() {
+		const infoTitles = document.querySelectorAll('.price-info--js')
+		if (infoTitles) {
+			infoTitles.forEach(el => {
+				let title = el.querySelector('.title')
+				el.addEventListener('click', (e) => {
+					e.stopPropagation()
+					document.querySelectorAll('.title').forEach(el => {
+						el.classList.remove('active')
+					})
+					title.classList.add('active')
+				})
+
+
+				document.addEventListener('click', (e) => {
+					title.classList.remove('active')
+				})
+			})
+
+		}
+	}
+
+	showPriceInfo()
 
 })
