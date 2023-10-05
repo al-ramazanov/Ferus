@@ -2486,4 +2486,86 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	showPriceInfo()
 
+	const zoomImages = document.querySelectorAll('[data-zoom]')
+
+	if (zoomImages) {
+
+		let btnCloseHtml = `<button class="popup-image__close">
+		<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M4.41083 4.41083C4.73626 4.08539 5.2639 4.08539 5.58934 4.41083L10.0001 8.82157L14.4108 4.41083C14.7363 4.08539 15.2639 4.08539 15.5893 4.41083C15.9148 4.73626 15.9148 5.2639 15.5893 5.58934L11.1786 10.0001L15.5893 14.4108C15.9148 14.7363 15.9148 15.2639 15.5893 15.5893C15.2639 15.9148 14.7363 15.9148 14.4108 15.5893L10.0001 11.1786L5.58934 15.5893C5.2639 15.9148 4.73626 15.9148 4.41083 15.5893C4.08539 15.2639 4.08539 14.7363 4.41083 14.4108L8.82157 10.0001L4.41083 5.58934C4.08539 5.2639 4.08539 4.73626 4.41083 4.41083Z" fill="#fff"></path>
+		</svg>
+		</button>`
+
+		let imgPopup = document.createElement('div')
+
+		document.documentElement.append(imgPopup)
+
+		imgPopup.classList.add('popup-image')
+
+		imgPopup.insertAdjacentHTML('beforeend', btnCloseHtml)
+
+		let popupBody = document.createElement('div')
+
+		popupBody.classList.add('popup-image__body')
+
+		imgPopup.append(popupBody)
+
+		let img = document.createElement('img')
+
+		popupBody.append(img)
+
+		zoomImages.forEach(el => {
+
+			let imgPath = el.querySelector('img').src
+
+			let zoomBtn = el.querySelector('.zoom-btn--js')
+
+
+			zoomBtn.addEventListener('click', (e) => {
+
+				e.stopPropagation()
+				e.preventDefault()
+
+				img.setAttribute('src', `${imgPath}`)
+
+				imgPopup.classList.add('active')
+
+				if (imgPopup.classList.contains('active')) {
+					document.body.classList.add('lock', 'dark')
+					document.documentElement.classList.add('lock')
+				}
+				else {
+					document.body.classList.remove('lock', 'dark')
+					document.documentElement.classList.remove('lock')
+				}
+
+				document.addEventListener('click', (e) => {
+					if (e.target == imgPopup) {
+						imgPopup.classList.remove('active')
+						document.body.classList.remove('lock', 'dark')
+						document.documentElement.classList.remove('lock')
+
+					}
+				})
+
+				document.addEventListener('keydown', (e) => {
+					if (e.key === "Escape") {
+						imgPopup.classList.remove('active')
+						document.body.classList.remove('lock', 'dark')
+						document.documentElement.classList.remove('lock')
+					}
+				})
+
+			})
+
+		})
+
+		document.querySelector('.popup-image__close').addEventListener('click', () => {
+			imgPopup.classList.remove('active')
+			document.body.classList.remove('lock', 'dark')
+			document.documentElement.classList.remove('lock')
+		})
+
+	}
+
 })
