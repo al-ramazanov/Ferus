@@ -287,4 +287,17 @@
 		</path>
 	</symbol>
 
+
+	<symbol id="point-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
+		<circle cx="8" cy="8" r="7.5" fill="#285BF3" stroke="white" />
+		<circle cx="8" cy="8" r="3" fill="white" />
+	</symbol>
+
+	<symbol id="point-big-ico" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+		<circle cx="14" cy="14" r="13" fill="#285BF3" stroke="white" stroke-width="2" />
+		<path
+			d="M14 6.5L16.1601 11.0269L21.1329 11.6824L17.4951 15.1356L18.4084 20.0676L14 17.675L9.59161 20.0676L10.5049 15.1356L6.86708 11.6824L11.8399 11.0269L14 6.5Z"
+			fill="white" />
+	</symbol>
+
 </svg>

@@ -910,6 +910,17 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 
+	const banner5Popup = document.querySelector('.banner5__left-btn')
+
+	if (banner5Popup) {
+		const callbackPopup = document.querySelector('.callback-popup');
+
+		banner5Popup.addEventListener('click', function (e) {
+			e.preventDefault()
+			openPopupElement(callbackPopup);
+		})
+	}
+
 	// открытие/закрытие модалки обратного звонка
 
 
@@ -1050,6 +1061,72 @@ document.addEventListener('DOMContentLoaded', function () {
 			})
 
 		})
+
+		let itemsList = filterBlock.querySelectorAll('.section-mobile__filters-item')
+
+		itemsList.forEach(list => {
+
+			let resetBtn = list.querySelector('.section-mobile__filters-item__reset')
+
+			let listItems = list.querySelectorAll('.section-mobile__filters-item li')
+
+			let count = 0;
+
+			let countBlock = list.querySelector('.counter')
+
+			if (countBlock) {
+				countBlock.style.display = 'none'
+			}
+
+			if (resetBtn) {
+				resetBtn.style.display = 'none'
+
+			}
+
+			listItems.forEach(el => {
+
+				el.addEventListener('click', () => {
+
+					el.classList.toggle('active')
+
+					/* if (countBlock) { */
+
+					if (el.classList.contains('active')) {
+						count++
+						countBlock.innerText = count
+					} else {
+						count--
+						countBlock.innerText = count
+					}
+
+					if (count > 0) {
+						countBlock.style.display = 'flex';
+						resetBtn.style.display = 'flex';
+
+					} else {
+						countBlock.style.display = 'none'
+						resetBtn.style.display = 'none';
+
+					}
+					/* } */
+				})
+
+				if (resetBtn) {
+					resetBtn.addEventListener('click', () => {
+						el.classList.remove('active')
+						count = 0;
+						countBlock.innerText = count;
+						countBlock.style.display = 'none'
+						setTimeout(() => {
+							resetBtn.style.display = 'none';
+						}, 1000);
+					})
+				}
+
+			})
+		})
+
+
 	}
 
 	// ЛИСТИНГ
@@ -2287,7 +2364,13 @@ document.addEventListener('DOMContentLoaded', function () {
 			btn.addEventListener('click', () => {
 				openPopupElement(fastCallback)
 			})
+		}
 
+		const btn2 = document.querySelector('.header__menu-mobile__item--js')
+		if (btn2) {
+			btn2.addEventListener('click', () => {
+				openPopupElement(fastCallback)
+			})
 		}
 	}
 
