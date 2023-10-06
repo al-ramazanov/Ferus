@@ -367,8 +367,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			}
 			mobileCatalogBtn.nextElementSibling.classList.toggle('active');
 			document.documentElement.classList.add('lock')
+			document.body.classList.add('lock')
 			if (!mobileCatalogBtn.nextElementSibling.classList.contains('active')) {
 				document.documentElement.classList.remove('lock')
+				document.body.classList.remove('lock')
+
 			}
 		})
 	})
@@ -387,7 +390,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	const catalogSubMenuBackBtns = document.querySelectorAll('.header__catalog-mobile__submenu-back');
 	catalogSubMenuBackBtns.forEach(btn => {
 		btn.addEventListener('click', function () {
-			// btn.parentElement.classList.remove('active');
+			btn.parentElement.classList.remove('active');
 		})
 	})
 
@@ -989,7 +992,9 @@ document.addEventListener('DOMContentLoaded', function () {
 		const sortingBtn = document.querySelector('.products-listing__top-sorting');
 		const sortingBlock = document.querySelector('.section-menu');
 		if (sortingBlock) {
-			sortingBtn.addEventListener('click', function () {
+			sortingBtn.addEventListener('click', function (e) {
+				e.preventDefault()
+				e.stopPropagation()
 				document.body.classList.add('lock', 'dark');
 				document.documentElement.classList.add('lock');
 				sortingBlock.classList.add('active');
@@ -1001,15 +1006,19 @@ document.addEventListener('DOMContentLoaded', function () {
 				document.documentElement.classList.remove('lock');
 				sortingBlock.classList.remove('active');
 			})
+
+			document.addEventListener('click', (e) => {
+				if (e.target !== sortingBlock && !e.target.closest('.section-menu') && sortingBlock.classList.contains('active')) {
+					document.body.classList.remove('lock', 'dark');
+					document.documentElement.classList.remove('lock');
+					sortingBlock.classList.remove('active');
+				}
+
+			})
 		}
 
 	}
 
-	// Окрытие обратного звонка из Хедера
-
-
-
-	// Окрытие обратного звонка из Хедера
 
 
 	if (document.querySelector('.products-listing__top-filters')) {
@@ -2518,12 +2527,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			let imgPath = el.querySelector('img').src
 
-			let zoomBtn = el.querySelector('.zoom-btn--js')
+			let zoomBtn = el.querySelector('img')
 
 
 			zoomBtn.addEventListener('click', (e) => {
 
 				e.stopPropagation()
+
 				e.preventDefault()
 
 				img.setAttribute('src', `${imgPath}`)
