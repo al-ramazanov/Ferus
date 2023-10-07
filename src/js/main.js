@@ -778,7 +778,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 	}
 
-	if (document.querySelector('.products__list-item__units')) {
+	/* if (document.querySelector('.products__list-item__units')) {
 		const unitsOpenBtns = document.querySelectorAll('.products__list-item__units > div > button');
 		unitsOpenBtns.forEach(btn => {
 			btn.addEventListener('click', function () {
@@ -813,7 +813,49 @@ document.addEventListener('DOMContentLoaded', function () {
 				}
 			})
 		})
+
 		const unitsSublistBtn = document.querySelector('.products__list-item__units-sublist > li > button').click();
+	} */
+
+
+	const unitsSet = document.querySelectorAll('.products__list-item__units')
+
+	if (unitsSet) {
+		for (const unit of unitsSet) {
+			const unitBtn = unit.querySelector('div:first-child > button')
+			const unitSublist = unit.querySelector('.products__list-item__units-sublist')
+			const unitBtnText = unitBtn.querySelector('span')
+			unitBtn.addEventListener('click', (e) => {
+				e.preventDefault()
+				e.stopPropagation()
+				unitBtn.classList.toggle('active')
+				if (unitBtn.classList.contains('active')) {
+					unitSublist.classList.add('active')
+				} else {
+					unitSublist.classList.remove('active')
+				}
+			})
+
+			const sublistItems = unitSublist.querySelectorAll('button')
+
+			for (const item of sublistItems) {
+				const itemDataset = item.querySelector('span').dataset.unit
+
+				item.addEventListener('click', () => {
+					sublistItems.forEach(el => el.classList.remove('active'))
+
+					item.classList.add('active')
+
+					unitBtnText.innerHTML = itemDataset
+
+				})
+			}
+			document.addEventListener('click', (e) => {
+				unitBtn.classList.remove('active')
+				unitSublist.classList.remove('active')
+			})
+		}
+
 	}
 
 	// при чекбоксах в фильтрах
@@ -2579,7 +2621,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	showPriceInfo()
 
 	const zoomImages = document.querySelectorAll('[data-zoom]')
-
 	if (zoomImages) {
 
 		let btnCloseHtml = `<button class="popup-image__close">
@@ -2608,12 +2649,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		zoomImages.forEach(el => {
 
-			let imgPath = el.querySelector('img').src
+			let imgPath = el.src
 
-			let zoomBtn = el.querySelector('img')
-
-
-			zoomBtn.addEventListener('click', (e) => {
+			el.addEventListener('click', (e) => {
 
 				e.stopPropagation()
 
@@ -2630,6 +2668,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				else {
 					document.body.classList.remove('lock', 'dark')
 					document.documentElement.classList.remove('lock')
+
 				}
 
 				document.addEventListener('click', (e) => {
@@ -2661,4 +2700,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	}
 
+
+
+
+	function sublistPos() {
+
+	}
+
+	const dropdownBtn = document.querySelectorAll('[data-dropdown]')
+	if (dropdownBtn) {
+		for (const btn of dropdownBtn) {
+			btn.addEventListener('click', () => {
+				let posTop = btn.offsetTop
+				let posLeft = btn.getBoundingClientRect().left
+				const sublist = btn.querySelector('[data-sublist]')
+
+				btn.style.position = 'initial'
+				sublist.style.right = 'initial'
+				sublist.style.top = `${posTop + btn.scrollHeight}px`
+				sublist.style.left = `${posLeft}px`
+
+			})
+		}
+	}
+
+
+	function mapPoint() {
+		const points = document.querySelectorAll('.map-points__point')
+		if (points) {
+			for (const point of points) {
+				point.addEventListener('click', () => {
+					points.forEach(el => el.classList.remove('active'))
+					point.classList.add('active')
+				})
+			}
+		}
+	}
+
+	mapPoint()
 })
