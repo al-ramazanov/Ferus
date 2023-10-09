@@ -648,6 +648,14 @@ document.addEventListener('DOMContentLoaded', function () {
 				breadcrumbsBtn.addEventListener('click', function () {
 					item.classList.toggle('active');
 					clickOutside(item, item);
+
+
+					if (window.innerWidth <= 768) {
+						console.log(item.offsetTop);
+						breadcrumbsDropdown.style.top = `${item.offsetTop + item.scrollHeight + 20}px`
+						breadcrumbsDropdown.style.left = `${item.offsetLeft}px`
+
+					}
 				})
 			}
 		})
@@ -1089,6 +1097,14 @@ document.addEventListener('DOMContentLoaded', function () {
 			filterBlock.classList.remove('active');
 		})
 
+		const applyBtn = document.querySelector('.filters-apply-btn')
+
+		if (applyBtn) {
+			applyBtn.addEventListener('click', () => {
+				filterBlockClose.click()
+			})
+		}
+
 		const filterMoreBtns = filterBlock.querySelectorAll('.section-mobile__filters-item div:first-child > button:last-of-type');
 		filterMoreBtns.forEach(btn => {
 			btn.addEventListener('click', function () {
@@ -1109,18 +1125,20 @@ document.addEventListener('DOMContentLoaded', function () {
 		itemsList.forEach(list => {
 
 			let resetBtn = list.querySelector('.section-mobile__filters-item__reset')
-
-			let listItems = list.querySelectorAll('.section-mobile__filters-item li')
+			const allResetBtn = document.querySelector('.filters-reset-btn')
+			let listItems = list.querySelectorAll('.section-mobile__filters-item li:not(.section-mobile__filters-categories__list-item)')
 
 			let count = 0;
 
 			let countBlock = list.querySelector('.counter')
 
 			if (countBlock) {
+
 				countBlock.style.display = 'none'
 			}
 
 			if (resetBtn) {
+
 				resetBtn.style.display = 'none'
 
 			}
@@ -1131,14 +1149,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
 					el.classList.toggle('active')
 
-					/* if (countBlock) { */
 
 					if (el.classList.contains('active')) {
 						count++
+
 						countBlock.innerText = count
+
 					} else {
 						count--
 						countBlock.innerText = count
+					}
+
+
+					if (resetBtn) {
+						resetBtn.addEventListener('click', () => {
+							el.classList.remove('active')
+							count = 0;
+							countBlock.innerText = count;
+							countBlock.style.display = 'none'
+
+							resetBtn.style.display = 'none';
+
+						})
+					}
+
+					if (allResetBtn) {
+						allResetBtn.addEventListener('click', () => {
+							el.classList.remove('active')
+							count = 0;
+							countBlock.innerText = count;
+							countBlock.style.display = 'none'
+						})
 					}
 
 					if (count > 0) {
@@ -1150,20 +1191,11 @@ document.addEventListener('DOMContentLoaded', function () {
 						resetBtn.style.display = 'none';
 
 					}
-					/* } */
+
+
+
 				})
 
-				if (resetBtn) {
-					resetBtn.addEventListener('click', () => {
-						el.classList.remove('active')
-						count = 0;
-						countBlock.innerText = count;
-						countBlock.style.display = 'none'
-						setTimeout(() => {
-							resetBtn.style.display = 'none';
-						}, 1000);
-					})
-				}
 
 			})
 		})
