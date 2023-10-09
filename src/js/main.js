@@ -649,11 +649,15 @@ document.addEventListener('DOMContentLoaded', function () {
 					item.classList.toggle('active');
 					clickOutside(item, item);
 
-
 					if (window.innerWidth <= 768) {
-						console.log(item.offsetTop);
 						breadcrumbsDropdown.style.top = `${item.offsetTop + item.scrollHeight + 20}px`
-						breadcrumbsDropdown.style.left = `${item.offsetLeft}px`
+						breadcrumbsDropdown.style.left = `${item.getBoundingClientRect().left}px`
+
+						if (item.getBoundingClientRect().left + breadcrumbsDropdown.offsetWidth > window.innerWidth) {
+							console.log(1);
+							breadcrumbsDropdown.style.left = `${(window.innerWidth - breadcrumbsDropdown.offsetWidth) / 2}px`
+
+						}
 
 					}
 				})
@@ -1425,14 +1429,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	if (reqTypes) {
 
-
-
 		let svgIco = `<svg>
 		<use xlink:href='./src/images/svgicons/icons.svg#check-ico'></use>
 		</svg>`;
 
 
-		reqTypes.forEach((el) => {
+		/* reqTypes.forEach((el) => {
 
 			const dropdownItem = document.querySelectorAll('.dropdown-body li')
 			dropdownItem.forEach(item => {
@@ -1466,7 +1468,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				el.parentElement.classList.remove('active')
 			})
 
-		})
+		}) */
 
 	}
 
@@ -2736,25 +2738,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 	function sublistPos() {
+		const dropdownBtn = document.querySelectorAll('[data-dropdown]')
+		if (dropdownBtn) {
+			for (const btn of dropdownBtn) {
+				btn.addEventListener('click', () => {
+					let posTop = btn.offsetTop
+					let posLeft = btn.getBoundingClientRect().left
+					const sublist = btn.querySelector('[data-sublist]')
 
-	}
+					btn.style.position = 'initial'
+					sublist.style.right = 'initial'
+					sublist.style.top = `${posTop + btn.scrollHeight}px`
+					sublist.style.left = `${posLeft}px`;
 
-	const dropdownBtn = document.querySelectorAll('[data-dropdown]')
-	if (dropdownBtn) {
-		for (const btn of dropdownBtn) {
-			btn.addEventListener('click', () => {
-				let posTop = btn.offsetTop
-				let posLeft = btn.getBoundingClientRect().left
-				const sublist = btn.querySelector('[data-sublist]')
-
-				btn.style.position = 'initial'
-				sublist.style.right = 'initial'
-				sublist.style.top = `${posTop + btn.scrollHeight}px`
-				sublist.style.left = `${posLeft}px`
-
-			})
+				})
+			}
 		}
 	}
+
+	sublistPos()
+
+
 
 
 	function mapPoint() {
