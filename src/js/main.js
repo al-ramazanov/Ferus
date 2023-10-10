@@ -1961,7 +1961,94 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	}
 
-	newsDateFilter()
+	// newsDateFilter()
+
+
+	const btns = document.querySelectorAll('.news-materials__action-btn')
+
+	btns.forEach(btn => {
+		btn.addEventListener('click', (e) => {
+			e.preventDefault()
+			btns.forEach(el => el.classList.remove('active'))
+			e.currentTarget.classList.add('active')
+			console.log(e.currentTarget);
+		})
+	})
+
+	function openYearFilter() {
+
+		const yearBtn = document.querySelector('.news-materials__action-btn.year')
+		if (yearBtn) {
+			const yearBtnText = yearBtn.querySelector('.btn-text')
+			const sublist = yearBtn.querySelector('.news-materials__action-sublist')
+
+			/* yearBtn.addEventListener('click', (e) => {
+				e.stopPropagation()
+				// yearBtn.classList.toggle('active')
+
+			}) */
+
+			const sublistItems = sublist.querySelectorAll('a')
+
+			sublistItems.forEach(item => {
+				item.addEventListener('click', (e) => {
+					e.preventDefault()
+					sublistItems.forEach(el => el.classList.remove('check'))
+					item.classList.add('check')
+					yearBtnText.innerText = (item.innerText == 'Все года' ? item.innerText : item.innerText + ' ' + 'год')
+				})
+			})
+
+			document.addEventListener('click', (e) => {
+				if (yearBtn.classList.contains('active')) {
+					yearBtn.classList.remove('active')
+				}
+			})
+		}
+
+	}
+
+	// openYearFilter()
+
+
+	function openMonthFilter() {
+
+		const monthBtn = document.querySelector('.news-materials__action-btn.month')
+		if (monthBtn) {
+			const monthBtnText = monthBtn.querySelector('.btn-text')
+			const sublist = monthBtn.querySelector('.news-materials__action-sublist')
+
+			monthBtn.addEventListener('click', (e) => {
+				e.stopPropagation()
+				monthBtn.classList.toggle('active')
+
+			})
+
+			const sublistItems = sublist.querySelectorAll('a')
+
+			sublistItems.forEach(item => {
+				item.addEventListener('click', (e) => {
+					e.preventDefault()
+
+					sublistItems.forEach(el => el.classList.remove('check'))
+
+					item.classList.add('check')
+
+					monthBtnText.innerText = (item.innerText == 'Все месяца' ? item.innerText : 'За' + ' ' + item.innerText.toLowerCase())
+				})
+			})
+
+			document.addEventListener('click', (e) => {
+				if (monthBtn.classList.contains('active')) {
+					monthBtn.classList.remove('active')
+				}
+			})
+		}
+
+	}
+
+	// openMonthFilter()
+
 
 	function addToCartListing() {
 
