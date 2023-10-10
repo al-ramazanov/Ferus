@@ -2748,8 +2748,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 					btn.style.position = 'initial'
 					sublist.style.right = 'initial'
-					sublist.style.top = `${posTop + btn.scrollHeight}px`
-					sublist.style.left = `${posLeft}px`;
+					sublist.style.top = `${posTop + (btn.scrollHeight + 10)}px`
+					sublist.style.left = `${posLeft}px`
+
+					if (+sublist.style.left.replace('px', '') + sublist.offsetWidth >= window.innerWidth) {
+						let difference = +sublist.style.left.replace('px', '') + sublist.offsetWidth;
+						sublist.style.left = `${posLeft - (difference - window.innerWidth)}px`
+					}
 
 				})
 			}
