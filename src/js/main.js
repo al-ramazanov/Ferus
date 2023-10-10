@@ -1867,188 +1867,123 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 	}
 
+	// фильр даты новостей
 
-	function newsDateFilter() {
+	let btns = document.querySelectorAll('.news-materials__action-btn');
 
-		const newsFilterYear = document.querySelector('.news-materials__action-btn.year')
+	if (btns) {
 
-		const newsFilterMonth = document.querySelector('.news-materials__action-btn.month')
+		let yearBtn = document.querySelector('.news-materials__action-btn.year');
 
-		if (newsFilterYear) {
-
-			let yearSublistItems = newsFilterYear.querySelectorAll('.news-materials__action-sublist li a')
-
-			newsFilterYear.addEventListener('click', (e) => {
-
-				e.preventDefault()
-
-				e.stopPropagation()
-
-				document.querySelectorAll('.news-materials__action-btn').forEach(el => {
-					el.classList.remove('active')
-				})
-
-				e.currentTarget.classList.add('active')
-
-
-			})
-
-			for (const item of yearSublistItems) {
-
-				item.addEventListener('click', () => {
-
-					yearSublistItems.forEach(el => el.classList.remove('check'))
-
-					let btnText = newsFilterYear.querySelector('.text')
-
-
-					item.classList.add('check')
-
-
-					btnText.textContent = (item.textContent == "Все года" ? item.textContent : item.textContent + ' ' + 'год')
-
-
-				})
-
-			}
-		}
-
-		if (newsFilterMonth) {
-
-			let monthSublistItems = newsFilterMonth.querySelectorAll('.news-materials__action-sublist li a');
-
-			newsFilterMonth.addEventListener('click', (e) => {
-				e.preventDefault()
-
-				e.stopPropagation()
-
-				document.querySelectorAll('.news-materials__action-btn').forEach(el => {
-					el.classList.remove('active')
-				})
-
-				e.currentTarget.classList.add('active')
-
-
-			})
-
-			for (const item of monthSublistItems) {
-
-				item.addEventListener('click', () => {
-
-					monthSublistItems.forEach(el => el.classList.remove('check'))
-
-
-					let btnText = newsFilterMonth.querySelector('.text')
-
-
-					item.classList.add('check')
-
-
-					btnText.textContent = (item.textContent == "Все месяца" ? item.textContent : 'за' + ' ' + item.textContent)
-
-				})
-			}
-		}
-
-
-		document.addEventListener('click', (e) => {
-
-			document.querySelectorAll('.news-materials__action-btn').forEach(el => {
-				el.classList.remove('active')
-			})
-
-		})
-
-	}
-
-	// newsDateFilter()
-
-
-	const btns = document.querySelectorAll('.news-materials__action-btn')
-
-	btns.forEach(btn => {
-		btn.addEventListener('click', (e) => {
-			e.preventDefault()
-			btns.forEach(el => el.classList.remove('active'))
-			e.currentTarget.classList.add('active')
-			console.log(e.currentTarget);
-		})
-	})
-
-	function openYearFilter() {
-
-		const yearBtn = document.querySelector('.news-materials__action-btn.year')
 		if (yearBtn) {
-			const yearBtnText = yearBtn.querySelector('.btn-text')
-			const sublist = yearBtn.querySelector('.news-materials__action-sublist')
 
-			/* yearBtn.addEventListener('click', (e) => {
+			yearBtn.addEventListener('click', (e) => {
+
+				e.preventDefault()
+
 				e.stopPropagation()
-				// yearBtn.classList.toggle('active')
 
-			}) */
+				if (monthBtn.classList.contains('active')) {
 
-			const sublistItems = sublist.querySelectorAll('a')
-
-			sublistItems.forEach(item => {
-				item.addEventListener('click', (e) => {
-					e.preventDefault()
-					sublistItems.forEach(el => el.classList.remove('check'))
-					item.classList.add('check')
-					yearBtnText.innerText = (item.innerText == 'Все года' ? item.innerText : item.innerText + ' ' + 'год')
-				})
-			})
-
-			document.addEventListener('click', (e) => {
-				if (yearBtn.classList.contains('active')) {
-					yearBtn.classList.remove('active')
+					btns.forEach(el => el.classList.remove('active'))
 				}
+
+				yearBtn.classList.toggle('active')
+
+				const sublist = yearBtn.querySelector('.news-materials__action-sublist');
+
+				const sublistItem = sublist.querySelectorAll('a')
+
+				const yearBtnText = yearBtn.querySelector('.btn-text')
+
+				sublistItem.forEach(item => {
+
+					item.addEventListener('click', (e) => {
+
+						sublistItem.forEach(el => el.classList.remove('check'))
+
+						e.preventDefault()
+
+						item.classList.add('check')
+
+						yearBtnText.textContent = (item.textContent == "Все года" ? item.textContent : item.textContent + ' ' + 'год')
+
+					})
+				})
+
+				document.addEventListener('click', (e) => {
+					if (e.target !== yearBtn) {
+						yearBtn.classList.remove('active')
+					}
+				})
+
+				document.addEventListener('keydown', (e) => {
+					if (e.key === "Escape") {
+						yearBtn.classList.remove('active')
+					}
+				})
+
 			})
 		}
 
-	}
+		let monthBtn = document.querySelector('.news-materials__action-btn.month')
 
-	// openYearFilter()
-
-
-	function openMonthFilter() {
-
-		const monthBtn = document.querySelector('.news-materials__action-btn.month')
 		if (monthBtn) {
-			const monthBtnText = monthBtn.querySelector('.btn-text')
-			const sublist = monthBtn.querySelector('.news-materials__action-sublist')
 
 			monthBtn.addEventListener('click', (e) => {
+
+				e.preventDefault()
+
 				e.stopPropagation()
+
+
+				if (yearBtn.classList.contains('active')) {
+
+					btns.forEach(el => el.classList.remove('active'))
+				}
 				monthBtn.classList.toggle('active')
 
-			})
+				const sublist = monthBtn.querySelector('.news-materials__action-sublist');
 
-			const sublistItems = sublist.querySelectorAll('a')
+				const sublistItem = sublist.querySelectorAll('a')
 
-			sublistItems.forEach(item => {
-				item.addEventListener('click', (e) => {
-					e.preventDefault()
+				const monthBtnText = monthBtn.querySelector('.btn-text')
 
-					sublistItems.forEach(el => el.classList.remove('check'))
+				sublistItem.forEach(item => {
 
-					item.classList.add('check')
+					item.addEventListener('click', (e) => {
 
-					monthBtnText.innerText = (item.innerText == 'Все месяца' ? item.innerText : 'За' + ' ' + item.innerText.toLowerCase())
+						sublistItem.forEach(el => el.classList.remove('check'))
+
+						e.preventDefault()
+
+						item.classList.add('check')
+
+						monthBtnText.textContent = (item.textContent == "Все месяца" ? item.textContent : 'за' + ' ' + item.textContent)
+
+					})
 				})
-			})
 
-			document.addEventListener('click', (e) => {
-				if (monthBtn.classList.contains('active')) {
-					monthBtn.classList.remove('active')
-				}
+				document.addEventListener('click', (e) => {
+					if (e.target !== monthBtn) {
+						monthBtn.classList.remove('active')
+					}
+				})
+
+				document.addEventListener('keydown', (e) => {
+					if (e.key === "Escape") {
+						monthBtn.classList.remove('active')
+					}
+				})
+
 			})
 		}
 
 	}
 
-	// openMonthFilter()
 
+
+	// фильр даты новостей
 
 	function addToCartListing() {
 
@@ -2082,7 +2017,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	}
 	addToCartListing()
-
 
 	function showTips() {
 
@@ -2138,7 +2072,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 						titleArrow.style.transform = `translate(67%,96%)`
-
 
 					}
 				})
@@ -2267,11 +2200,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		const searchBtn = document.querySelector('.header__bottom-search')
 		if (searchBtn) {
 			const svgClose = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-					<path fill-rule="evenodd" clip-rule="evenodd" d="M4.4107 4.41058C4.73614 4.08514 5.26378 4.08514 5.58921 4.41058L9.99996 8.82133L14.4107 4.41058C14.7361 4.08514 15.2638 4.08514 15.5892 4.41058C15.9147 4.73602 15.9147 5.26366 15.5892 5.58909L11.1785 9.99984L15.5892 14.4106C15.9147 14.736 15.9147 15.2637 15.5892 15.5891C15.2638 15.9145 14.7361 15.9145 14.4107 15.5891L9.99996 11.1783L5.58921 15.5891C5.26378 15.9145 4.73614 15.9145 4.4107 15.5891C4.08527 15.2637 4.08527 14.736 4.4107 14.4106L8.82145 9.99984L4.4107 5.58909C4.08527 5.26366 4.08527 4.73602 4.4107 4.41058Z" fill="white"/>
-				</svg>`;
+		<path fill-rule="evenodd" clip-rule="evenodd" d="M4.4107 4.41058C4.73614 4.08514 5.26378 4.08514 5.58921 4.41058L9.99996 8.82133L14.4107 4.41058C14.7361 4.08514 15.2638 4.08514 15.5892 4.41058C15.9147 4.73602 15.9147 5.26366 15.5892 5.58909L11.1785 9.99984L15.5892 14.4106C15.9147 14.736 15.9147 15.2637 15.5892 15.5891C15.2638 15.9145 14.7361 15.9145 14.4107 15.5891L9.99996 11.1783L5.58921 15.5891C5.26378 15.9145 4.73614 15.9145 4.4107 15.5891C4.08527 15.2637 4.08527 14.736 4.4107 14.4106L8.82145 9.99984L4.4107 5.58909C4.08527 5.26366 4.08527 4.73602 4.4107 4.41058Z" fill="white"/>
+	</svg>`;
 			const svgSearch = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-					<path fill-rule="evenodd" clip-rule="evenodd" d="M7.66659 2.66683C4.90516 2.66683 2.66659 4.90541 2.66659 7.66683C2.66659 10.4283 4.90516 12.6668 7.66659 12.6668C9.00865 12.6668 10.2272 12.1381 11.1253 11.2775C11.1461 11.2488 11.1694 11.2213 11.1953 11.1954C11.2211 11.1695 11.2486 11.1463 11.2773 11.1255C12.1379 10.2274 12.6666 9.00887 12.6666 7.66683C12.6666 4.90541 10.428 2.66683 7.66659 2.66683ZM12.5916 11.649C13.4724 10.5611 13.9999 9.17558 13.9999 7.66683C13.9999 4.16903 11.1644 1.3335 7.66659 1.3335C4.16878 1.3335 1.33325 4.16903 1.33325 7.66683C1.33325 11.1646 4.16878 14.0002 7.66659 14.0002C9.17536 14.0002 10.5609 13.4726 11.6488 12.5918L13.5285 14.4716C13.7889 14.7319 14.211 14.7319 14.4713 14.4716C14.7317 14.2112 14.7317 13.7891 14.4713 13.5288L12.5916 11.649Z" fill="white"/>
-				</svg>`
+		<path fill-rule="evenodd" clip-rule="evenodd" d="M7.66659 2.66683C4.90516 2.66683 2.66659 4.90541 2.66659 7.66683C2.66659 10.4283 4.90516 12.6668 7.66659 12.6668C9.00865 12.6668 10.2272 12.1381 11.1253 11.2775C11.1461 11.2488 11.1694 11.2213 11.1953 11.1954C11.2211 11.1695 11.2486 11.1463 11.2773 11.1255C12.1379 10.2274 12.6666 9.00887 12.6666 7.66683C12.6666 4.90541 10.428 2.66683 7.66659 2.66683ZM12.5916 11.649C13.4724 10.5611 13.9999 9.17558 13.9999 7.66683C13.9999 4.16903 11.1644 1.3335 7.66659 1.3335C4.16878 1.3335 1.33325 4.16903 1.33325 7.66683C1.33325 11.1646 4.16878 14.0002 7.66659 14.0002C9.17536 14.0002 10.5609 13.4726 11.6488 12.5918L13.5285 14.4716C13.7889 14.7319 14.211 14.7319 14.4713 14.4716C14.7317 14.2112 14.7317 13.7891 14.4713 13.5288L12.5916 11.649Z" fill="white"/>
+	</svg>`
 			const headerTop = document.querySelector('.header')
 			const searchBlock = document.querySelector('.search-block')
 			if (searchBlock) {
@@ -2745,10 +2678,10 @@ document.addEventListener('DOMContentLoaded', function () {
 	if (zoomImages) {
 
 		let btnCloseHtml = `<button class="popup-image__close">
-		<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<path fill-rule="evenodd" clip-rule="evenodd" d="M4.41083 4.41083C4.73626 4.08539 5.2639 4.08539 5.58934 4.41083L10.0001 8.82157L14.4108 4.41083C14.7363 4.08539 15.2639 4.08539 15.5893 4.41083C15.9148 4.73626 15.9148 5.2639 15.5893 5.58934L11.1786 10.0001L15.5893 14.4108C15.9148 14.7363 15.9148 15.2639 15.5893 15.5893C15.2639 15.9148 14.7363 15.9148 14.4108 15.5893L10.0001 11.1786L5.58934 15.5893C5.2639 15.9148 4.73626 15.9148 4.41083 15.5893C4.08539 15.2639 4.08539 14.7363 4.41083 14.4108L8.82157 10.0001L4.41083 5.58934C4.08539 5.2639 4.08539 4.73626 4.41083 4.41083Z" fill="#fff"></path>
-		</svg>
-		</button>`
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M4.41083 4.41083C4.73626 4.08539 5.2639 4.08539 5.58934 4.41083L10.0001 8.82157L14.4108 4.41083C14.7363 4.08539 15.2639 4.08539 15.5893 4.41083C15.9148 4.73626 15.9148 5.2639 15.5893 5.58934L11.1786 10.0001L15.5893 14.4108C15.9148 14.7363 15.9148 15.2639 15.5893 15.5893C15.2639 15.9148 14.7363 15.9148 14.4108 15.5893L10.0001 11.1786L5.58934 15.5893C5.2639 15.9148 4.73626 15.9148 4.41083 15.5893C4.08539 15.2639 4.08539 14.7363 4.41083 14.4108L8.82157 10.0001L4.41083 5.58934C4.08539 5.2639 4.08539 4.73626 4.41083 4.41083Z" fill="#fff"></path>
+</svg>
+</button>`
 
 		let imgPopup = document.createElement('div')
 
