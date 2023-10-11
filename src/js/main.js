@@ -1129,7 +1129,9 @@ document.addEventListener('DOMContentLoaded', function () {
 		itemsList.forEach(list => {
 
 			let resetBtn = list.querySelector('.section-mobile__filters-item__reset')
+
 			const allResetBtn = document.querySelector('.filters-reset-btn')
+
 			let listItems = list.querySelectorAll('.section-mobile__filters-item li:not(.section-mobile__filters-categories__list-item)')
 
 			let count = 0;
@@ -1155,21 +1157,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 					if (el.classList.contains('active')) {
+
 						count++
 
 						countBlock.innerText = count
 
 					} else {
+
 						count--
+
 						countBlock.innerText = count
 					}
 
 
 					if (resetBtn) {
+
 						resetBtn.addEventListener('click', () => {
+
 							el.classList.remove('active')
+
 							count = 0;
+
 							countBlock.innerText = count;
+
 							countBlock.style.display = 'none'
 
 							resetBtn.style.display = 'none';
@@ -1204,6 +1214,14 @@ document.addEventListener('DOMContentLoaded', function () {
 			})
 		})
 
+		const filterCategory = document.querySelectorAll('.section-mobile__filters-categories__list-item')
+		if (filterCategory) {
+			filterCategory.forEach(category => {
+				category.addEventListener('click', (e) => {
+					e.currentTarget.classList.add('active')
+				})
+			})
+		}
 
 	}
 
