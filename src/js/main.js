@@ -706,7 +706,19 @@ document.addEventListener('DOMContentLoaded', function () {
 				})
 				document.querySelector('.section-tags__list-item:last-child > button').classList.remove('active');
 				item.classList.add('active');
+				const listHeader = document.querySelector('.standarts-list__title')
+				if (listHeader) {
+					listHeader.innerText = item.innerText
+					const moreCategories = document.querySelector('.standarts-list__title-wrapper > a')
 
+					if (moreCategories && listHeader.innerText !== 'Все категории') {
+						moreCategories.classList.add('active')
+					}
+					else {
+						moreCategories.classList.remove('active')
+
+					}
+				}
 			})
 		})
 
@@ -719,6 +731,11 @@ document.addEventListener('DOMContentLoaded', function () {
 					el.classList.remove('active');
 				})
 				item.classList.add('active');
+				const listHeader = document.querySelector('.standarts-list__title')
+				if (listHeader) {
+					listHeader.innerText = item.innerText
+					console.log(1);
+				}
 				document.querySelector('.section-tags__list-item:last-child > button span').innerText = item.innerText;
 				document.querySelector('.section-tags__list-item:last-child > button').classList.add('active');
 				document.querySelector('.section-tags__list-item:last-child > button').classList.remove('open');
@@ -1193,6 +1210,7 @@ document.addEventListener('DOMContentLoaded', function () {
 							count = 0;
 							countBlock.innerText = count;
 							countBlock.style.display = 'none'
+							resetBtn.style.display = 'none';
 						})
 					}
 
@@ -1214,14 +1232,14 @@ document.addEventListener('DOMContentLoaded', function () {
 			})
 		})
 
-		const filterCategory = document.querySelectorAll('.section-mobile__filters-categories__list-item')
+		/* const filterCategory = document.querySelectorAll('.section-mobile__filters-categories__list-item')
 		if (filterCategory) {
 			filterCategory.forEach(category => {
 				category.addEventListener('click', (e) => {
 					e.currentTarget.classList.add('active')
 				})
 			})
-		}
+		} */
 
 	}
 
@@ -1818,10 +1836,10 @@ document.addEventListener('DOMContentLoaded', function () {
 							tabsBody.forEach(item => item.classList.remove('active'))
 
 							tabButtons.forEach(item => {
-								item.classList.remove('active')
+								item.classList.remove('active', 'blue-btn')
 							})
 
-							e.target.classList.add('active')
+							e.target.classList.add('active', 'blue-btn')
 
 							targetBlock.classList.add('active')
 
@@ -2388,6 +2406,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					}
 				}
 			})
+
 			if (popup.classList.contains('active')) {
 				const btnClose = popup.querySelector('.popup__close')
 				if (btnClose) {
@@ -2817,4 +2836,51 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	mapPoint()
+
+
+	const reviewBtns = document.querySelectorAll('.opinions__card-more')
+	const reviewPopup = document.querySelector('.review-popup')
+	if (reviewBtns && reviewPopup) {
+		reviewBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				// reviewPopup.classList.add('active')
+				openPopupElement(reviewPopup)
+			})
+		})
+	}
+
+
+	const galleryBtns = document.querySelectorAll('.zoom-btn--js');
+	const galleryPopup = document.querySelector('.sertif-gallery-popup')
+	if (galleryBtns && galleryPopup) {
+		galleryBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				openPopupElement(galleryPopup)
+			})
+		})
+	}
+
+	function openSpecofferFilter() {
+		const dropdowns = document.querySelectorAll('.specoffer-filter__dropdown')
+		if (dropdowns) {
+			for (const dropdown of dropdowns) {
+				const dropdownBtn = dropdown.querySelector('.specoffer-filter__btn')
+				const dropdownBody = dropdown.querySelector('.specoffer-filter__body')
+
+				dropdownBtn.addEventListener('click', (e) => {
+					e.preventDefault()
+					dropdown.classList.toggle('active')
+
+					document.addEventListener('click', (e) => {
+						if (e.target !== dropdownBtn) {
+							dropdown.classList.remove('active')
+						}
+					})
+				})
+			}
+		}
+	}
+
+	openSpecofferFilter()
+
 })

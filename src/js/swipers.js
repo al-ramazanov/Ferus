@@ -282,7 +282,53 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	});
 
+	const manufactureSwiper = new Swiper('.manufacture-item-swiper', {
+
+		navigation: {
+			nextEl: '.articles__swiper-container .next',
+			prevEl: '.articles__swiper-container .prev',
+		},
+		breakpoints: {
+			320: {
+				slidesPerView: 'auto',
+				spaceBetween: rem(1.6),
+			},
+			769: {
+				slidesPerView: 4,
+				spaceBetween: rem(1.6),
+			}
+		}
+	})
+
+})
+var swiperGalery = new Swiper(".galerySwiper", {
+	loop: true,
+	spaceBetween: 1,
+	freeMode: true,
+	slidesPerView: 3,
+	watchSlidesProgress: true,
+	on: {
+		init: function as(swiperGalery) {
+
+		},
+	},
+
+});
+
+swiperGalery.on('slideChange', function () {
+	console.log(swiperGalery);
 })
 
+var swiper2Galery = new Swiper(".galerySwiper2", {
+	loop: true,
+	spaceBetween: 10,
+	navigation: {
+		nextEl: ".swiper-button-next",
+		prevEl: ".swiper-button-prev",
+	},
+	thumbs: {
+		swiper: swiperGalery,
+	},
+});
 
 
