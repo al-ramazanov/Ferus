@@ -2838,6 +2838,19 @@ document.addEventListener('DOMContentLoaded', function () {
 	mapPoint()
 
 
+	const priceListPopupBtn = document.querySelector('.pricelist-popup-btn')
+	console.log(priceListPopupBtn);
+	if (priceListPopupBtn) {
+
+		const pricelistPopup = document.querySelector('.qa-popup')
+		if (pricelistPopup) {
+			priceListPopupBtn.addEventListener('click', () => {
+				openPopupElement(pricelistPopup)
+			})
+		}
+	}
+
+
 	const reviewBtns = document.querySelectorAll('.opinions__card-more')
 	const reviewPopup = document.querySelector('.review-popup')
 	if (reviewBtns && reviewPopup) {
