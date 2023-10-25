@@ -3047,14 +3047,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	openMobMenuSublist()
 
 
-	/* function openMobMenu() {
-		const btn = document.querySelector('.mobile-menu__btn--js')
-		const mobMenu = document.querySelector('.mobile-menu')
-		btn.addEventListener('click', () => {
-			mobMenu.classList.toggle('active')
-		})
-	}
-	openMobMenu() */
+
 
 	const mobMenuWrap = document.querySelector('.mobile-menu__list-wrapper')
 	const mobCatalogWraps = document.querySelectorAll('.header__catalog-mobile__menu')
@@ -3073,7 +3066,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 	}
 
-
+	// фиксация блока для Safari
 
 	if (mobCatalogWraps) {
 
@@ -3094,6 +3087,47 @@ ${window.innerHeight - document.querySelector('.header__catalog-mobile__top').of
 			})
 		}
 	}
+	// фиксация блока для Safari
 
+
+	// Скрол к блоку для страницы Product
+
+	function scrollToElement() {
+
+		const anchors = document.querySelectorAll('.bottom-menu__link')
+
+		if (anchors) {
+			for (const anchor of anchors) {
+				const anchorLink = anchor.getAttribute('href').replaceAll('#', '');
+				const block = document.querySelector(`[id=${anchorLink}]`)
+
+				anchor.addEventListener('click', (e) => {
+					e.preventDefault()
+					anchors.forEach(el => el.classList.remove('active'))
+					const blockTop = block.getBoundingClientRect().top - document.querySelector('.header__bottom').offsetHeight;
+					anchor.classList.add('active')
+
+
+					window.scrollBy({
+						top: blockTop - 30,
+						behavior: 'smooth',
+					});
+				})
+
+				window.addEventListener('scroll', (e) => {
+					const blockTop = block.getBoundingClientRect().top - document.querySelector('.header__bottom').offsetHeight - 30;
+					if (window.pageXOffset >= blockTop) {
+						anchors.forEach(el => el.classList.remove('active'))
+						anchor.classList.add('active')
+					}
+
+				})
+
+			}
+		}
+	}
+	scrollToElement()
+
+	// Скрол к блоку для страницы Product
 
 })
