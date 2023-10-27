@@ -1787,87 +1787,30 @@ document.addEventListener('DOMContentLoaded', function () {
 	cartSubmit()
 
 
-	function fixedBottomMenu() {
-		let bottomMenu = document.querySelector('.bottom-menu')
-		let headerBottom = document.querySelector('.header__bottom')
-		if (bottomMenu) {
-			if (document.documentElement.clientWidth <= 768) {
-
-				bottomMenu.style.top = `${headerBottom.scrollHeight + 20}px`
-				bottomMenu.style.bottom = "initial"
-				window.addEventListener('resize', () => {
-					bottomMenu.style.top = `${headerBottom.scrollHeight + 20}px`
-					bottomMenu.style.bottom = "initial"
-
-				})
-
-				window.addEventListener('scroll', () => {
-					if (document.documentElement.scrollTop > document.querySelector('.product-hero__subtitle').offsetTop) {
-						bottomMenu.classList.add('show')
-					} else {
-						bottomMenu.classList.remove('show')
-					}
-				})
-			}
-
-		}
-	}
-
-	fixedBottomMenu()
-
-
 	function asideMenu() {
 
-		const asided = document.querySelector('.asided-js')
+		const asideSpace = document.querySelector('.aside-space')
+		if (asideSpace) {
+			const container = asideSpace.querySelector('.container')
 
-		if (asided) {
+			const asideMenu = document.querySelector('.aside-absolute')
 
-			if (document.documentElement.clientWidth >= 768) {
+			asideMenu.style.left = `${window.getComputedStyle(container).marginLeft
+				} `
+			window.addEventListener('resize', () => {
+				asideMenu.style.left = `${window.getComputedStyle(container).marginLeft}`
+			})
 
-				const asideBlock = asided.querySelector('aside')
-
-				const spaceLeftBlocks = asided.querySelectorAll('.aside-space')
-
-				const firstElement = spaceLeftBlocks[0];
-
-				firstElement.style.marginTop = `-${asideBlock.offsetHeight}px`;
-
-				asideBlock.style.transform = `translateY(${window.getComputedStyle(firstElement).paddingTop})`;
-
-				window.addEventListener('scroll', () => {
-
-					if (document.documentElement.scrollTop - document.querySelector('.section-hero').offsetHeight >= asideBlock.offsetHeight) {
-						asideBlock.style.transform = null;
-					}
-					else {
-						asideBlock.style.transform = `translateY(${window.getComputedStyle(firstElement).paddingTop})`;
-					}
-
-				})
-
-
-				for (const item of spaceLeftBlocks) {
-
-					const container = item.querySelector('.container');
-
-
-					container.style.paddingLeft = `${asideBlock.offsetWidth}px`;
-
-
-					let containerMarginLeft = window.getComputedStyle(container).marginLeft;
-
-					asideBlock.style.left = `calc(${containerMarginLeft}`
-				}
-			}
 		}
 
 	}
 
 	asideMenu()
 
-	// window.addEventListener('resize', asideMenu)
+
 
 	// Открыть попап резвезитов
+
 	const requisitesPopup = document.querySelector('.requisites-popup');
 
 	if (requisitesPopup) {
@@ -1933,9 +1876,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 		}
-
-
-
 
 	}
 
@@ -2152,7 +2092,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 					title.classList.add('active')
 
-					title.style.top = `-${title.scrollHeight + 10}px`
+					title.style.top = `- ${title.scrollHeight + 10} px`
 
 					setTimeout(() => {
 
@@ -2187,7 +2127,7 @@ document.addEventListener('DOMContentLoaded', function () {
 						titleArrow.style.left = 0;
 
 
-						titleArrow.style.transform = `translate(67%,96%)`
+						titleArrow.style.transform = `translate(67 %, 96 %)`
 
 					}
 				})
@@ -2208,7 +2148,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			mobileMenu.style.flexWrap = `wrap`;
 
-			cartNavbar.style.width = `100%`
+			cartNavbar.style.width = `100 % `
 
 
 		}
@@ -2224,7 +2164,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			const mobMenu = document.querySelector('.header__bottom')
 
 			if (document.documentElement.clientWidth <= 768) {
-				bar.style.top = `${mobMenu.scrollHeight + 20}px`
+				bar.style.top = `${mobMenu.scrollHeight + 20} px`
 				console.log(mobMenu.scrollHeight);
 
 				window.addEventListener('scroll', () => {
@@ -2315,12 +2255,12 @@ document.addEventListener('DOMContentLoaded', function () {
 	function openSearch() {
 		const searchBtn = document.querySelector('.header__bottom-search')
 		if (searchBtn) {
-			const svgClose = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-		<path fill-rule="evenodd" clip-rule="evenodd" d="M4.4107 4.41058C4.73614 4.08514 5.26378 4.08514 5.58921 4.41058L9.99996 8.82133L14.4107 4.41058C14.7361 4.08514 15.2638 4.08514 15.5892 4.41058C15.9147 4.73602 15.9147 5.26366 15.5892 5.58909L11.1785 9.99984L15.5892 14.4106C15.9147 14.736 15.9147 15.2637 15.5892 15.5891C15.2638 15.9145 14.7361 15.9145 14.4107 15.5891L9.99996 11.1783L5.58921 15.5891C5.26378 15.9145 4.73614 15.9145 4.4107 15.5891C4.08527 15.2637 4.08527 14.736 4.4107 14.4106L8.82145 9.99984L4.4107 5.58909C4.08527 5.26366 4.08527 4.73602 4.4107 4.41058Z" fill="white"/>
-	</svg>`;
-			const svgSearch = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-		<path fill-rule="evenodd" clip-rule="evenodd" d="M7.66659 2.66683C4.90516 2.66683 2.66659 4.90541 2.66659 7.66683C2.66659 10.4283 4.90516 12.6668 7.66659 12.6668C9.00865 12.6668 10.2272 12.1381 11.1253 11.2775C11.1461 11.2488 11.1694 11.2213 11.1953 11.1954C11.2211 11.1695 11.2486 11.1463 11.2773 11.1255C12.1379 10.2274 12.6666 9.00887 12.6666 7.66683C12.6666 4.90541 10.428 2.66683 7.66659 2.66683ZM12.5916 11.649C13.4724 10.5611 13.9999 9.17558 13.9999 7.66683C13.9999 4.16903 11.1644 1.3335 7.66659 1.3335C4.16878 1.3335 1.33325 4.16903 1.33325 7.66683C1.33325 11.1646 4.16878 14.0002 7.66659 14.0002C9.17536 14.0002 10.5609 13.4726 11.6488 12.5918L13.5285 14.4716C13.7889 14.7319 14.211 14.7319 14.4713 14.4716C14.7317 14.2112 14.7317 13.7891 14.4713 13.5288L12.5916 11.649Z" fill="white"/>
-	</svg>`
+			const svgClose = `< svg xmlns = "http://www.w3.org/2000/svg" width = "20" height = "20" viewBox = "0 0 20 20" fill = "none" >
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M4.4107 4.41058C4.73614 4.08514 5.26378 4.08514 5.58921 4.41058L9.99996 8.82133L14.4107 4.41058C14.7361 4.08514 15.2638 4.08514 15.5892 4.41058C15.9147 4.73602 15.9147 5.26366 15.5892 5.58909L11.1785 9.99984L15.5892 14.4106C15.9147 14.736 15.9147 15.2637 15.5892 15.5891C15.2638 15.9145 14.7361 15.9145 14.4107 15.5891L9.99996 11.1783L5.58921 15.5891C5.26378 15.9145 4.73614 15.9145 4.4107 15.5891C4.08527 15.2637 4.08527 14.736 4.4107 14.4106L8.82145 9.99984L4.4107 5.58909C4.08527 5.26366 4.08527 4.73602 4.4107 4.41058Z" fill="white" />
+	</svg > `;
+			const svgSearch = `< svg xmlns = "http://www.w3.org/2000/svg" width = "16" height = "16" viewBox = "0 0 16 16" fill = "none" >
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M7.66659 2.66683C4.90516 2.66683 2.66659 4.90541 2.66659 7.66683C2.66659 10.4283 4.90516 12.6668 7.66659 12.6668C9.00865 12.6668 10.2272 12.1381 11.1253 11.2775C11.1461 11.2488 11.1694 11.2213 11.1953 11.1954C11.2211 11.1695 11.2486 11.1463 11.2773 11.1255C12.1379 10.2274 12.6666 9.00887 12.6666 7.66683C12.6666 4.90541 10.428 2.66683 7.66659 2.66683ZM12.5916 11.649C13.4724 10.5611 13.9999 9.17558 13.9999 7.66683C13.9999 4.16903 11.1644 1.3335 7.66659 1.3335C4.16878 1.3335 1.33325 4.16903 1.33325 7.66683C1.33325 11.1646 4.16878 14.0002 7.66659 14.0002C9.17536 14.0002 10.5609 13.4726 11.6488 12.5918L13.5285 14.4716C13.7889 14.7319 14.211 14.7319 14.4713 14.4716C14.7317 14.2112 14.7317 13.7891 14.4713 13.5288L12.5916 11.649Z" fill="white" />
+	</svg > `
 			const headerTop = document.querySelector('.header')
 			const searchBlock = document.querySelector('.search-block')
 			if (searchBlock) {
@@ -2335,7 +2275,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 					if (searchBlock.classList.contains('active')) {
 						searchBtn.innerHTML = svgClose;
-						content.style.paddingTop = `${headerTop.offsetHeight + headerTop.offsetTop + 25}px`
+						content.style.paddingTop = `${headerTop.offsetHeight + headerTop.offsetTop + 25} px`
 						document.documentElement.classList.add('lock')
 					} else {
 						searchBtn.innerHTML = svgSearch;
@@ -2345,7 +2285,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					if (document.documentElement.clientWidth <= 768) {
 
 						let mobHead = document.querySelector('.header__bottom')
-						content.style.paddingTop = `${mobHead.offsetHeight + mobHead.offsetTop + 25}px`
+						content.style.paddingTop = `${mobHead.offsetHeight + mobHead.offsetTop + 25} px`
 					}
 
 				})
@@ -2443,7 +2383,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		if (addToCart) {
 
-			let btnInner = `<span>В корзине</span> <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="check"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.8047 3.52851C14.0651 3.78886 14.0651 4.21097 13.8047 4.47132L6.4714 11.8047C6.21106 12.065 5.78894 12.065 5.5286 11.8047L2.19526 8.47132C1.93491 8.21097 1.93491 7.78886 2.19526 7.52851C2.45561 7.26816 2.87772 7.26816 3.13807 7.52851L6 10.3904L12.8619 3.52851C13.1223 3.26816 13.5444 3.26816 13.8047 3.52851Z" fill="#285BF3"></path></svg>`;
+			let btnInner = `< span > В корзине</span > <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="check"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.8047 3.52851C14.0651 3.78886 14.0651 4.21097 13.8047 4.47132L6.4714 11.8047C6.21106 12.065 5.78894 12.065 5.5286 11.8047L2.19526 8.47132C1.93491 8.21097 1.93491 7.78886 2.19526 7.52851C2.45561 7.26816 2.87772 7.26816 3.13807 7.52851L6 10.3904L12.8619 3.52851C13.1223 3.26816 13.5444 3.26816 13.8047 3.52851Z" fill="#285BF3"></path></svg>`;
 			let cartIco = document.querySelector('.header-cart-counter')
 			for (const btn of addToCart) {
 				btn.addEventListener('click', () => {
