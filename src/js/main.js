@@ -2237,7 +2237,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					closePopupElement(qaPopup)
 				}
 			})
-			const submit = document.querySelector('.popup__form-btn')
+			const submit = qaPopup.querySelector('.popup__form-btn')
 
 			submit.addEventListener('click', (e) => {
 				e.preventDefault()
@@ -2250,6 +2250,16 @@ document.addEventListener('DOMContentLoaded', function () {
 	openQaPopup()
 
 
+	const addToCartProduct = document.querySelectorAll('.specoffer__card-btn')
+	if (addToCartProduct) {
+		for (const btn of addToCartProduct) {
+			btn.addEventListener('click', (e) => {
+				e.preventDefault()
+				openPopupElement(document.querySelector('.cart-popup'))
+			})
+		}
+	}
+
 
 	function openSearch() {
 		const searchBtn = document.querySelector('.header__bottom-search')
@@ -2257,11 +2267,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			const svgClose = `<svg xmlns = "http://www.w3.org/2000/svg" width = "20" height = "20" viewBox = "0 0 20 20" fill = "none" >
 			<path fill-rule="evenodd" clip-rule="evenodd" d="M4.4107 4.41058C4.73614 4.08514 5.26378 4.08514 5.58921 4.41058L9.99996 8.82133L14.4107 4.41058C14.7361 4.08514 15.2638 4.08514 15.5892 4.41058C15.9147 4.73602 15.9147 5.26366 15.5892 5.58909L11.1785 9.99984L15.5892 14.4106C15.9147 14.736 15.9147 15.2637 15.5892 15.5891C15.2638 15.9145 14.7361 15.9145 14.4107 15.5891L9.99996 11.1783L5.58921 15.5891C5.26378 15.9145 4.73614 15.9145 4.4107 15.5891C4.08527 15.2637 4.08527 14.736 4.4107 14.4106L8.82145 9.99984L4.4107 5.58909C4.08527 5.26366 4.08527 4.73602 4.4107 4.41058Z" fill="white" />
-	</svg > `;
+	</svg> `;
 
-			const svgSearch = `< svg xmlns = "http://www.w3.org/2000/svg" width = "16" height = "16" viewBox = "0 0 16 16" fill = "none">
+			const svgSearch = `<svg xmlns = "http://www.w3.org/2000/svg" width = "16" height = "16" viewBox = "0 0 16 16" fill = "none">
 			<path fill-rule="evenodd" clip-rule="evenodd" d="M7.66659 2.66683C4.90516 2.66683 2.66659 4.90541 2.66659 7.66683C2.66659 10.4283 4.90516 12.6668 7.66659 12.6668C9.00865 12.6668 10.2272 12.1381 11.1253 11.2775C11.1461 11.2488 11.1694 11.2213 11.1953 11.1954C11.2211 11.1695 11.2486 11.1463 11.2773 11.1255C12.1379 10.2274 12.6666 9.00887 12.6666 7.66683C12.6666 4.90541 10.428 2.66683 7.66659 2.66683ZM12.5916 11.649C13.4724 10.5611 13.9999 9.17558 13.9999 7.66683C13.9999 4.16903 11.1644 1.3335 7.66659 1.3335C4.16878 1.3335 1.33325 4.16903 1.33325 7.66683C1.33325 11.1646 4.16878 14.0002 7.66659 14.0002C9.17536 14.0002 10.5609 13.4726 11.6488 12.5918L13.5285 14.4716C13.7889 14.7319 14.211 14.7319 14.4713 14.4716C14.7317 14.2112 14.7317 13.7891 14.4713 13.5288L12.5916 11.649Z" fill="white" />
-	</svg>`;
+	</svg> `;
 
 			const headerTop = document.querySelector('.header')
 			const searchBlock = document.querySelector('.search-block')
@@ -2679,9 +2689,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	const calculateBannerBtn = document.querySelector('.calculate-banner__btn')
 	if (calculateBannerBtn) {
-		calculateBannerBtn.addEventListener('click', () => {
+		calculateBannerBtn.addEventListener('click', (e) => {
+			e.preventDefault()
 			openPopupElement(document.querySelector('.callback-popup'))
 		})
+	}
+
+	const manufactureOrder = document.querySelectorAll('.manufacture-card__btn')
+	if (manufactureOrder) {
+		for (const btn of manufactureOrder) {
+			btn.addEventListener('click', (e) => {
+				e.preventDefault()
+				openPopupElement(document.querySelector('.callback-popup'))
+			})
+		}
 	}
 
 	let links = document.querySelectorAll('[data-anchor]')
@@ -2913,6 +2934,9 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 
+
+
+
 	openSpecofferFilter()
 
 	function moovElement() {
@@ -3040,17 +3064,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		if (anchors) {
 			for (const anchor of anchors) {
-				const anchorLink = anchor.getAttribute('href').replaceAll('#', '');
-				console.log(anchorLink);
-				const block = document.querySelector(`[id=${anchorLink}]`)
-				console.log(block);
-				anchor.addEventListener('click', (e) => {
-					e.preventDefault()
-					anchors.forEach(el => el.classList.remove('active'))
-					const blockTop = block.getBoundingClientRect().top - document.querySelector('.header__bottom').offsetHeight;
-					// anchor.classList.add('active')
-					console.log(blockTop);
 
+				const anchorLink = anchor.getAttribute('href').replaceAll('#', '');
+
+				const block = document.querySelector(`[id=${anchorLink}]`)
+
+				anchor.addEventListener('click', (e) => {
+
+					e.preventDefault()
+
+					anchors.forEach(el => el.classList.remove('active'))
+
+					const blockTop = block.getBoundingClientRect().top - document.querySelector('.header__bottom').offsetHeight;
+
+					anchor.classList.add('active')
 
 					window.scrollBy({
 						top: blockTop - 30,
@@ -3058,19 +3085,18 @@ document.addEventListener('DOMContentLoaded', function () {
 					});
 				})
 
-				window.addEventListener('scroll', (e) => {
-					const blockTop = block.getBoundingClientRect().top - document.querySelector('.header__bottom').offsetHeight - 30;
-					if (window.scrollY >= blockTop) {
-						anchors.forEach(el => el.classList.remove('active'))
-						anchor.classList.add('active')
+				window.addEventListener('scroll', () => {
+					if (window.scrollY > block.getBoundingClientRect().top - document.documentElement.clientHeight) {
+						console.log(block);
+						console.log(anchor);
 					}
-
 				})
 
 			}
 		}
 	}
 	scrollToElement()
+
 
 	// Скрол к блоку для страницы Product
 
