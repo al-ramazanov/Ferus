@@ -3030,6 +3030,24 @@ document.addEventListener('DOMContentLoaded', function () {
 		})
 	}
 
+
+
+	const writeReview = document.querySelector('.write-rewiev-popup')
+	if (writeReview) {
+		const openBtn = document.querySelector('.open-review-popup')
+		const submit = writeReview.querySelector('.popup__form-btn')
+		const emptyPopup = document.querySelector('.empty-popup')
+		openBtn.addEventListener('click', e => {
+			e.preventDefault()
+			openPopupElement(writeReview)
+		})
+		submit.addEventListener('click', e => {
+			e.preventDefault()
+			closePopupElement(writeReview)
+			openPopupElement(emptyPopup)
+		})
+	}
+
 	// фиксация блока для Safari
 
 	if (mobCatalogWraps) {
